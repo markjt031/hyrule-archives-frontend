@@ -1,7 +1,9 @@
 import './globals.css'
-import { Inter } from 'next/font/google'
+import { config } from '@fortawesome/fontawesome-svg-core'
+import '../../node_modules/@fortawesome/fontawesome-svg-core/styles.css'
+config.autoAddCss = false
+import Nav from './components/Nav'
 
-const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
   title: 'Create Next App',
@@ -11,7 +13,14 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body>
+        <header>
+          <Nav />
+        </header>
+        <main>
+          {children}
+          </main>
+        </body>
     </html>
   )
 }
