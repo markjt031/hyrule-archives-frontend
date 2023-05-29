@@ -1,10 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
 :root {
-  --blue-100: #BBE1FA;
-  --blue-300: #3282B8;
-  --blue-400: #0F4C75;
-  --blue-500: #063B5F;
-  --blue-700: #1E1E1E;
+  --blue-100: 187, 225, 250;
+  --blue-300: 50, 130, 184;
+  --blue-400: 15, 76, 117;
+  --blue-500: 6, 59, 95;
+  --blue-700: 30, 30, 30;
 }
 * {
   box-sizing: border-box;
@@ -20,8 +20,8 @@ body {
 }
 
 body {
-  color: var(--blue-100);
-  background: var(--blue-700)
+  color: rgb(var(--blue-100));
+  background: rgb(var(--blue-700));
 }
 
 a {

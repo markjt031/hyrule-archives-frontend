@@ -1,0 +1,24 @@
+.grid{
+    margin: 5% auto 0 auto;
+    display: grid;
+    width: 70%;
+}
+.monsterCard{
+    position: relative;
+    width: 200px;
+    height: 200px;
+    margin: 0 auto;
+}
+.monsterCard p{
+    text-transform: capitalize;
+    background-color: rgba(var(--blue-400), 0.7);
+    position: absolute;
+    z-index:3;
+    bottom:7%;
+    width: 100%;
+}
+@media screen and (min-width: 1024px){
+    .grid{
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+}
