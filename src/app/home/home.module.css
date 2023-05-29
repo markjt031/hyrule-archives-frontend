@@ -1,0 +1,25 @@
+.container{
+    width: 100%;
+    position: unset !important;
+}
+.landingImage{
+    object-fit: contain;
+    width: 100%;
+    position: relative !important;
+    height: unset;
+    max-height: 576px;
+    max-width: 1024px;
+}
+@media screen and (min-width: 1024){
+    .container{
+        width: 80%;
+        top: 50%;
+        left: 50%;
+        transform: translateX(-50%);
+
+    }
+    .landingImage{
+        margin: 0 auto;
+        position: absolute !important;
+    }
+}

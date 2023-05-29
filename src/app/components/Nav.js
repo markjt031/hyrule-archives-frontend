@@ -17,8 +17,20 @@ export default function Nav() {
             </div>
         </div>
         <Link href="/home">Hyrule Archives</Link>
-        <div>
+        <div className={styles.dropdownSearch}>
             <FontAwesomeIcon icon={faMagnifyingGlass}/>
+            <div className={styles.dropdownSearchMenu}>
+                <form>
+                    <input type="text"></input>
+                    <button type="submit" className={styles.searchBtn}><FontAwesomeIcon icon={faMagnifyingGlass}/></button>
+                </form>
+            </div>
+        </div>
+        <div className={styles.searchFullScreen}>
+            <form className={styles.form}>
+                <input type="text"></input>
+                <button type="submit"><FontAwesomeIcon icon={faMagnifyingGlass}/></button>
+            </form>
         </div>
         <div className={styles.dropdown}>
             <FontAwesomeIcon icon={faUserCircle}/>
@@ -27,6 +39,7 @@ export default function Nav() {
                 <Link href="#">Register</Link>
             </div>
         </div>
+        
     </nav>
   )
 }
