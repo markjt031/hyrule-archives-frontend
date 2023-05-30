@@ -1,0 +1,40 @@
+.largerCard{
+    margin: 6% auto 0 auto;
+    background-color: rgb(var(--blue-400));
+    width: 350px;
+}
+.imageWrapper{
+    width: 350px;
+    height: 350px;
+    position: relative;
+    
+}
+.cardInfo{
+    margin: 2%;
+    padding-bottom: 2%;
+}
+.cardInfo p{
+    margin-bottom: 1.5%;
+}
+.description{
+    display: none;
+}
+@media screen and (min-width:768px){
+    .descriptionMobile{
+        display: none;
+    }
+    .description{
+        display: block;
+        width: 85%;
+        margin: 0 auto;
+        background-color: rgb(var(--blue-400));
+        padding: 2%;
+    }
+    .largerCard{
+        display: flex;
+        width: 85%;
+    }
+    .cardInfo{
+        max-width: 50%;
+    }
+}
