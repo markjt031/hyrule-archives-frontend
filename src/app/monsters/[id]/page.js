@@ -6,7 +6,7 @@ export async function generateStaticParams() {
     const response = await fetch(process.env.FETCH_URL+"monsters");
     const data=await response.json()
     return data.data.map((monster) => ({
-      id: monster._id
+        id: monster._id
     }));
   }
 export async function getMonster(id) {
@@ -15,7 +15,9 @@ export async function getMonster(id) {
 }
     
 export default async function Monsters({params}){
+    console.log(params)
     const {id}=params
+
     const monster=await getMonster(id)
     const {no, name, recoverableMaterials, commonLocations, description, image }=monster
     console.log(monster)
@@ -40,6 +42,9 @@ export default async function Monsters({params}){
         <div className={styles.description}>
                 <p>Description: {description}</p>
             </div>
+        <div>
+            
+        </div>
         </>
 
         )
