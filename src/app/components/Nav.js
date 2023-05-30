@@ -1,9 +1,7 @@
 import Link from "next/link"
 import styles from "../../styles/Nav.module.css"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBars, faM } from '@fortawesome/free-solid-svg-icons'
-import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons"
-import { faUserCircle } from "@fortawesome/free-solid-svg-icons"
+import { faBars, faMagnifyingGlass, faUserCircle } from '@fortawesome/free-solid-svg-icons'
 
 export default function Nav() {
   return (
@@ -11,9 +9,9 @@ export default function Nav() {
         <div className={styles.dropdown}>
             <FontAwesomeIcon icon={faBars}/>
             <div className={styles.dropdownMenu}>
-                <Link href="#">Monsters</Link>
-                <Link href="#">Creatures</Link>
-                <Link href='#'>Items</Link>
+                <Link href="/monsters">Monsters</Link>
+                <Link href="/creatures">Creatures</Link>
+                <Link href='/items'>Items</Link>
             </div>
         </div>
         <Link href="/home">Hyrule Archives</Link>

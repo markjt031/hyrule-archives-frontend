@@ -1,15 +1,19 @@
+.heading{
+    text-align: center;
+    margin-top: 5%;
+}
 .grid{
     margin: 5% auto 0 auto;
     display: grid;
     width: 70%;
 }
-.monsterCard{
+.card{
     position: relative;
     width: 200px;
     height: 200px;
     margin: 0 auto;
 }
-.monsterCard p{
+.card p{
     text-transform: capitalize;
     background-color: rgba(var(--blue-400), 0.7);
     position: absolute;
