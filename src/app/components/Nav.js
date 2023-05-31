@@ -68,7 +68,7 @@ export default function Nav() {
             <div className={styles.dropdown}>
             <FontAwesomeIcon icon={faUserCircle}/>
             <div className={styles.dropdownMenu}>
-                <Link href="#">Profile</Link>
+                <Link href={`/user/profile/${user.id}`}>Profile</Link>
                 <Link href="/home" onClick={handleLogout}>Logout</Link>
             </div>
         </div>

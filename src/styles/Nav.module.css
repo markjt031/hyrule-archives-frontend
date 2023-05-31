@@ -17,6 +17,7 @@
     right:0%;
     background-color: rgb(var(--blue-400));
     z-index: 10;
+    transition: linear all .25s;
 }
 .left{
     display: flex;
@@ -127,6 +128,7 @@
     }
     .right{
         width: 65%;
+        transition: linear all .25s;
     }
 }
 @media screen and (min-width: 768px){
@@ -160,6 +162,7 @@
     }
     .right{
         width: 65%;
+        transition: linear all .25s;
     }
 }
 @media screen and (min-width: 1024px){
