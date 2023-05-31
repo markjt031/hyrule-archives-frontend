@@ -11,17 +11,20 @@ const getSearchResults=async(searchTerm)=>{
     else return {message: "No results found"}
 }
 const pathByNumber=(no)=>{
-    if (no>=1 && no<=92){
+    if (no>=1 && no<=52){
         return 'creatures/'
+    }
+    if (no>=53 && no<=92){
+        return 'critters/'
     }
     if (no>=93 && no<=202){
         return 'monsters/'
     }
     if (no>=203 && no<=328){
-        return 'items/materials'
+        return 'items/materials/'
     }
     if (no>=329 && no<=503){
-        return 'equipment/'
+        return 'items/equipment/'
     }
 }
 

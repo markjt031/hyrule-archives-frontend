@@ -1,0 +1,101 @@
+.container{
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+}
+.text{
+    display: block;
+    height: 150px;
+    width: 150px;
+    text-align: center;
+    padding-top:30px;
+    background-color: rgba(var(--blue-400), .8);
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.linkbg{
+    height: 300px;
+    width: 300px;
+    background-size: cover;
+    background-blend-mode: overlay;
+    background-color: var(--blue-700);
+    background-image: url('../../public/link.webp');
+    margin: 10% auto;
+    position: relative;
+}
+.loginForm{
+    display: flex;
+    flex-direction: column;
+    font-size: .75rem;
+}
+.loginWrapper{
+    transform: translateY(20%);
+}
+.loginForm input[type=text], .loginForm input[type=email], .loginForm input[type=password]{
+    width:70%;
+    margin: 2px auto;
+    border-radius:10px;
+    padding: .3125rem;
+    background-color: rgb(var(--blue-100));
+    color: rgb(var(--blue-300));
+}
+.loginForm input[type=submit]{
+    width:60%;
+    margin: 2px auto;
+    border-radius: 28px;
+    border: none;
+    padding: 10px 0px;
+    font-size: 1.5rem;
+    font-family: inherit;
+    color: inherit;
+    background-color: rgb(var(--blue-300));
+    box-shadow: 0 10px 20px rgb(var(--blue-500));
+    cursor: pointer;
+}
+.loginForm a, .linkbg a{
+    color: rgb(var(--blue-200));
+}
+.loginFormOverlay{
+    text-align: center;
+    background-color: rgba(var(--blue-400),.8);
+    width: 250px;
+    height: 300px;
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    /* margin: 18%; */
+}
+.registerLink{
+    color: rbg(var(--blue-300));
+}
+@media screen and (min-width: 768px){
+    .loginForm h1{
+        font-size: 2rem;
+    }
+    .loginFormOverlay{
+        height: 400px;
+        width: 400px;
+    }
+    .loginWrapper{
+        transform: translateY(30%);
+    }
+    .loginForm input[type=text], .loginForm input[type=email], .loginForm input[type=password]{
+        width: 60%;
+        padding: 10px;
+    }
+    .text{
+        height: 300px;
+        width: 300px;
+        font-size: 2rem;
+        padding-top:65px;
+        top: 30%;
+        left: 50%;
+    }
+    .linkbg{
+        height: 500px;
+        width: 500px;
+    }
+}

@@ -1,11 +1,11 @@
 import Image from "next/image";
 import styles from "../../../styles/index.module.css"
 import CardGrid from "../../components/CardGrid"
-export default function Monsters(){
+export default function Materials(){
     return(
         <>
         <h1 className={styles.heading}>Materials Index</h1>
-        <CardGrid type={['items/materials']}/>
+        <CardGrid type={'items/materials'}/>
         </>
         )
 

@@ -10,19 +10,13 @@ export const getData=async(type)=>{
 }
 
 export default async function CardGrid({type}){
+    
     console.log(type)
-    const data=[]
-    for (let i=0; i<type.length;i++){
-        console.log(type[i])
-        const items=await getData(type[i])
-        data.push(...items)
-    }
+    const data=await getData(type)
     console.log(data)
     return(
         <>
-        
             <div className={styles.grid}>
-                
                 {data.map((item)=>{
                 const {_id, no, name, image}=item;
                 return (
@@ -40,5 +34,5 @@ export default async function CardGrid({type}){
             </div>
         </>
         )
-
+    
 }
