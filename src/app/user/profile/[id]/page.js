@@ -27,32 +27,48 @@ export default async function Profile({params}){
                 <h1>User Profile</h1>
                 <div>
                     <h2>Created Monsters:</h2>
-                    <ul>
+                    {profile.monsters.length>0 ? 
+                    (<ul>
                         {profile.monsters.map((monster)=>{
                                 return <li key={monster.no} className={utilStyles.capitalize}><Link href={`/monsters/${monster._id}`}>{monster.name}</Link></li>
                             })}
-                    </ul>
+                    </ul>)
+                    :
+                    <h5>No monsters created</h5>
+                    }
                     <h2>Created Creatures:</h2>
-                    <ul>
+                    {profile.creatures.length>0 && profile.critters.length>0 ?
+                    (<ul>
                         {profile.creatures.map((creature)=>{
                                 return <li key={creature.no} className={utilStyles.capitalize}><Link href={`/creatures/${creature._id}`}>{creature.name}</Link></li>
                             })}
                         {profile.critters.map((critter)=>{
                                 return <li key={critter.no} className={utilStyles.capitalize}><Link href={`/critters/${critter._id}`}>{critter.name}</Link></li>
                             })}
-                    </ul>
+                    </ul>)
+                    :
+                    <h5>No creatures created</h5>
+                    }
                     <h2>Created Materials:</h2>
-                    <ul>
+                    {profile.materials.length>0 ?
+                    (<ul>
                         {profile.materials.map((material)=>{
                                 return <li key={material.no} className={utilStyles.capitalize}><Link href={`/items/materials/${material._id}`}>{material.name}</Link></li>
                             })}
-                    </ul>
+                    </ul>)
+                    :
+                    <h5>No materials created</h5>
+                    }
                     <h2>Created Equipment:</h2>
-                    <ul>
+                    {profile.equipment.length>0 ? 
+                    (<ul>
                         {profile.equipment.map((equipment)=>{
                                 return <li key={equipment.no} className={utilStyles.capitalize}><Link href={`/items/equipment/${equipment._id}`}>{equipment.name}</Link></li>
                             })}
-                    </ul>
+                    </ul>)
+                    :
+                    <h5>No equipment added</h5>
+                    }
                         
                 </div>
             </div>
