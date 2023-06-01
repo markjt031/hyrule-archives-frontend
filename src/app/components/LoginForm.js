@@ -26,8 +26,7 @@ export default function LoginForm() {
   }
 
   const handleLogin = async (userObj) => {
-    console.log(process.env.NEXT_PUBLIC_FETCH_URL+'login/')
-    const response= await fetch(`https://hyrule-archive.herokuapp.com/users/login`,
+    const response= await fetch(`http://hyrule-archive.herokuapp.com/users/login`,
     {
         method: "POST",
         mode: "cors",

@@ -24,7 +24,7 @@ export default async function Profile({params}){
     return(
         <div>
             <div>
-                <h1>User Profile</h1>
+                <h2>User Profile</h2>
                 <div>
                     <h2>Created Monsters:</h2>
                     {profile.monsters.length>0 ? 

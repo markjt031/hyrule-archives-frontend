@@ -9,6 +9,19 @@ const nextConfig = {
                 pathname: '/*'
             }
         ]
+    },
+    headers: async()=>{
+        return [
+        {
+            source: '/monsters/new',
+            headers: [
+                {
+                    key: 'Cache-Control',
+                    value: 'no-store,'
+                },
+            ],
+        },
+        ]
     }
 }
 

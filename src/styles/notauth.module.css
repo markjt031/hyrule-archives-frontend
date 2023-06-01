@@ -1,0 +1,13 @@
+.imageContainer{
+    height: 250px;
+    width: 500px;
+    background-size:cover;
+    background-blend-mode: overlay;
+    background-color: var(--blue-700);
+    background-image: url('../../public/gloom-hands-in-zelda-totk\ copy.jpg');
+    margin: 0 auto;
+    position: relative;
+}
+.container{
+   text-align:center;
+}

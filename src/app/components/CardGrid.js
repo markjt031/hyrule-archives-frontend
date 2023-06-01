@@ -4,7 +4,7 @@ import utilStyles from "../../styles/utils.module.css"
 import Link from "next/link";
 
 export const getData=async(type)=>{
-    const response=await fetch(`${process.env.FETCH_URL}${type}`, {next: {revalidate: 60}})
+    const response=await fetch(`${process.env.FETCH_URL}${type}`, {next: {revalidate: 1}})
     const data=await response.json();
     return data.data
 }
