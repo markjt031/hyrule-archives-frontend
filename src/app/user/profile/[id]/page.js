@@ -37,7 +37,7 @@ export default async function Profile({params}){
                     <h5>No monsters created</h5>
                     }
                     <h2>Created Creatures:</h2>
-                    {profile.creatures.length>0 && profile.critters.length>0 ?
+                    {profile.creatures.length>0 || profile.critters.length>0 ?
                     (<ul>
                         {profile.creatures.map((creature)=>{
                                 return <li key={creature.no} className={utilStyles.capitalize}><Link href={`/creatures/${creature._id}`}>{creature.name}</Link></li>
