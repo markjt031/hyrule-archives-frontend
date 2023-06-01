@@ -3,7 +3,9 @@ import styles from "../../styles/index.module.css"
 import utilStyles from "../../styles/utils.module.css"
 import Link from "next/link";
 
+import { revalidatePath } from "next/cache";
 export const getData=async(type)=>{
+    revalidatePath(`/{type}`)
     const response=await fetch(`${process.env.FETCH_URL}${type}`, {next: {revalidate: 1}})
     const data=await response.json();
     return data.data

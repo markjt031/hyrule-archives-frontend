@@ -82,6 +82,7 @@ export default function NewMaterialForm() {
         // headers: {
         //     "Content-Type": "multipart/form-data",
         // },
+        credentials: 'include',
         body: material
     })
     const data= await response.json()

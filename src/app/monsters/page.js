@@ -1,13 +1,18 @@
 import CardGrid from "../components/CardGrid";
 import styles from "../../styles/index.module.css"
 import NewButton from '../components/NewButton'
+import { useRouter } from "next/navigation";
+
 
 export default function Monsters(){
     return(
         <>
+        
         <h1 className={styles.heading}>Monster Index</h1>
-        <NewButton pathname='/monsters'/>
-        <CardGrid type={'monsters'}/>
+        <div className={styles.btnContainer}>
+            <NewButton className={styles.btn} pathname='/monsters'/>
+        </div>
+            <CardGrid type={'monsters'}/>
         </>
         )
 

@@ -6,7 +6,10 @@ export default function Materials(){
     return(
         <>
         <h1 className={styles.heading}>Materials Index</h1>
-        <NewButton pathname={'items/materials'}/>
+        <div className={styles.btnContainer}>
+            <NewButton pathname={'items/materials'}/>
+        </div>
+        
         <CardGrid type={'items/materials'}/>
         
         </>

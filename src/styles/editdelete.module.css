@@ -1,0 +1,11 @@
+.buttonContainer{
+    display: flex;
+    justify-content: space-evenly;
+    width: 90px;
+}
+.button{
+    color: var(--blue-100);
+    background-color: var(--blue-700);
+    border: none;
+    font-size: 1.5rem;
+}

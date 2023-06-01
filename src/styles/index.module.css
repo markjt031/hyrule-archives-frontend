@@ -13,6 +13,10 @@
     height: 200px;
     margin: 0 auto;
 }
+.btnContainer{
+    margin-top: 2%;
+    text-align: center;
+}
 .card:hover{
     transform: translateY(-2%);
     box-shadow: 0 10px 20px rgba(0,0,0, .2);

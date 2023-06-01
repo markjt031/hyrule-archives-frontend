@@ -1,6 +1,7 @@
 import styles from '../../../styles/show.module.css'
 import utilStyles from '../../../styles/utils.module.css'
 import Image from 'next/image';
+import EditDelete from '@/app/components/EditDelete';
 
 export async function generateStaticParams() {
     const response = await fetch(process.env.FETCH_URL+"monsters");
@@ -24,6 +25,7 @@ export default async function Monsters({params}){
     return(
         <>
         <div className={styles.largerCard}>
+            
             <div className={styles.imageWrapper}>
                 <Image
                     src={image}
@@ -31,6 +33,7 @@ export default async function Monsters({params}){
                     fill/>
             </div>
             <div className={styles.cardInfo}>
+            <div className={styles.right}><EditDelete pathname='monsters' itemId={id} userId={monster.userId} data={monster}/></div>
                 <p>No: {no}</p>
                 <p>Name: <span className={utilStyles.capitalize}>{name}</span></p>
                 <p>Recoverable Materials: <span className={utilStyles.capitalize}>{recoverableMaterials.join(', ')}</span></p>
