@@ -32,7 +32,6 @@ export default function NewMonsterForm() {
     for (const material in recoverableMaterials){
         form.append(material, recoverableMaterials[material])
     }
-    form.append('userId', user.id)
     createMonster(form)
   }
   const handleChange=(e)=>{

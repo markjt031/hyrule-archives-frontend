@@ -6,7 +6,7 @@ export default function Monsters(){
     return(
         <>
         <h1 className={styles.heading}>Monster Index</h1>
-        <NewButton/>
+        <NewButton pathname='/monsters'/>
         <CardGrid type={'monsters'}/>
         </>
         )
