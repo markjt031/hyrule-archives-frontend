@@ -8,8 +8,9 @@ export default function Creatures(){
         <NewButton pathname={'/creatures'}/>
         <CardGrid type={'creatures'}/>
         <h1 className={styles.heading}>Creature Materials</h1>
-        <CardGrid type={'critters'}/>
         <NewButton pathname={'/critters'}/>
+        <CardGrid type={'critters'}/>
+        
         </>
         )
 

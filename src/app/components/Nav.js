@@ -53,7 +53,7 @@ export default function Nav() {
             </div>
             <div className={styles.searchFullScreen}>
                 <form className={styles.form} onSubmit={handleSubmit}>
-                    <input type="text" name="searchterm" onChange={handleChange} value={formData.searchterm}></input>
+                    <input type="text" name="searchterm" className={styles.searchbar}onChange={handleChange} value={formData.searchterm}></input>
                     <button type="submit"><FontAwesomeIcon icon={faMagnifyingGlass}/></button>
                 </form>
             </div>

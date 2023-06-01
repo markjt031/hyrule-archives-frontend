@@ -37,11 +37,10 @@ export default function LoginForm() {
         body: JSON.stringify(userObj)
     })
     const data= await response.json()
-    console.log(data)
     if (data.username){
         setToggleError(false)
         await setUser(data)
-        router.push("/home")
+        router.back()
     }
     else{
         setToggleError(true)

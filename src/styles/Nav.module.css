@@ -12,12 +12,12 @@
 }
 .right{
     display:flex;
-    width: 30%;
+    width: 23%;
     position: absolute;
-    right:0%;
+    right:7%;
     background-color: rgb(var(--blue-400));
     z-index: 10;
-    transition: linear all .25s;
+    align-content: flex-start;
 }
 .left{
     display: flex;
@@ -31,6 +31,7 @@
     position: relative;
     display: inline-block;
     padding: 0px 10px;
+    flex-shrink:0;
 }
 .dropdown:hover{
     background-color: rgb(var(--blue-500));
@@ -75,6 +76,7 @@
     padding: .3125rem;
     background-color: rgb(var(--blue-100));
     color: rgb(var(--blue-300));
+    width: 80%;
 }
 .dropdownSearchMenu input[type=text]
 {
@@ -105,7 +107,7 @@
 .searchFullScreen{
     display: none;
 }
-@media screen and (min-width: 425px){
+@media screen and (min-width: 436px){
     .searchFullScreen input[type=text]{
         margin: 0 0 0 0;
         transform: translateY(-10%);
@@ -114,8 +116,8 @@
     }
     .searchFullScreen{
         display: block;
-        margin: 0 0 0 5%;
         padding: 0;
+        flex-grow:1;
     }
     .dropdownSearch{
         display: none;
@@ -127,8 +129,7 @@
         width: 35%;
     }
     .right{
-        width: 65%;
-        transition: linear all .25s;
+        width: 58%;
     }
 }
 @media screen and (min-width: 768px){
@@ -136,11 +137,8 @@
         font-size: 1.5rem;
         height: 40px
     }
-    .searchFullScreen{
-        margin: 0 0 0 10%;
-    }
     .searchFullScreen input[type=text]{
-        width: 18.75rem;
+        /* width: 18.75rem; */
         transform: translateY(-10%);
         padding: .3125rem;
         
@@ -153,24 +151,10 @@
         font-size: 1.4rem;
         width: 200px;
     }
-    .form{
-        height: 50%;
-        position: relative;
-    }
-    .left{
-        width: 35%;
-    }
-    .right{
-        width: 65%;
-        transition: linear all .25s;
-    }
 }
 @media screen and (min-width: 1024px){
     .nav{
         font-size: 2rem;
-    }
-    .searchFullScreen{
-        margin: 0 0 0 8em;
     }
     .searchFullScreen button, .searchFullScreen input[type=text]{
         transform: translateY(-25%);
