@@ -167,7 +167,7 @@ export default function EditMonsterForm({searchParams}) {
         </div>
         <div className={styles.imagePreview}>
             
-            {imagePreview ? <img src={imagePreview} className={styles.imagePreviewImage}/> : null }
+            {imagePreview ? <img src={imagePreview} className={styles.imagePreviewImage}/> : <div className={styles.box}/>}
             <label htmlFor='image' className={styles.label}>Select an image</label>
             <input type='file' title=' ' name='image' accept='image/*' onChange={handleUpload}/>
         </div>
