@@ -45,7 +45,7 @@
     width:60%;
     margin: 2px auto;
     border-radius: 28px;
-    border: none;
+    border: solid rgb(var(--blue-100));
     padding: 10px 0px;
     font-size: 1.5rem;
     font-family: inherit;

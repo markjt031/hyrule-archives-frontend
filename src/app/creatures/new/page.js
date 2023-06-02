@@ -1,5 +1,5 @@
 'use client'
-import styles from '../../../styles/login.module.css'
+import styles from '../../../styles/createeditform.module.css'
 import Link from 'next/link'
 import NotAuthorized from '@/app/components/NotAuthorized'
 import { useState } from 'react'
@@ -98,48 +98,53 @@ export default function NewCreatureForm() {
 
   return (
     
-      <div>
+      <>
+        <h1 className={styles.title}>New Creature</h1>
         {user ? 
-       (<div>
-        <h1>New Creature</h1>
-      <form onSubmit={handleSubmit}>
-      <input type='number' placeholder='no' name="no" onChange={handleChange}/><br/>
-        <input type='text' placeholder='name' name="name" onChange={handleChange}/>
-        {Array.from(Array(recoverableMaterialsCount)).map((c, index) => {
-        return(
-            <div key={index}>
-                <input
-                    type="text"
-                    name=""
-                    placeholder="recoverable material"
-                    onChange={(event) => setRecoverableMaterials({...recoverableMaterials, [`recoverableMaterials[${index}]`]:event.target.value })}
-                />
-                <button onClick={buttonHandlerRecoverableIncrease}>+</button>
-                {index>0 && <button onClick={buttonHandlerRecoverableDecrease}>-</button>}
-                
-            </div>
-        )})}
-        {Array.from(Array(commonLocationsCount)).map((c, index) => {
-        return(
-            <div key={index}>
-                <input
-                    type="text"
-                    name=""
-                    placeholder="common locations"
-                    onChange={(event) => setCommonLocations({...commonLocations, [`commonLocations[${index}]`]:event.target.value })}
-                />
-                <button onClick={buttonHandlerCommonIncrease}>+</button>
-                {index>0 && <button onClick={buttonHandlerCommonDecrease}>-</button>}
-                
-            </div>
-        )})}
-        <div>
-            {imagePreview ? <img src={imagePreview}/> : null }
-            <input type='file' name='image' accept='image/*' onChange={handleUpload}/>
+       (<div className={styles.formContainer}>
+        
+      <form onSubmit={handleSubmit} className={styles.form}>
+      <div className={styles.textInputs}>
+            <input type='number' placeholder='no' name="no" onChange={handleChange}/><br/>
+            <input type='text' placeholder='name' name="name" onChange={handleChange}/>
+            {Array.from(Array(recoverableMaterialsCount)).map((c, index) => {
+            return(
+                <div key={index}>
+                    <input
+                        type="text"
+                        name=""
+                        placeholder="recoverable material"
+                        onChange={(event) => setRecoverableMaterials({...recoverableMaterials, [`recoverableMaterials[${index}]`]:event.target.value })}
+                    />
+                    {index===recoverableMaterialsCount-1 &&<button onClick={buttonHandlerRecoverableIncrease} className={styles.btnSmall}>+</button>}
+                    {(index>0 && index===recoverableMaterialsCount-1) && <button onClick={buttonHandlerRecoverableDecrease} className={styles.btnSmall}>-</button>}
+                    
+                </div>
+            )})}
+            {Array.from(Array(commonLocationsCount)).map((c, index) => {
+            return(
+                <div key={index}>
+                    <input
+                        type="text"
+                        name=""
+                        placeholder="common locations"
+                        onChange={(event) => setCommonLocations({...commonLocations, [`commonLocations[${index}]`]:event.target.value })}
+                    />
+                    <button onClick={buttonHandlerCommonIncrease} className={styles.btnSmall}>+</button>
+                    {index>0 && <button onClick={buttonHandlerCommonDecrease} className={styles.btnSmall}>-</button>}
+                    
+                </div>
+                )})}
+            <textarea placeholder='type description here' name='description' rows="4" onChange={handleChange}/>
         </div>
-        <textarea placeholder='type description here' name='description' rows="4" onChange={handleChange}/>
-        <input type='submit' value='Submit'/>
+        <div className={styles.imagePreview}>
+            {imagePreview ? <img src={imagePreview} className={styles.imagePreviewImage}/> : <div className={styles.box}/> }
+            <label htmlFor='image' className={styles.label}>Select an image</label>
+            <input type='file' name='image' accept='image/*' title=' ' onChange={handleUpload}/>
+        </div>
+        
       </form>
+      <input type='submit' value='Submit'/>
       {toggleError ? <h5>{errorMessage}</h5>
       :
       null
@@ -148,7 +153,7 @@ export default function NewCreatureForm() {
       :
       <NotAuthorized/>}
       
-      </div>
+      </>
       
   )
 }

@@ -122,9 +122,9 @@ export default function EditMonsterForm({searchParams}) {
 
   return (
     
-      <div>
+      <>
          <h1 className={styles.title}>Edit Monster</h1>
-        {/* {user ?  */}
+        {user ? 
        (<div className={styles.formContainer}>
        
       <form onSubmit={handleSubmit} className={styles.form}>
@@ -178,10 +178,10 @@ export default function EditMonsterForm({searchParams}) {
       null
       }
       </div>)
-      {/* :
-      <NotAuthorized/>} */}
+       :
+      <NotAuthorized/>}
       
-      </div>
+      </>
       
   )
 }
