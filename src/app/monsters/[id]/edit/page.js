@@ -15,11 +15,7 @@ export default function EditMonsterForm({searchParams}) {
     const [imagePreview, setImagePreview]=useState(searchParams.image)
     const [toggleError, setToggleError]=useState(false)
     const [errorMessage, setErrorMessage]=useState('')
-    const [formData, setFormData]= useState({})
     
-    const [recoverableMaterials, setRecoverableMaterials]=useState({})
-   
-    const [commonLocations, setCommonLocations]=useState({})
 
     //This is to handle an error where the create form made recoverable materials just
     //a string when there was only one value, but an array if there was more than one.
@@ -32,6 +28,11 @@ export default function EditMonsterForm({searchParams}) {
             recoverableArray.push(searchParams.recoverableMaterials[i])
         }
     }
+    let recoverableObj={}
+    for (let i=0; i<recoverableArray.length; i++){
+      recoverableObj[`recoverableMaterials[${i}]`]=recoverableArray[i]
+    }
+    const [recoverableMaterials, setRecoverableMaterials]=useState(recoverableObj)
     //Repeating for the other array
     const commonArray=[]
     if (typeof searchParams.commonLocationss==='string'){
@@ -42,6 +43,17 @@ export default function EditMonsterForm({searchParams}) {
             commonArray.push(searchParams.commonLocations[i])
         }
     }
+    let locationObj={}
+    for (let i=0; i<commonArray.length; i++){
+      locationObj[`commonLocations[${i}]`]=commonArray[i]
+    }
+    console.log(locationObj)
+    const [commonLocations, setCommonLocations]=useState(locationObj)
+    const [formData, setFormData]= useState({
+      no: searchParams.no,
+      name: searchParams.name,
+      description: searchParams.description,
+    })
     const [commonLocationsCount, setCommonLocationsCount]=useState(commonArray.length)
     const [recoverableMaterialsCount, setRecoverableMaterialsCount]=useState(recoverableArray.length)
     const handleSubmit = (event) => {
@@ -124,13 +136,13 @@ export default function EditMonsterForm({searchParams}) {
     
       <>
          <h1 className={styles.title}>Edit Monster</h1>
-        {user ? 
+        {/* {user ?  */}
        (<div className={styles.formContainer}>
        
       <form onSubmit={handleSubmit} className={styles.form}>
        <div className={styles.textInputs}>
-            <input type='number' placeholder='no' name="no" value={searchParams.no} onChange={handleChange}/><br/>
-            <input type='text' placeholder='name' name="name" value={searchParams.name} onChange={handleChange}/>
+            <input type='number' placeholder='no' name="no" value={formData.no} onChange={handleChange}/><br/>
+            <input type='text' placeholder='name' name="name" value={formData.name} onChange={handleChange}/>
             {Array.from(Array(recoverableMaterialsCount)).map((c, index) => {
                 console.log(recoverableMaterialsCount)
             console.log(index)
@@ -138,7 +150,7 @@ export default function EditMonsterForm({searchParams}) {
                 <div key={index}>
                     <input
                         type="text"
-                        value={recoverableArray[index]}
+                        value={recoverableMaterials[`recoverableMaterials[${index}]`]}
                         placeholder="recoverable material"
                         onChange={(event) => setRecoverableMaterials({...recoverableMaterials, [`recoverableMaterials[${index}]`]:event.target.value })}
                     />
@@ -153,7 +165,7 @@ export default function EditMonsterForm({searchParams}) {
                 <div key={index}>
                     <input
                         type="text"
-                        value={searchParams.commonLocations[index]}
+                        value={commonLocations[`commonLocations[${index}]`]}
                         
                         placeholder="common locations"
                         onChange={(event) => setCommonLocations({...commonLocations, [`commonLocations[${index}]`]:event.target.value })}
@@ -163,7 +175,7 @@ export default function EditMonsterForm({searchParams}) {
                     
                 </div>
             )})}
-            <textarea placeholder='type description here' value={searchParams.description} name='description' rows="4" onChange={handleChange}/>
+            <textarea placeholder='type description here' value={formData.description} name='description' rows="4" onChange={handleChange}/>
         </div>
         <div className={styles.imagePreview}>
             
@@ -178,8 +190,8 @@ export default function EditMonsterForm({searchParams}) {
       null
       }
       </div>)
-       :
-      <NotAuthorized/>}
+       {/* :
+      <NotAuthorized/>} */}
       
       </>
       

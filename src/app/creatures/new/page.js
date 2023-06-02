@@ -33,6 +33,9 @@ export default function NewCreatureForm() {
         form.append(material, recoverableMaterials[material])
     }
     form.append('userId', user.id)
+    for (const pair of form){
+      console.log(pair[0], pair[1])
+    }
     createCreature(form)
   }
   const handleChange=(e)=>{
@@ -75,6 +78,7 @@ export default function NewCreatureForm() {
     setCommonLocationsCount(commonLocationsCount-1)
   }
   const createCreature = async (creature) => {
+    console.log(creature)
     const response= await fetch(`http://hyrule-archive.herokuapp.com/creatures/`,
     {
         method: "POST",
@@ -87,7 +91,7 @@ export default function NewCreatureForm() {
     const data= await response.json()
     
     if (data.name){
-        setToggleError(true)
+        setToggleError(false)
         router.push('/creatures')
     }
     else{
@@ -103,7 +107,7 @@ export default function NewCreatureForm() {
         {user ? 
        (<div className={styles.formContainer}>
         
-      <form onSubmit={handleSubmit} className={styles.form}>
+      <form className={styles.form}>
       <div className={styles.textInputs}>
             <input type='number' placeholder='no' name="no" onChange={handleChange}/><br/>
             <input type='text' placeholder='name' name="name" onChange={handleChange}/>
@@ -144,7 +148,7 @@ export default function NewCreatureForm() {
         </div>
         
       </form>
-      <input type='submit' value='Submit'/>
+      <input type='submit' onClick={handleSubmit} value='Submit'/>
       {toggleError ? <h5>{errorMessage}</h5>
       :
       null
