@@ -5,9 +5,14 @@
     background-color: rgb(var(--blue-400));
     color: rgb(var(--blue-100));
     border-radius: 28px;
-    border: none;
+    border: solid rgb(var(--blue-100));
     font-family: inherit;
     padding: 10px;
     font-size: 1.5rem;
-    box-shadow: 0 1px 5px rgb(var(--blue-100));
+    cursor: pointer;
+    
+}
+.btn:hover{
+    background-color: rgb(var(--blue-300));
+    transform: translateY(-2%);
 }

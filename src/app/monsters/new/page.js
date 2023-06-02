@@ -1,5 +1,5 @@
 'use client'
-import styles from '../../../styles/login.module.css'
+import styles from '../../../styles/createeditform.module.css'
 import Link from 'next/link'
 import NotAuthorized from '@/app/components/NotAuthorized'
 import { useState } from 'react'
@@ -100,12 +100,15 @@ export default function NewMonsterForm() {
   return (
     
       <div>
-        {user ? 
-       (<div>
-        <h1>New Monster</h1>
-      <form onSubmit={handleSubmit}>
+        <h1 className={styles.title}>New Monster</h1>
+        {user ?  
+       (<div className={styles.formContainer}>
+        
+      <form onSubmit={handleSubmit} className={styles.form}>
+        <div className={styles.textInputs}>
       <input type='number' placeholder='no' name="no" onChange={handleChange}/><br/>
         <input type='text' placeholder='name' name="name" onChange={handleChange}/>
+        <div className={styles.container}>
         {Array.from(Array(recoverableMaterialsCount)).map((c, index) => {
             console.log(recoverableMaterialsCount)
         console.log(index)
@@ -114,45 +117,52 @@ export default function NewMonsterForm() {
                 <input
                     type="text"
                     name=""
+                    className={styles.expandingCategory}
                     placeholder="recoverable material"
                     onChange={(event) => setRecoverableMaterials({...recoverableMaterials, [`recoverableMaterials[${index}]`]:event.target.value })}
                 />
-                <button onClick={buttonHandlerRecoverableIncrease}>+</button>
-                {index>0 && <button onClick={buttonHandlerRecoverableDecrease}>-</button>}
+                <button onClick={buttonHandlerRecoverableIncrease} className={styles.btnSmall}>+</button>
+                {index>0 && <button onClick={buttonHandlerRecoverableDecrease} className={styles.btnSmall}>-</button>}
                 
             </div>
         )})}
+        </div>
         {Array.from(Array(commonLocationsCount)).map((c, index) => {
         console.log(index)
         return(
             <div key={index}>
                 <input
                     type="text"
-                    // value={commonLocations[index]}
+                    className={styles.expandingCategory}
                     name=""
                     placeholder="common locations"
                     onChange={(event) => setCommonLocations({...commonLocations, [`commonLocations[${index}]`]:event.target.value })}
                 />
-                <button onClick={buttonHandlerCommonIncrease}>+</button>
-                {index>0 && <button onClick={buttonHandlerCommonDecrease}>-</button>}
-                
+                <button onClick={buttonHandlerCommonIncrease} className={styles.btnSmall}>+</button>
+                {index>0 && <button onClick={buttonHandlerCommonDecrease} className={styles.btnSmall}>-</button>}
+             
             </div>
         )})}
-        <div>
-            {imagePreview ? <img src={imagePreview}/> : null }
+        <textarea placeholder='type description here' name='description' rows="4" onChange={handleChange}/>
+        
+        </div>
+        
+        <div className={styles.imagePreview}>
+            {imagePreview ? <img src={imagePreview} className={styles.imagePreviewImage}/> : null }
+            <label htmlFor='image' className={styles.label}>Select an image</label>
             <input type='file' name='image' accept='image/*' onChange={handleUpload}/>
         </div>
-        <textarea placeholder='type description here' name='description' rows="4" onChange={handleChange}/>
-        <input type='submit' value='Submit'/>
+        
       </form>
+      <input type='submit' value='Submit'/>
       {toggleError ? <h5>{errorMessage}</h5>
       :
       null
       }
       </div>)
-      :
+        :
       <NotAuthorized/>}
-      
+       
       </div>
       
   )

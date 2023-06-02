@@ -1,0 +1,100 @@
+.form{
+    display: flex;
+    flex-direction: column-reverse;
+}
+.title{
+    text-align: center;
+}
+.imagePreview{
+    width: 50%;
+    height: auto;
+    border: solid rgb(var(--blue-100));
+    position: relative;
+} 
+.imagePreviewImage{
+    width: 100%;
+    display: block;
+}
+.textInputs input[type=text], .textInputs input[type=number], .textInputs textarea{
+    background-color: rgb(var(--blue-100));
+    width:50%;
+    margin: 2px auto;
+    border-radius:10px;
+    padding: .5rem;
+    color: rgb(var(--blue-300));
+}
+.textInputs input[type=text]::placeholder, .textInputs input[type=number]::placeholder, .textInputs textarea::placeholder{
+    color: rgba(var(--blue-300), .8);
+    font-family: sans-serif;
+}
+.textInputs{
+    width: 100%;
+    margin: 0 auto;
+}
+.formContainer{
+    width: 90%;
+    margin: 0 26%;
+}
+.imagePreview input[type=file]::file-selector-button, .formContainer input[type=submit]{
+    border-radius: 28px;
+    padding: 5px 15px;
+    background-color: rgb(var(--blue-400));
+    font-family: inherit;
+    color: rgb(var(--blue-100));
+    cursor: pointer;
+    border: solid rgb(var(--blue-100));
+}
+.formContainer input[type=submit]{
+    display: block;
+    margin: 0;
+    padding: 10px 30px;
+}
+.imagePreview input[type=file]::file-selector-button:hover, .formContainer input[type=submit]:hover, .btnSmall:hover{
+    background-color: rgb(var(--blue-300));
+    transform: translateY(-2%);
+}
+.btnSmall{
+    background-color: rgb(var(--blue-400));
+    font-family: inherit;
+    color: rgb(var(--blue-100));
+    border: solid rgb(var(--blue-100));
+    padding: 0px 4px;
+    font-size: 1.5rem;
+    transform: translateY(10%); 
+}
+@media screen and (min-width: 768px){
+    .formContainer{
+        width: 70%;
+    }
+    .form{
+        flex-flow: row-reverse;
+    }
+    .textInputs{
+        width: 50%;
+    }
+    .textInputs input[type=text], .textInputs input[type=number], .textInputs textarea{
+        width:70%;
+        margin: 2px auto;
+        padding: .7rem;
+    }
+    .imagePreviewImage{
+        width: 60%;
+        display: block;
+    }
+    .label{
+        position: absolute;
+        bottom: 12%;
+        transform: translateY(120%);
+    }
+
+    .imagePreview input[type=file]::file-selector-button{
+        position: absolute;
+        bottom: 2%;
+        left: 75%;
+        transform: translateX(-50%);
+    }
+    .formContainer input[type=submit]{
+        margin: 0 auto;
+        padding: 15px 30px;
+    }
+}
