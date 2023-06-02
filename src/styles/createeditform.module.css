@@ -13,6 +13,7 @@
 } 
 .imagePreviewImage{
     width: 100%;
+    height: auto;
     display: block;
 }
 .textInputs input[type=text], .textInputs input[type=number], .textInputs textarea{
@@ -51,6 +52,8 @@
 }
 .imagePreview input[type=file]::file-selector-button:hover, .formContainer input[type=submit]:hover, .btnSmall:hover{
     background-color: rgb(var(--blue-300));
+}
+.imagePreview input[type=file]::file-selector-button:hover, .formContainer input[type=submit]:hover{
     transform: translateY(-2%);
 }
 .btnSmall{
@@ -61,10 +64,12 @@
     padding: 0px 4px;
     font-size: 1.5rem;
     transform: translateY(10%); 
+    cursor: pointer;
 }
 @media screen and (min-width: 768px){
     .formContainer{
-        width: 70%;
+        width: 80%;
+        transform: translateX(-13%);
     }
     .form{
         flex-flow: row-reverse;
@@ -77,24 +82,51 @@
         margin: 2px auto;
         padding: .7rem;
     }
+    .imagePreview{
+        display: flex;
+        width: 40%;
+    }
     .imagePreviewImage{
-        width: 60%;
+        width: 100%;
+        max-width: 350px;
         display: block;
     }
     .label{
         position: absolute;
         bottom: 12%;
         transform: translateY(120%);
+        color: rgb(var(--blue-400));;
     }
 
     .imagePreview input[type=file]::file-selector-button{
         position: absolute;
-        bottom: 2%;
-        left: 75%;
-        transform: translateX(-50%);
+        bottom: 3%;
+        left: 50%;
+        display: block;
+        z-index: 40;
+    }
+    .imagePreview input[type=file]::file-selector-button:hover{
+        transform: none;
+    }
+    .imagePreview input[type=file]{
+        color: transparent;
+        width: 0%;
     }
     .formContainer input[type=submit]{
         margin: 0 auto;
         padding: 15px 30px;
+    }
+}
+@media screen and (min-width: 1024px){
+    .imagePreview{
+        width: 45%;
+    }
+    .formContainer{
+        width: 50%;
+        height: auto;
+        transform: translateX(8%);
+    }
+    .textInputs{
+        width: 50%;
     }
 }

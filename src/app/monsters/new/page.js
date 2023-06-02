@@ -99,52 +99,47 @@ export default function NewMonsterForm() {
 
   return (
     
-      <div>
+      <>
         <h1 className={styles.title}>New Monster</h1>
         {user ?  
        (<div className={styles.formContainer}>
         
       <form onSubmit={handleSubmit} className={styles.form}>
         <div className={styles.textInputs}>
-      <input type='number' placeholder='no' name="no" onChange={handleChange}/><br/>
-        <input type='text' placeholder='name' name="name" onChange={handleChange}/>
-        <div className={styles.container}>
-        {Array.from(Array(recoverableMaterialsCount)).map((c, index) => {
-            console.log(recoverableMaterialsCount)
-        console.log(index)
-        return(
-            <div key={index}>
-                <input
-                    type="text"
-                    name=""
-                    className={styles.expandingCategory}
-                    placeholder="recoverable material"
-                    onChange={(event) => setRecoverableMaterials({...recoverableMaterials, [`recoverableMaterials[${index}]`]:event.target.value })}
-                />
-                <button onClick={buttonHandlerRecoverableIncrease} className={styles.btnSmall}>+</button>
-                {index>0 && <button onClick={buttonHandlerRecoverableDecrease} className={styles.btnSmall}>-</button>}
-                
+            <input type='number' placeholder='no' name="no" onChange={handleChange}/><br/>
+            <input type='text' placeholder='name' name="name" onChange={handleChange}/>
+            <div className={styles.container}>
+            {Array.from(Array(recoverableMaterialsCount)).map((c, index) => {
+            return(
+                <div key={index}>
+                    <input
+                        type="text"
+                        name=""
+                        className={styles.expandingCategory}
+                        placeholder="recoverable material"
+                        onChange={(event) => setRecoverableMaterials({...recoverableMaterials, [`recoverableMaterials[${index}]`]:event.target.value })}
+                    />
+                    {index===recoverableMaterialsCount-1 &&<button onClick={buttonHandlerRecoverableIncrease} className={styles.btnSmall}>+</button>}
+                    {(index>0 && index===recoverableMaterialsCount-1) && <button onClick={buttonHandlerRecoverableDecrease} className={styles.btnSmall}>-</button>}
+                    
+                </div>
+            )})}
+            </div>
+            {Array.from(Array(commonLocationsCount)).map((c, index) => {
+            return(
+                <div key={index}>
+                    <input
+                        type="text"
+                        className={styles.expandingCategory}
+                        name=""
+                        placeholder="common locations"
+                        onChange={(event) => setCommonLocations({...commonLocations, [`commonLocations[${index}]`]:event.target.value })}
+                    />
+                    <button onClick={buttonHandlerCommonIncrease} className={styles.btnSmall}>+</button>
+                    {index>0 && <button onClick={buttonHandlerCommonDecrease} className={styles.btnSmall}>-</button>}
             </div>
         )})}
-        </div>
-        {Array.from(Array(commonLocationsCount)).map((c, index) => {
-        console.log(index)
-        return(
-            <div key={index}>
-                <input
-                    type="text"
-                    className={styles.expandingCategory}
-                    name=""
-                    placeholder="common locations"
-                    onChange={(event) => setCommonLocations({...commonLocations, [`commonLocations[${index}]`]:event.target.value })}
-                />
-                <button onClick={buttonHandlerCommonIncrease} className={styles.btnSmall}>+</button>
-                {index>0 && <button onClick={buttonHandlerCommonDecrease} className={styles.btnSmall}>-</button>}
-             
-            </div>
-        )})}
-        <textarea placeholder='type description here' name='description' rows="4" onChange={handleChange}/>
-        
+            <textarea placeholder='type description here' name='description' rows="4" onChange={handleChange}/>
         </div>
         
         <div className={styles.imagePreview}>
@@ -163,7 +158,7 @@ export default function NewMonsterForm() {
         :
       <NotAuthorized/>}
        
-      </div>
+      </>
       
   )
 }
