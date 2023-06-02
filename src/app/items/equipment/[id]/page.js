@@ -4,24 +4,24 @@ import Image from 'next/image';
 import EditDelete from '@/app/components/EditDelete';
 
 export async function generateStaticParams() {
-    const response = await fetch(process.env.FETCH_URL+"items/materials");
+    const response = await fetch(process.env.FETCH_URL+"items/equipment");
     const data=await response.json()
-    return data.data.map((material) => ({
-        id: material._id
+    return data.data.map((equipment) => ({
+        id: equipment._id
     }));
   }
-export async function getMaterial(id) {
-    const material = await fetch(process.env.FETCH_URL+`items/materials/${id}`).then((res) => res.json());
+export async function getEquipment(id) {
+    const material = await fetch(process.env.FETCH_URL+`items/equipment/${id}`).then((res) => res.json());
     return material.data;
 }
     
-export default async function Materials({params}){
+export default async function Equipment({params}){
     console.log(params)
     const {id}=params
 
-    const material=await getMaterial(id)
-    const {_id, no, name, heartsRecovered, uniqueCookingEffects, commonLocations, description, image, userId }=material
-    console.log(material)
+    const equipment=await getEquipment(id)
+    const {_id, no, name, properties, commonLocations, description, image, userId }=equipment
+    console.log(equipment)
     return(
         <>
         <div className={styles.largerCard}>
@@ -32,11 +32,12 @@ export default async function Materials({params}){
                     fill/>
             </div>
             <div className={styles.cardInfo}>
-                <div className={styles.right}><EditDelete pathname='items/materials' itemId={_id} userId={userId} data={material}/></div>
+                <div className={styles.right}><EditDelete pathname='items/equipment' itemId={_id} userId={userId} data={equipment}/></div>
                 <p>No: {no}</p>
                 <p>Name: <span className={utilStyles.capitalize}>{name}</span></p>
-                <p>Hearts Recovered: {heartsRecovered}</p>
-                <p>Unique Cooking Effects: <span className={utilStyles.capitalize}>{uniqueCookingEffects.join(', ')}</span></p>
+                {properties.attack ? <p className={utilStyles.capitalize}>Attack : {properties.attack}</p> : null}
+                {properties.defense ? <p className={utilStyles.capitalize}>Defense: {properties.defense}</p> : null}
+                <p>Other Properties: <span className={utilStyles.capitalize}>{properties.otherProperties.join(', ')}</span></p>
                 <p>Common Locations: <span className={utilStyles.capitalize}>{commonLocations.join(', ')}</span></p>
                 <p className={styles.descriptionMobile}>Description: {description}</p>
             </div>

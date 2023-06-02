@@ -1,5 +1,5 @@
 'use client'
-import styles from '../../../styles/createeditform.module.css'
+import styles from '../../../../styles/createeditform.module.css'
 import Link from 'next/link'
 import NotAuthorized from '@/app/components/NotAuthorized'
 import { useState } from 'react'
@@ -7,20 +7,20 @@ import { useRouter } from 'next/navigation'
 import { useUser } from '@/context/user'
 
 
-
-export default function NewMonsterForm() {
+export default function NewEquipmentForm() {
     const router=useRouter();
     const {user, setUser}=useUser()
     const [imagePreview, setImagePreview]=useState(null)
     const [toggleError, setToggleError]=useState(false)
     const [errorMessage, setErrorMessage]=useState('')
     const [formData, setFormData]= useState({})
-    const [recoverableMaterialsCount, setRecoverableMaterialsCount]=useState(1)
-    const [recoverableMaterials, setRecoverableMaterials]=useState({})
+    const [otherPropertiesCount, setOtherPropertiesCount]=useState(1)
+    const [otherProperties, setOtherProperties]=useState({})
     const [commonLocationsCount, setCommonLocationsCount]=useState(1)
     const [commonLocations, setCommonLocations]=useState({})
+    const [properties, setProperties]=useState({})
 
-  const handleSubmit = (event) => {
+  const handleSubmit = (event) => { 
     event.preventDefault()
     let form=new FormData()
     for (const key in formData){
@@ -29,11 +29,14 @@ export default function NewMonsterForm() {
     for (const location in commonLocations){
         form.append(location, commonLocations[location])
     }
-    for (const material in recoverableMaterials){
-        form.append(material, recoverableMaterials[material])
+    for (const property in properties){
+        form.append(property, properties[property])
+    }
+    for (const pair of form){
+        console.log(pair[0], pair[1])
     }
     form.append('userId', user.id)
-    createMonster(form)
+    createEquipment(form)
   }
   const handleChange=(e)=>{
     const name=e.target.name;
@@ -47,19 +50,19 @@ export default function NewMonsterForm() {
     setFormData({...formData, [name]: value})
     setImagePreview(URL.createObjectURL(e.target.files[0]))
   }
-  const buttonHandlerRecoverableIncrease=(e)=>{
+  const buttonHandlerPropertiesIncrease=(e)=>{
     e.preventDefault()
-    incrementRecoverableMaterials()
+    incrementProperties()
   }
-  const buttonHandlerRecoverableDecrease=(e)=>{
+  const buttonHandlerPropertiesDecrease=(e)=>{
     e.preventDefault()
-    decrementRecoverableMaterials()
+    decrementProperties()
   }
-  const incrementRecoverableMaterials=()=>{
-    setRecoverableMaterialsCount(recoverableMaterialsCount+1)
+  const incrementProperties=()=>{
+    setOtherPropertiesCount(otherPropertiesCount+1)
   }
-  const decrementRecoverableMaterials=(e)=>{
-    setRecoverableMaterialsCount(recoverableMaterialsCount-1)
+  const decrementProperties=(e)=>{
+    setOtherPropertiesCount(otherPropertiesCount-1)
   }
   const buttonHandlerCommonIncrease=(e)=>{
     e.preventDefault()
@@ -75,21 +78,21 @@ export default function NewMonsterForm() {
   const decrementCommonLocations=()=>{
     setCommonLocationsCount(commonLocationsCount-1)
   }
-  const createMonster = async (monster) => {
-    const response= await fetch(`http://hyrule-archive.herokuapp.com/monsters/`,
+  const createEquipment = async (equipment) => {
+    const response= await fetch(`http://hyrule-archive.herokuapp.com/items/equipment`,
     {
         method: "POST",
         mode: "cors",
         // headers: {
         //     "Content-Type": "multipart/form-data",
         // },
-        body: monster
+        body: equipment
     })
     const data= await response.json()
     
     if (data.name){
-        setToggleError(true)
-        router.push('/monsters')
+        setToggleError(false)
+        router.push('/items/equipment')
     }
     else{
         setToggleError(true)
@@ -100,7 +103,7 @@ export default function NewMonsterForm() {
   return (
     
       <>
-        <h1 className={styles.title}>New Monster</h1>
+        <h1 className={styles.title}>New Equipment</h1>
         {user ?  
        (<div className={styles.formContainer}>
         
@@ -108,18 +111,19 @@ export default function NewMonsterForm() {
         <div className={styles.textInputs}>
             <input type='number' placeholder='no' name="no" onChange={handleChange}/><br/>
             <input type='text' placeholder='name' name="name" onChange={handleChange}/>
-            {Array.from(Array(recoverableMaterialsCount)).map((c, index) => {
+            <input type='text' placeholder='attack' name='attack' onChange={(event)=>setProperties({...properties, ['properties[attack]']:event.target.value})}/> 
+            <input type='text' placeholder='defense' name='defense' onChange={(event)=>setProperties({...properties, ['properties[defense]']:event.target.value})}/> 
+            {Array.from(Array(otherPropertiesCount)).map((c, index) => {
             return(
                 <div key={index}>
                     <input
                         type="text"
                         name=""
-                        className={styles.expandingCategory}
-                        placeholder="recoverable material"
-                        onChange={(event) => setRecoverableMaterials({...recoverableMaterials, [`recoverableMaterials[${index}]`]:event.target.value })}
+                        placeholder="other properties"
+                        onChange={(event) => setProperties({...properties, [`properties[otherProperties][${index}]`]:event.target.value })}
                     />
-                    {index===recoverableMaterialsCount-1 &&<button onClick={buttonHandlerRecoverableIncrease} className={styles.btnSmall}>+</button>}
-                    {(index>0 && index===recoverableMaterialsCount-1) && <button onClick={buttonHandlerRecoverableDecrease} className={styles.btnSmall}>-</button>}
+                    {index===otherPropertiesCount-1 &&<button onClick={buttonHandlerPropertiesIncrease} className={styles.btnSmall}>+</button>}
+                    {(index>0 && index===otherPropertiesCount-1) && <button onClick={buttonHandlerPropertiesDecrease} className={styles.btnSmall}>-</button>}
                     
                 </div>
             )})}
@@ -133,8 +137,8 @@ export default function NewMonsterForm() {
                         placeholder="common locations"
                         onChange={(event) => setCommonLocations({...commonLocations, [`commonLocations[${index}]`]:event.target.value })}
                     />
-                    {index===commonLocationsCount-1 && <button onClick={buttonHandlerCommonIncrease} className={styles.btnSmall}>+</button>}
-                    {index>0 && <button onClick={buttonHandlerCommonDecrease} className={styles.btnSmall}>-</button>}
+                    {index===commonLocationsCount-1 &&<button onClick={buttonHandlerCommonIncrease} className={styles.btnSmall}>+</button>}
+                    {(index>0 && index===commonLocationsCount-1) && <button onClick={buttonHandlerCommonDecrease} className={styles.btnSmall}>-</button>}
             </div>
         )})}
             <textarea placeholder='type description here' name='description' rows="4" onChange={handleChange}/>

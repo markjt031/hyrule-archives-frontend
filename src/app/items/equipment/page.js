@@ -4,11 +4,11 @@ import NewButton from "@/app/components/NewButton"
 export default function Equipment(){
     return(
         <>
-        <h1 className={styles.heading}>Equipment Index</h1>
-        <div className={styles.btnContainer}>
-            <NewButton pathname={'items/equipment'}/>
-        </div>
-        <CardGrid type={'items/equipment'}/>
+            <h1 className={styles.heading}>Equipment Index</h1>
+            <div className={styles.btnContainer}>
+                <NewButton pathname={'items/equipment'}/>
+            </div>
+            <CardGrid type={'items/equipment'}/>
         </>
         )
 

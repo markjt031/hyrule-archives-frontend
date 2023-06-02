@@ -122,7 +122,7 @@ export default function EditMonsterForm({searchParams}) {
     })
     const data= await response.json()
     
-    if (data.data.name){
+    if (data.name){
         setToggleError(false)
         router.push('/monsters')
     }

@@ -1,6 +1,6 @@
 import styles from "../../styles/index.module.css"
 import CardGrid from "../components/CardGrid"
-import EditDelete from "../components/EditDelete"
+
 import NewButton from "../components/NewButton"
 export default function Creatures(){
     return(
