@@ -1,5 +1,5 @@
 'use client'
-import styles from '../../../../styles/login.module.css'
+import styles from '../../../../styles/createeditform.module.css'
 import Link from 'next/link'
 import NotAuthorized from '@/app/components/NotAuthorized'
 import { useState } from 'react'
@@ -99,51 +99,52 @@ export default function NewMaterialForm() {
 
   return (
     
-      <div>
+      <>
+      <h1>New Material</h1>
         {user ? 
-       (<div>
-        <h1>New Material</h1>
-      <form onSubmit={handleSubmit}>
-      <input type='number' placeholder='no' name="no" onChange={handleChange}/><br/>
-        <input type='text' placeholder='name' name="name" onChange={handleChange}/><br/>
-        <input type='number' placeholder='hearts recovered' name="heartsRecovered" onChange={handleChange}/><br/>
-        <input type='number' placeholder='fuse attack power' name="fuseAttackPower" onChange={handleChange}/><br/>
-        {Array.from(Array(uniqueCookingEffectsCount)).map((c, index) => {
-        return(
-            <div key={index}>
-                <input
-                    type="text"
-                    name=""
-                    placeholder="unique cooking effects"
-                    onChange={(event) => setUniqueCookingEffects({...uniqueCookingEffects, [`uniqueCookingEffects[${index}]`]:event.target.value })}
-                />
-                <button onClick={buttonHandlerUniqueIncrease}>+</button>
-                {index>0 && <button onClick={buttonHandlerUniqueDecrease}>-</button>}
-                
-            </div>
-        )})}
-        {Array.from(Array(commonLocationsCount)).map((c, index) => {
-        return(
-            <div key={index}>
-                <input
-                    type="text"
-                    // value={commonLocations[index]}
-                    name=""
-                    placeholder="common locations"
-                    onChange={(event) => setCommonLocations({...commonLocations, [`commonLocations[${index}]`]:event.target.value })}
-                />
-                <button onClick={buttonHandlerCommonIncrease}>+</button>
-                {index>0 && <button onClick={buttonHandlerCommonDecrease}>-</button>}
-                
-            </div>
-        )})}
-        <div>
-            {imagePreview ? <img src={imagePreview}/> : null }
+       (<div className={styles.formContainer}>
+      <form className={styles.form} onSubmit={handleSubmit}>
+      <div className={styles.textInputs}>
+          <input type='number' placeholder='no' name="no" onChange={handleChange}/><br/>
+          <input type='text' placeholder='name' name="name" onChange={handleChange}/><br/>
+          <input type='number' placeholder='hearts recovered' name="heartsRecovered" onChange={handleChange}/><br/>
+          <input type='number' placeholder='fuse attack power' name="fuseAttackPower" onChange={handleChange}/><br/>
+          {Array.from(Array(uniqueCookingEffectsCount)).map((c, index) => {
+          return(
+              <div key={index}>
+                  <input
+                      type="text"
+                      name=""
+                      placeholder="unique cooking effects"
+                      onChange={(event) => setUniqueCookingEffects({...uniqueCookingEffects, [`uniqueCookingEffects[${index}]`]:event.target.value })}
+                  />
+                  {index===uniqueCookingEffectsCount-1 &&<button className={styles.btnSmall} onClick={buttonHandlerUniqueIncrease}>+</button>}
+                  {(index>0 && index===uniqueCookingEffectsCount-1) && <button className={styles.btnSmall} onClick={buttonHandlerUniqueDecrease}>-</button>}
+              </div>
+          )})}
+          {Array.from(Array(commonLocationsCount)).map((c, index) => {
+          return(
+              <div key={index}>
+                  <input
+                      type="text"
+                      // value={commonLocations[index]}
+                      name=""
+                      placeholder="common locations"
+                      onChange={(event) => setCommonLocations({...commonLocations, [`commonLocations[${index}]`]:event.target.value })}
+                  />
+                  {index===commonLocationsCount-1 &&<button className={styles.btnSmall} onClick={buttonHandlerCommonIncrease}>+</button>}
+                  {(index>0 && index===commonLocationsCount-1)&& <button className={styles.btnSmall} onClick={buttonHandlerCommonDecrease}>-</button>}
+              </div>
+          )})}
+          <textarea placeholder='type description here' name='description' rows="4" onChange={handleChange}/>
+        </div>
+        <div className={styles.imagePreview}>
+            {imagePreview ? <img src={imagePreview} className={styles.imagePreviewImage}/> : <div className={styles.box}/> }
+            <label htmlFor='image' className={styles.label}>Select an image</label>
             <input type='file' name='image' accept='image/*' onChange={handleUpload}/>
         </div>
-        <textarea placeholder='type description here' name='description' rows="4" onChange={handleChange}/>
-        <input type='submit' value='Submit'/>
       </form>
+      <input type='submit' onClick={handleSubmit} value='Submit'/>
       {toggleError ? <h5>{errorMessage}</h5>
       :
       null
@@ -152,7 +153,7 @@ export default function NewMaterialForm() {
       :
       <NotAuthorized/>}
       
-      </div>
+      </>
       
   )
 }

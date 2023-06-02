@@ -134,9 +134,8 @@ export default function NewCreatureForm() {
                         placeholder="common locations"
                         onChange={(event) => setCommonLocations({...commonLocations, [`commonLocations[${index}]`]:event.target.value })}
                     />
-                    <button onClick={buttonHandlerCommonIncrease} className={styles.btnSmall}>+</button>
-                    {index>0 && <button onClick={buttonHandlerCommonDecrease} className={styles.btnSmall}>-</button>}
-                    
+                    {index===commonLocationsCount-1 && <button onClick={buttonHandlerCommonIncrease} className={styles.btnSmall}>+</button>}
+                    {(index>0 && index===commonLocationsCount-1)&& <button onClick={buttonHandlerCommonDecrease} className={styles.btnSmall}>-</button>}
                 </div>
                 )})}
             <textarea placeholder='type description here' name='description' rows="4" onChange={handleChange}/>

@@ -139,7 +139,7 @@ export default function EditMonsterForm({searchParams}) {
         {/* {user ?  */}
        (<div className={styles.formContainer}>
        
-      <form onSubmit={handleSubmit} className={styles.form}>
+      <form className={styles.form}>
        <div className={styles.textInputs}>
             <input type='number' placeholder='no' name="no" value={formData.no} onChange={handleChange}/><br/>
             <input type='text' placeholder='name' name="name" value={formData.name} onChange={handleChange}/>
@@ -184,7 +184,7 @@ export default function EditMonsterForm({searchParams}) {
             <input type='file' title=' ' name='image' accept='image/*' onChange={handleUpload}/>
         </div>
       </form>
-      <input type='submit' value='Submit'/>
+      <input type='submit' onClick={handleSubmit}  value='Submit'/>
       {toggleError ? <h5>{errorMessage}</h5>
       :
       null
