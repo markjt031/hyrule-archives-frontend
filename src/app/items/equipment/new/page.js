@@ -80,7 +80,7 @@ export default function NewEquipmentForm() {
     setCommonLocationsCount(commonLocationsCount-1)
   }
   const createEquipment = async (equipment) => {
-    const response= await fetch(`http://hyrule-archive.herokuapp.com/items/equipment`,
+    const response= await fetch(`https://hyrule-archive.herokuapp.com/items/equipment`,
     {
         method: "POST",
         mode: "cors",

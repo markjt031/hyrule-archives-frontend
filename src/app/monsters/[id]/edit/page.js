@@ -138,7 +138,7 @@ export default function EditMonsterForm({searchParams}) {
     setCommonLocationsCount(commonLocationsCount-1)
   }
   const createMonster = async (monster) => {
-    const response= await fetch(`http://hyrule-archive.herokuapp.com/monsters/${searchParams._id}`,
+    const response= await fetch(`https://hyrule-archive.herokuapp.com/monsters/${searchParams._id}`,
     {
         method: "PUT",
         mode: "cors",
@@ -163,7 +163,7 @@ export default function EditMonsterForm({searchParams}) {
     
       <>
          <h1 className={styles.title}>Edit Monster</h1>
-        {/* {user ?  */}
+        {user ? 
        (<div className={styles.formContainer}>
        
       <form className={styles.form}>
@@ -225,8 +225,8 @@ export default function EditMonsterForm({searchParams}) {
       null
       }
       </div>)
-       {/* :
-      <NotAuthorized/>} */}
+     :
+      <NotAuthorized/>} 
       
       </>
       

@@ -149,7 +149,7 @@ export default function EditCritterForm({searchParams}) {
     setCommonLocationsCount(commonLocationsCount-1)
   }
   const editCritter = async (critter) => {
-    const response= await fetch(`http://hyrule-archive.herokuapp.com/critters/${searchParams._id}`,
+    const response= await fetch(`https://hyrule-archive.herokuapp.com/critters/${searchParams._id}`,
     {
         method: "PUT",
         mode: "cors",

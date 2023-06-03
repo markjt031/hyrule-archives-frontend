@@ -80,7 +80,7 @@ export default function NewCreatureForm() {
   }
   const createCreature = async (creature) => {
     console.log(creature)
-    const response= await fetch(`http://hyrule-archive.herokuapp.com/creatures/`,
+    const response= await fetch(`https://hyrule-archive.herokuapp.com/creatures/`,
     {
         method: "POST",
         mode: "cors",

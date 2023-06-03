@@ -143,7 +143,7 @@ export default function EditCreatureForm({searchParams}) {
     setCommonLocationsCount(commonLocationsCount-1)
   }
   const editCreature = async (creature) => {
-    const response= await fetch(`http://hyrule-archive.herokuapp.com/creatures/${searchParams._id}`,
+    const response= await fetch(`https://hyrule-archive.herokuapp.com/creatures/${searchParams._id}`,
     {
         method: "PUT",
         mode: "cors",

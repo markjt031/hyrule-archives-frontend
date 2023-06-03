@@ -93,7 +93,7 @@ export default function NewMonsterForm() {
     setCommonLocationsCount(commonLocationsCount-1)
   }
   const createMonster = async (monster) => {
-    const response= await fetch(`http://hyrule-archive.herokuapp.com/monsters/`,
+    const response= await fetch(`https://hyrule-archive.herokuapp.com/monsters/`,
     {
         method: "POST",
         mode: "cors",

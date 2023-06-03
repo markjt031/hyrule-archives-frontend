@@ -102,7 +102,7 @@ export default function NewMaterialForm() {
     setCommonLocationsCount(commonLocationsCount-1)
   }
   const createMaterial = async (material) => {
-    const response= await fetch(`http://hyrule-archive.herokuapp.com/items/materials/`,
+    const response= await fetch(`https://hyrule-archive.herokuapp.com/items/materials/`,
     {
         method: "POST",
         mode: "cors",

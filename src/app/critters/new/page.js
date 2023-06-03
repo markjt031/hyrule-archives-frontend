@@ -105,7 +105,7 @@ export default function NewCritterForm() {
     setCommonLocationsCount(commonLocationsCount-1)
   }
   const createCreature = async (creature) => {
-    const response= await fetch(`http://hyrule-archive.herokuapp.com/critters/`,
+    const response= await fetch(`https://hyrule-archive.herokuapp.com/critters/`,
     {
         method: "POST",
         mode: "cors",
