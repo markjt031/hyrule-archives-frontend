@@ -92,6 +92,7 @@ export default function NewCreatureForm() {
     
     if (data.name){
         setToggleError(false)
+        router.refresh()
         router.push('/creatures')
     }
     else{

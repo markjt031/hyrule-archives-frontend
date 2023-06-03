@@ -11,43 +11,54 @@ import { useUser } from '@/context/user'
 export default function EditMaterialForm({searchParams}) {
     const router=useRouter();
     const {user, setUser}=useUser()
-    const [imagePreview, setImagePreview]=useState(null)
+    const [imagePreview, setImagePreview]=useState(searchParams.image)
     const [toggleError, setToggleError]=useState(false)
     const [errorMessage, setErrorMessage]=useState('')
     
-    
+    console.log(searchParams)
     //This is to handle an error where the create form made recoverable materials just
     //a string when there was only one value, but an array if there was more than one.
+    //Also handles empty arrays for this data
     const uniqueArray=[]
-    if (typeof searchParams.uniqueCookingEffects==='string'){
-        uniqueArray.push(searchParams.uniqueCookingEffects)
-    }
-    else {
-        for (let i=0; i<searchParams.uniqueCookingEffects.length; i++){
-            recoverableArray.push(searchParams.uniqueCookingEffects[i])
-        }
-    }
     let uniqueObj={}
-    for (let i=0; i<uniqueArray.length; i++){
-      uniqueObj[`uniqueCookingEffects[${i}]`]=uniqueArray[i]
+    let count=1
+    if (searchParams.uniqueCookingEffects){
+        if (typeof searchParams.uniqueCookingEffects==='string'){
+            uniqueArray.push(searchParams.uniqueCookingEffects)
+        }
+        else {
+            for (let i=0; i<searchParams.uniqueCookingEffects.length; i++){
+                uniqueArray.push(searchParams.uniqueCookingEffects[i])
+            }
+        }
+        for (let i=0; i<uniqueArray.length; i++){
+          uniqueObj[`uniqueCookingEffects[${i}]`]=uniqueArray[i]
+        }
+        count=uniqueArray.length
     }
-    const [uniqueCookingEffects, setUniqueCookingEffects]=useState(uniqueObj)
+    const [uniqueCookingEffectsCount, setUniqueCookingEffectsCount]=useState(count)
     //Repeating for the other array
     const commonArray=[]
-    if (typeof searchParams.commonLocationss==='string'){
-        commonArray.push(searchParams.commonLocations)
-    }
-    else {
-        for (let i=0; i<searchParams.commonLocations.length; i++){
-            commonArray.push(searchParams.commonLocations[i])
-        }
-    }
-    let locationObj={}
-    for (let i=0; i<commonArray.length; i++){
-      locationObj[`commonLocations[${i}]`]=commonArray[i]
-    }
-    console.log(locationObj)
+    count=1
+    const locationObj={}
+    if (searchParams.commonLocations){
+      if (typeof searchParams.commonLocations==='string'){
+          commonArray.push(searchParams.commonLocations)
+      }
+      else {
+          for (let i=0; i<searchParams.commonLocations.length; i++){
+              commonArray.push(searchParams.commonLocations[i])
+          }
+      }
+      
+      for (let i=0; i<commonArray.length; i++){
+        locationObj[`commonLocations[${i}]`]=commonArray[i]
+      }
+      count=commonArray.length
+  }
+    const [commonLocationsCount, setCommonLocationsCount]=useState(count)
     const [commonLocations, setCommonLocations]=useState(locationObj)
+    const [uniqueCookingEffects, setUniqueCookingEffects]=useState(uniqueObj)
     const [formData, setFormData]= useState({
       no: searchParams.no,
       name: searchParams.name,
@@ -55,9 +66,7 @@ export default function EditMaterialForm({searchParams}) {
       fuseAttackPower: searchParams.fuseAttackPower,
       description: searchParams.description,
     })
-    const [commonLocationsCount, setCommonLocationsCount]=useState(commonArray.length)
-    const [uniqueCookingEffectsCount, setUniqueCookingEffectsCount]=useState(uniqueArray.length)
-
+    
     const handleSubmit = (event) => {
     event.preventDefault()
     let form=new FormData()
@@ -71,7 +80,33 @@ export default function EditMaterialForm({searchParams}) {
         form.append(effect, uniqueCookingEffects[effect])
     }
     form.append('userId', user.id)
-    editMaterial(form)
+    if (validateInput()){
+        editMaterial(form)
+    }
+  }
+  const validateInput=()=>{
+    let validated=true;
+    if (!formData['name']){
+        setToggleError(true)
+        setErrorMessage("You must enter a name")
+        validated=false
+    }
+    if (!formData['fuseAttackPower']){
+        setToggleError(true)
+        setErrorMessage("You must enter number for fuse attack power. Enter 0 if none")
+        validated=false
+    }
+    if (!formData['heartsRecovered']){
+        setToggleError(true)
+        setErrorMessage("You must enter number for hearts recovered. Enter 0 if none")
+        validated=false
+    }
+    if (!formData['no']){
+        setToggleError(true)
+        setErrorMessage("You must enter number for no recovered. This should match the compendium numbers")
+        validated=false
+    }
+    return validated
   }
   const handleChange=(e)=>{
     const name=e.target.name;
@@ -123,9 +158,10 @@ export default function EditMaterialForm({searchParams}) {
         body: material
     })
     const data= await response.json()
-    
-    if (data.name){
+    console.log(data)
+    if (data.data.name){
         setToggleError(false)
+        router.refresh()
         router.push('/items/materials')
     }
     else{
@@ -142,10 +178,10 @@ export default function EditMaterialForm({searchParams}) {
        (<div className={styles.formContainer}>
       <form className={styles.form} onSubmit={handleSubmit}>
       <div className={styles.textInputs}>
-          <input type='number' placeholder='no' value={formData.no} name="no" onChange={handleChange}/><br/>
-          <input type='text' placeholder='name' value={formData.name} name="name" onChange={handleChange}/><br/>
-          <input type='number' placeholder='hearts recovered' value={formData.heartsRecovered} name="heartsRecovered" onChange={handleChange}/><br/>
-          <input type='number' placeholder='fuse attack power' value={formData.fuseAttackPower}  name="fuseAttackPower" onChange={handleChange}/><br/>
+          <input type='number' placeholder='no' required value={formData.no} name="no" onChange={handleChange}/><br/>
+          <input type='text' placeholder='name' required value={formData.name} name="name" onChange={handleChange}/><br/>
+          <input type='number' placeholder='hearts recovered' required value={formData.heartsRecovered} name="heartsRecovered" onChange={handleChange}/><br/>
+          <input type='number' placeholder='fuse attack power' required value={formData.fuseAttackPower}  name="fuseAttackPower" onChange={handleChange}/><br/>
           {Array.from(Array(uniqueCookingEffectsCount)).map((c, index) => {
           return(
               <div key={index}>
@@ -181,6 +217,7 @@ export default function EditMaterialForm({searchParams}) {
             <label htmlFor='image' className={styles.label}>Select an image</label>
             <input type='file' name='image' accept='image/*' onChange={handleUpload}/>
         </div>
+        
       </form>
       <input type='submit' onClick={handleSubmit} value='Submit'/>
       {toggleError ? <h5>{errorMessage}</h5>

@@ -1,8 +1,8 @@
+
 import CardGrid from "../components/CardGrid";
 import styles from "../../styles/index.module.css"
 import NewButton from '../components/NewButton'
-import { useRouter } from "next/navigation";
-
+import NewMonsterForm from "./new/page";
 
 export default function Monsters(){
     return(

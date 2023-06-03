@@ -16,46 +16,58 @@ export default function EditMonsterForm({searchParams}) {
     const [toggleError, setToggleError]=useState(false)
     const [errorMessage, setErrorMessage]=useState('')
     
-
+    console.log(searchParams)
     //This is to handle an error where the create form made recoverable materials just
     //a string when there was only one value, but an array if there was more than one.
+    //Also handles empty arrays for this data
+ 
     const recoverableArray=[]
-    if (typeof searchParams.recoverableMaterials==='string'){
-        recoverableArray.push(searchParams.recoverableMaterials)
-    }
-    else {
-        for (let i=0; i<searchParams.recoverableMaterials.length; i++){
-            recoverableArray.push(searchParams.recoverableMaterials[i])
-        }
-    }
-    let recoverableObj={}
-    for (let i=0; i<recoverableArray.length; i++){
-      recoverableObj[`recoverableMaterials[${i}]`]=recoverableArray[i]
-    }
+    const recoverableObj={}
+    let count=1
+    if (searchParams.recoverableMaterials){
+      if (typeof searchParams.recoverableMaterials==='string'){
+          recoverableArray.push(searchParams.recoverableMaterials)
+      }
+      else {
+          for (let i=0; i<searchParams.recoverableMaterials.length; i++){
+              recoverableArray.push(searchParams.recoverableMaterials[i])
+          }
+      }
+      for (let i=0; i<recoverableArray.length; i++){
+        recoverableObj[`recoverableMaterials[${i}]`]=recoverableArray[i]
+      }
+      count=recoverableArray.length
+  }
+    const [recoverableMaterialsCount, setRecoverableMaterialsCount]=useState(recoverableArray.length)
     const [recoverableMaterials, setRecoverableMaterials]=useState(recoverableObj)
     //Repeating for the other array
     const commonArray=[]
-    if (typeof searchParams.commonLocationss==='string'){
-        commonArray.push(searchParams.commonLocations)
-    }
-    else {
-        for (let i=0; i<searchParams.commonLocations.length; i++){
-            commonArray.push(searchParams.commonLocations[i])
-        }
-    }
-    let locationObj={}
-    for (let i=0; i<commonArray.length; i++){
-      locationObj[`commonLocations[${i}]`]=commonArray[i]
-    }
-    console.log(locationObj)
+    count=1
+    const locationObj={}
+    if (searchParams.commonLocations){
+      if (typeof searchParams.commonLocations==='string'){
+          commonArray.push(searchParams.commonLocations)
+      }
+      else {
+          for (let i=0; i<searchParams.commonLocations.length; i++){
+              commonArray.push(searchParams.commonLocations[i])
+          }
+      }
+      
+      for (let i=0; i<commonArray.length; i++){
+        locationObj[`commonLocations[${i}]`]=commonArray[i]
+      }
+      count=commonArray.length
+  }
+    const [commonLocationsCount, setCommonLocationsCount]=useState(count)
     const [commonLocations, setCommonLocations]=useState(locationObj)
     const [formData, setFormData]= useState({
       no: searchParams.no,
       name: searchParams.name,
       description: searchParams.description,
     })
-    const [commonLocationsCount, setCommonLocationsCount]=useState(commonArray.length)
-    const [recoverableMaterialsCount, setRecoverableMaterialsCount]=useState(recoverableArray.length)
+    
+   
     const handleSubmit = (event) => {
         event.preventDefault()
         let form=new FormData()
@@ -69,6 +81,20 @@ export default function EditMonsterForm({searchParams}) {
             form.append(material, recoverableMaterials[material])
         }
         createMonster(form)
+    }
+    const validateInput=()=>{
+      let validated=true;
+      if (!formData['name']){
+          setToggleError(true)
+          setErrorMessage("You must enter a name")
+          validated=false
+      }
+      if (!formData['no']){
+          setToggleError(true)
+          setErrorMessage("You must enter number for no recovered. This should match the compendium numbers")
+          validated=false
+      }
+      return validated
     }
   const handleChange=(e)=>{
     const name=e.target.name;

@@ -1,6 +1,7 @@
 import styles from "../../../styles/index.module.css"
 import CardGrid from "../../components/CardGrid"
 import NewButton from "@/app/components/NewButton"
+
 export default function Equipment(){
     return(
         <>

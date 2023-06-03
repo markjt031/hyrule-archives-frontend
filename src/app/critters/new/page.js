@@ -34,7 +34,33 @@ export default function NewCritterForm() {
     }
     console.log(user.id)
     form.append('userId', user.id)
-    createCreature(form)
+    if (validateInput()){
+      createCreature(form)
+    }
+  }
+  const validateInput=()=>{
+    let validated=true;
+    if (!formData['name']){
+        setToggleError(true)
+        setErrorMessage("You must enter a name")
+        validated=false
+    }
+    if (!formData['fuseAttackPower']){
+        setToggleError(true)
+        setErrorMessage("You must enter number for fuse attack power. Enter 0 if none")
+        validated=false
+    }
+    if (!formData['heartsRecovered']){
+        setToggleError(true)
+        setErrorMessage("You must enter number for hearts recovered. Enter 0 if none")
+        validated=false
+    }
+    if (!formData['no']){
+        setToggleError(true)
+        setErrorMessage("You must enter number for no recovered. This should match the compendium numbers")
+        validated=false
+    }
+    return validated
   }
   const handleChange=(e)=>{
     const name=e.target.name;
@@ -48,6 +74,7 @@ export default function NewCritterForm() {
     setFormData({...formData, [name]: value})
     setImagePreview(URL.createObjectURL(e.target.files[0]))
   }
+  
   const buttonHandlerUniqueIncrease=(e)=>{
     e.preventDefault()
     incrementUniqueCooking()
@@ -90,6 +117,7 @@ export default function NewCritterForm() {
     
     if (data.name){
         setToggleError(true)
+        router.refresh()
         router.push('/creatures')
     }
     else{

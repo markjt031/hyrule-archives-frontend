@@ -1,18 +1,26 @@
+'use client'
 import Image from "next/image";
 import styles from "../../styles/index.module.css"
 import utilStyles from "../../styles/utils.module.css"
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
-export const getData=async(type)=>{
-    const response=await fetch(`${process.env.FETCH_URL}${type}`, {next: {revalidate: 1}})
+import { use, cache, useState, useEffect } from 'react'
+
+
+export const getData=cache(async(type)=>{
+    const response=await fetch(`http://hyrule-archive.herokuapp.com/${type}`, {next: {revalidate: 1}})
     const data=await response.json();
+    
     return data.data
-}
+})
 
-export default async function CardGrid({type}){
-    console.log(type)
-    const data=await getData(type)
-    console.log(data)
+export default function CardGridClient({type}){
+    
+    const data=use(getData(type))
+    const router=useRouter()
+    
+    
     return(
         <>
             <div className={styles.grid}>

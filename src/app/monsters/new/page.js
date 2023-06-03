@@ -5,6 +5,8 @@ import NotAuthorized from '@/app/components/NotAuthorized'
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { useUser } from '@/context/user'
+import {useEffect} from 'react'
+
 
 
 
@@ -33,7 +35,23 @@ export default function NewMonsterForm() {
         form.append(material, recoverableMaterials[material])
     }
     form.append('userId', user.id)
-    createMonster(form)
+    if (validateInput()){
+      createMonster(form)
+    }
+  }
+  const validateInput=()=>{
+    let validated=true;
+    if (!formData['name']){
+        setToggleError(true)
+        setErrorMessage("You must enter a name")
+        validated=false
+    }
+    if (!formData['no']){
+        setToggleError(true)
+        setErrorMessage("You must enter number for no recovered. This should match the compendium numbers")
+        validated=false
+    }
+    return validated
   }
   const handleChange=(e)=>{
     const name=e.target.name;
@@ -89,6 +107,7 @@ export default function NewMonsterForm() {
     
     if (data.name){
         setToggleError(true)
+        router.refresh()
         router.push('/monsters')
     }
     else{
@@ -96,7 +115,9 @@ export default function NewMonsterForm() {
         setErrorMessage(data.message)
     }
   }
-
+  useEffect(()=>{
+    router.prefetch('/monsters')
+  }, [router])
   return (
     
       <>

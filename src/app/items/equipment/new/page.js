@@ -92,6 +92,7 @@ export default function NewEquipmentForm() {
     
     if (data.name){
         setToggleError(false)
+        router.refresh()
         router.push('/items/equipment')
     }
     else{

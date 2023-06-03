@@ -33,7 +33,33 @@ export default function NewMaterialForm() {
         form.append(effect, uniqueCookingEffects[effect])
     }
     form.append('userId', user.id)
-    createMaterial(form)
+    if (validateInput()){
+      createMaterial(form)
+    }
+  }
+  const validateInput=()=>{
+    let validated=true;
+    if (!formData['name']){
+        setToggleError(true)
+        setErrorMessage("You must enter a name")
+        validated=false
+    }
+    if (!formData['fuseAttackPower']){
+        setToggleError(true)
+        setErrorMessage("You must enter number for fuse attack power. Enter 0 if none")
+        validated=false
+    }
+    if (!formData['heartsRecovered']){
+        setToggleError(true)
+        setErrorMessage("You must enter number for hearts recovered. Enter 0 if none")
+        validated=false
+    }
+    if (!formData['no']){
+        setToggleError(true)
+        setErrorMessage("You must enter number for no recovered. This should match the compendium numbers")
+        validated=false
+    }
+    return validated
   }
   const handleChange=(e)=>{
     const name=e.target.name;
@@ -89,6 +115,7 @@ export default function NewMaterialForm() {
     
     if (data.name){
         setToggleError(true)
+        router.refresh()
         router.push('/items/materials')
     }
     else{
