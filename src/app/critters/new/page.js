@@ -5,6 +5,7 @@ import NotAuthorized from '@/app/components/NotAuthorized'
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { useUser } from '@/context/user'
+import Image from 'next/image'
 
 
 
@@ -168,7 +169,15 @@ export default function NewCritterForm() {
             </div>
         )})}
         <div>
-            {imagePreview ? <img src={imagePreview}/> : null }
+        {imagePreview ? (
+            <Image 
+              src={imagePreview} 
+              alt={formData.name || ''} 
+              className={styles.imagePreviewImage}
+              fill
+              sizes=''/>)
+              : 
+              <div className={styles.box}/>}
             <input type='file' name='image' accept='image/*' onChange={handleUpload}/>
         </div>
         <textarea placeholder='type description here' name='description' rows="4" onChange={handleChange}/>

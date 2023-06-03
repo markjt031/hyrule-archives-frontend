@@ -27,7 +27,7 @@ export default async function Search({searchParams}){
                 const {_id, no, name, image}=result;
                 const path=pathByNumber(no)+`${_id}`
                 return (
-                    <Link href={path}>
+                    <Link href={path} key={_id}>
                         <div key={no} className={styles.card}>
                             <Image 
                                 src={image} 

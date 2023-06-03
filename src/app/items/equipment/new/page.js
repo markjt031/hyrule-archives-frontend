@@ -5,6 +5,7 @@ import NotAuthorized from '@/app/components/NotAuthorized'
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { useUser } from '@/context/user'
+import Image from 'next/image'
 
 
 export default function NewEquipmentForm() {
@@ -146,7 +147,15 @@ export default function NewEquipmentForm() {
         </div>
         
         <div className={styles.imagePreview}>
-            {imagePreview ? <img src={imagePreview} className={styles.imagePreviewImage}/> : <div className={styles.box}/>}
+        {imagePreview ? (
+            <Image 
+              src={imagePreview} 
+              alt={formData.name || ''} 
+              className={styles.imagePreviewImage}
+              fill
+              sizes=''/>)
+              : 
+              <div className={styles.box}/>}
             <label htmlFor='image' className={styles.label}>Select an image</label>
             <input type='file' name='image' accept='image/*' title=' ' onChange={handleUpload}/>
         </div>

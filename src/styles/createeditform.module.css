@@ -6,13 +6,13 @@
     text-align: center;
 }
 .box{
-    width: 100%;
-    height: 100%;
+    width: 300px;
+    height: 300px;
     display: block;
 }
 .imagePreview{
-    width: 50%;
-    height: auto;
+    width: 300px;
+    height:300px;
     border: solid rgb(var(--blue-100));
     position: relative;
 } 
@@ -23,7 +23,7 @@
 }
 .textInputs input[type=text], .textInputs input[type=number], .textInputs textarea{
     background-color: rgb(var(--blue-100));
-    width:50%;
+    width:300px;
     margin: 2px auto;
     border-radius:10px;
     padding: .5rem;
@@ -38,7 +38,7 @@
     margin: 0 auto;
 }
 .formContainer{
-    width: 90%;
+    width: 100%;
     margin: 0 26%;
 }
 .imagePreview input[type=file]::file-selector-button, .formContainer input[type=submit]{
@@ -49,6 +49,12 @@
     color: rgb(var(--blue-100));
     cursor: pointer;
     border: solid rgb(var(--blue-100));
+}
+.imagePreview input[type=file]::file-selector-button{
+    z-index: 10;
+    position: absolute;
+    bottom: 0;
+    left: 55%;
 }
 .formContainer input[type=submit]{
     display: block;
@@ -81,6 +87,11 @@
     }
     .textInputs{
         width: 50%;
+    }
+    .box{
+        width: 100%;
+        height: 100%;
+        display: block;
     }
     .textInputs input[type=text], .textInputs input[type=number], .textInputs textarea{
         width:70%;

@@ -19,8 +19,8 @@ export default async function CardGrid({type}){
                 {data.map((item)=>{
                 const {_id, no, name, image}=item;
                 return (
-                    <Link href={`${type}/${_id}`}>
-                    <div key={no} className={styles.card}>
+                    <Link key={no} href={`${type}/${_id}`}>
+                    <div className={styles.card}>
                         <Image 
                             src={image} 
                             alt={name}
