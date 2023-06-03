@@ -2,7 +2,7 @@
 import styles from '../../../../styles/createeditform.module.css'
 import Link from 'next/link'
 import NotAuthorized from '@/app/components/NotAuthorized'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { useUser } from '@/context/user'
 import Image from 'next/image'
@@ -12,10 +12,12 @@ import Image from 'next/image'
 export default function EditCreatureForm({searchParams}) {
     console.log(searchParams)
     const router=useRouter();
+    const [userId, setUserId]=useState(null)
     const {user, setUser}=useUser()
     const [imagePreview, setImagePreview]=useState(searchParams.image)
     const [toggleError, setToggleError]=useState(false)
     const [errorMessage, setErrorMessage]=useState('')
+
     
 
     //This is to handle an error where the create form made recoverable materials just
@@ -68,7 +70,9 @@ export default function EditCreatureForm({searchParams}) {
       description: searchParams.description,
       image: searchParams.image
     })
-    
+    useEffect(()=>{
+        setUserId(localStorage.getItem('userId'))
+      })
     const handleSubmit = (event) => {
         event.preventDefault()
         let form=new FormData()
@@ -153,14 +157,14 @@ export default function EditCreatureForm({searchParams}) {
         body: creature
     })
     const data= await response.json()
-    if (!data.data){
-        setToggleError(true)
-        setErrorMessage(data.message)
-    }
-    else{
+    if (data.data.name){
+        
         setToggleError(false)
         router.push('/creatures')
-        
+    }
+    else{
+        setToggleError(true)
+        setErrorMessage(data.message)
     }
   }
 
@@ -168,10 +172,10 @@ export default function EditCreatureForm({searchParams}) {
     
       <>
          <h1 className={styles.title}>Edit Creature</h1>
-        {/* {user ?  */}
+        {userId!='null' ?  
        (<div className={styles.formContainer}>
        
-      <form className={styles.form} onSubmit={handleSubmit}>
+      <form className={styles.form}>
        <div className={styles.textInputs}>
             <input type='number' placeholder='no' name="no" value={formData.no} onChange={handleChange}/><br/>
             <input type='text' placeholder='name' name="name" value={formData.name} onChange={handleChange}/>
@@ -222,15 +226,15 @@ export default function EditCreatureForm({searchParams}) {
         </div>
         
       </form>
-      <input type='submit' value='Submit'/>
+      <input type='submit' onClick={handleSubmit} value='Submit'/>
       {toggleError ? <h5>{errorMessage}</h5>
       :
       null
       }
       </div>)
-       {/* :
+        :
       <NotAuthorized/>}
-       */}
+       
       </>
       
   )

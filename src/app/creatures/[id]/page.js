@@ -2,6 +2,7 @@ import styles from '../../../styles/show.module.css'
 import utilStyles from '../../../styles/utils.module.css'
 import Image from 'next/image';
 import EditDelete from '@/app/components/EditDelete';
+import Refresher from '@/app/components/Refresher';
 
 export async function generateStaticParams() {
     const response = await fetch(process.env.FETCH_URL+"creatures");
@@ -11,7 +12,7 @@ export async function generateStaticParams() {
     }));
   }
 export async function getCreature(id) {
-    const creature = await fetch(process.env.FETCH_URL+`creatures/${id}`).then((res) => res.json());
+    const creature = await fetch(process.env.FETCH_URL+`creatures/${id}`, {next: {revalidate:1}}).then((res) => res.json());
     return creature.data;
 }
     
@@ -24,6 +25,7 @@ export default async function Creature({params}){
     console.log(creature)
     return(
         <>
+        <Refresher/>
         <div className={styles.largerCard}>
             <div className={styles.imageWrapper}>
                 <Image

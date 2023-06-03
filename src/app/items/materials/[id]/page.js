@@ -2,6 +2,7 @@ import styles from '../../../../styles/show.module.css'
 import utilStyles from '../../../../styles/utils.module.css'
 import Image from 'next/image';
 import EditDelete from '@/app/components/EditDelete';
+import Refresher from '@/app/components/Refresher';
 
 export async function generateStaticParams() {
     const response = await fetch(process.env.FETCH_URL+"items/materials");
@@ -11,7 +12,7 @@ export async function generateStaticParams() {
     }));
   }
 export async function getMaterial(id) {
-    const material = await fetch(process.env.FETCH_URL+`items/materials/${id}`).then((res) => res.json());
+    const material = await fetch(process.env.FETCH_URL+`items/materials/${id}`,{next: {revalidate:1}}).then((res) => res.json());
     return material.data;
 }
     
@@ -24,6 +25,7 @@ export default async function Materials({params}){
     console.log(material)
     return(
         <>
+        <Refresher/>
         <div className={styles.largerCard}>
             <div className={styles.imageWrapper}>
                 <Image

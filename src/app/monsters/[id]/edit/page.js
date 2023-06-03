@@ -5,6 +5,8 @@ import NotAuthorized from '@/app/components/NotAuthorized'
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { useUser } from '@/context/user'
+import {useEffect} from 'react'
+
 import Image from 'next/image'
 
 
@@ -13,6 +15,7 @@ export default function EditMonsterForm({searchParams}) {
     console.log(searchParams)
     const router=useRouter();
     const {user, setUser}=useUser()
+    const [userId, setUserId]=useState(null)
     const [imagePreview, setImagePreview]=useState(searchParams.image)
     const [toggleError, setToggleError]=useState(false)
     const [errorMessage, setErrorMessage]=useState('')
@@ -67,7 +70,9 @@ export default function EditMonsterForm({searchParams}) {
       name: searchParams.name,
       description: searchParams.description,
     })
-    
+    useEffect(()=>{
+      setUserId(localStorage.getItem('userId'))
+    })
    
     const handleSubmit = (event) => {
         event.preventDefault()
@@ -149,7 +154,7 @@ export default function EditMonsterForm({searchParams}) {
     })
     const data= await response.json()
     
-    if (data.name){
+    if (data.data.name){
         setToggleError(false)
         router.push('/monsters')
     }
@@ -163,7 +168,7 @@ export default function EditMonsterForm({searchParams}) {
     
       <>
          <h1 className={styles.title}>Edit Monster</h1>
-        {user ? 
+        {userId!='null' ? 
        (<div className={styles.formContainer}>
        
       <form className={styles.form}>

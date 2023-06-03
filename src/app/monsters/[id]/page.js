@@ -2,6 +2,7 @@ import styles from '../../../styles/show.module.css'
 import utilStyles from '../../../styles/utils.module.css'
 import Image from 'next/image';
 import EditDelete from '@/app/components/EditDelete';
+import Refresher from '@/app/components/Refresher'
 
 export async function generateStaticParams() {
     const response = await fetch(process.env.FETCH_URL+"monsters");
@@ -11,19 +12,18 @@ export async function generateStaticParams() {
     }));
   }
 export async function getMonster(id) {
-    const monster = await fetch(process.env.FETCH_URL+`monsters/${id}`).then((res) => res.json());
+    const monster = await fetch(process.env.FETCH_URL+`monsters/${id}`, {next: {revalidate:1}}).then((res) => res.json());
     return monster.data;
 }
     
 export default async function Monsters({params}){
-    console.log(params)
     const {id}=params
 
     const monster=await getMonster(id)
     const {no, name, recoverableMaterials, commonLocations, description, image }=monster
-    console.log(monster)
     return(
         <>
+        <Refresher/>
         <div className={styles.largerCard}>
             
             <div className={styles.imageWrapper}>

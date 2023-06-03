@@ -5,13 +5,14 @@ import NotAuthorized from '@/app/components/NotAuthorized'
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { useUser } from '@/context/user'
+import {useEffect} from 'react'
 import Image from 'next/image'
 
 
 export default function NewEquipmentForm({searchParams}) {
     const router=useRouter();
     const {user, setUser}=useUser()
-    
+    const [userId, setUserId]=useState(null)
     const [toggleError, setToggleError]=useState(false)
     const [errorMessage, setErrorMessage]=useState('')
     const [otherProperties, setOtherProperties]=useState({})
@@ -75,7 +76,9 @@ export default function NewEquipmentForm({searchParams}) {
         description: data.description,
         
     })
-
+    useEffect(()=>{
+        setUserId(localStorage.getItem('userId'))
+    })
     const handleSubmit = (event) => { 
         event.preventDefault()
         let form=new FormData()
@@ -91,8 +94,22 @@ export default function NewEquipmentForm({searchParams}) {
         for (const pair of form){
             console.log(pair[0], pair[1])
         }
-        
-        editEquipment(form, data._id)
+        if (validateInput()){
+            editEquipment(form, data._id)
+        }
+    }
+    const validateInput=()=>{
+        let validated=true;
+        if (!formData['name']){
+            setToggleError(true)
+            setErrorMessage("You must enter a name")
+            validated=false
+        }
+        if (!formData['no']){
+            setToggleError(true)
+            setErrorMessage("You must enter number for no. This should match the compendium numbers")
+            validated=false
+        }
     }
     const handleChange=(e)=>{
         const name=e.target.name;
@@ -160,7 +177,7 @@ export default function NewEquipmentForm({searchParams}) {
     
       <>
         <h1 className={styles.title}>Edit Equipment</h1>
-        {user ?   
+        {userId!='null' ?   
        (<div className={styles.formContainer}>
         
       <form className={styles.form}>

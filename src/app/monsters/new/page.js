@@ -12,6 +12,7 @@ import Image from "next/image";
 export default function NewMonsterForm() {
     const router=useRouter();
     const {user, setUser}=useUser()
+    const [userId, setUserId]=useState(null)
     const [imagePreview, setImagePreview]=useState(null)
     const [toggleError, setToggleError]=useState(false)
     const [errorMessage, setErrorMessage]=useState('')
@@ -47,7 +48,7 @@ export default function NewMonsterForm() {
     }
     if (!formData['no']){
         setToggleError(true)
-        setErrorMessage("You must enter number for no recovered. This should match the compendium numbers")
+        setErrorMessage("You must enter number for no. This should match the compendium numbers")
         validated=false
     }
     return validated
@@ -115,13 +116,13 @@ export default function NewMonsterForm() {
     }
   }
   useEffect(()=>{
-    router.prefetch('/monsters')
-  }, [router])
+    setUserId(localStorage.getItem('userId'))
+  })
   return (
     
       <>
         <h1 className={styles.title}>New Monster</h1>
-        {user ?  
+        {userId!='null' ?  
        (<div className={styles.formContainer}>
         
       <form className={styles.form}>

@@ -1,6 +1,7 @@
 'use client'
 import { useUser } from "@/context/user"
 import { useRouter } from "next/navigation";
+import {useEffect} from 'react'
 import { useState } from "react"
 import { faPencil, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -11,6 +12,7 @@ import { revalidatePath } from "next/cache";
 
 export default function EditDelete({pathname, itemId, userId, data}){
     const {user, setUser}=useUser();
+    const [usersId, setUsersId]=useState(null)
     const [confirmDelete, setConfirmDelete]=useState(false)
     const router=useRouter()
 
@@ -26,7 +28,9 @@ export default function EditDelete({pathname, itemId, userId, data}){
             router.push(`/${pathname}`)
         })
     }
-        
+    useEffect(()=>{
+        setUsersId(localStorage.getItem('userId'))
+    })
     const deleteButtonHandler=()=>{
         setConfirmDelete(true)
     }
@@ -34,7 +38,7 @@ export default function EditDelete({pathname, itemId, userId, data}){
         setConfirmDelete(false)
     }
     return <>
-        {user && user.id===userId ?
+        {usersId!='null' && usersId===userId ?
             (<div>
                 <div className={styles.buttonContainer}>
                     {/* This part is for the equipment edit form that needs to be passed as a json string */}

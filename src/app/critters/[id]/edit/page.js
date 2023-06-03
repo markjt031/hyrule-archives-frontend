@@ -1,7 +1,7 @@
 'use client'
 import styles from '../../../../styles/createeditform.module.css'
 import NotAuthorized from '@/app/components/NotAuthorized'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { useUser } from '@/context/user'
 import Image from 'next/image'
@@ -11,6 +11,7 @@ import Image from 'next/image'
 export default function EditCritterForm({searchParams}) {
     const router=useRouter();
     const {user, setUser}=useUser()
+    const [userId, setUserId]=(null)
     const [imagePreview, setImagePreview]=useState(searchParams.image)
     const [toggleError, setToggleError]=useState(false)
     const [errorMessage, setErrorMessage]=useState('')
@@ -67,7 +68,9 @@ export default function EditCritterForm({searchParams}) {
       fuseAttackPower: searchParams.fuseAttackPower,
       description: searchParams.description,
     })
-
+    useEffect(()=>{
+      setUserId(localStorage.getItem('userId'))
+    })
     const handleSubmit = (event) => {
       event.preventDefault()
       let form=new FormData()
@@ -174,7 +177,7 @@ export default function EditCritterForm({searchParams}) {
     
       <>
       <h1 className={styles.title}>Edit Creature Material</h1>
-        {user ? 
+        {userId!='null' ? 
        (<div className={styles.formContainer}>
       <form className={styles.form} onSubmit={handleSubmit}>
       <div className={styles.textInputs}>

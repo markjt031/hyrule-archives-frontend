@@ -3,7 +3,7 @@ import Link from "next/link"
 import styles from "../../styles/Nav.module.css"
 import { useUser } from "@/context/user"
 import { useRouter } from "next/navigation"
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars, faMagnifyingGlass, faUserCircle } from '@fortawesome/free-solid-svg-icons'
 
@@ -12,13 +12,22 @@ import { faBars, faMagnifyingGlass, faUserCircle } from '@fortawesome/free-solid
 export default function Nav() {
     const {user, setUser}=useUser()
     const router= useRouter()
+    const {userId, setUserId}=useUser()
     const [formData, setFormData] = useState({
         searchterm: "",
       });
-      const handleChange = (event) => {
+      useEffect(() => {
+        if(localStorage.getItem('userId')) {
+            setUserId(localStorage.getItem('userId'))
+        } else {
+            setUserId(null)
+        }
+    })
+    const handleChange = (event) => {
         setFormData({ ...formData, [event.target.name]: event.target.value });
-      };
-      const handleSubmit=(e)=>{
+    };
+
+    const handleSubmit=(e)=>{
         e.preventDefault();
         router.push(`/search?name=${formData.searchterm}`)
     }
@@ -26,7 +35,10 @@ export default function Nav() {
     const handleLogout=async()=>{
         const response= await fetch(`https://hyrule-archive.herokuapp.com/users/logout`)
         setUser(null)
+        localStorage.setItem('userId', null)
+        setUserId(null)
     }
+    console.log(userId=='null')
   return (
     <nav className={styles.nav}>
         <div className={styles.left}>
@@ -57,7 +69,7 @@ export default function Nav() {
                     <button type="submit"><FontAwesomeIcon icon={faMagnifyingGlass}/></button>
                 </form>
             </div>
-            {!user ? <div className={styles.dropdown}>
+            {userId=='null' ? <div className={styles.dropdown}>
                 <FontAwesomeIcon icon={faUserCircle}/>
                 <div className={styles.dropdownMenu}>
                     <Link href="/user/login">Login</Link>
@@ -68,7 +80,7 @@ export default function Nav() {
             <div className={styles.dropdown}>
             <FontAwesomeIcon icon={faUserCircle}/>
             <div className={styles.dropdownMenu}>
-                <Link href={`/user/profile/${user.id}`}>Profile</Link>
+                <Link href={`/user/profile/${userId}`}>Profile</Link>
                 <Link href="/" onClick={handleLogout}>Logout</Link>
             </div>
         </div>

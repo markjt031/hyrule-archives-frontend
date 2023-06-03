@@ -5,6 +5,7 @@ import NotAuthorized from '@/app/components/NotAuthorized'
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { useUser } from '@/context/user'
+import { useEffect} from 'react'
 import Image from 'next/image'
 
 
@@ -12,9 +13,12 @@ import Image from 'next/image'
 export default function EditMaterialForm({searchParams}) {
     const router=useRouter();
     const {user, setUser}=useUser()
+    const [userId, setUserId]=useState(null)
     const [imagePreview, setImagePreview]=useState(searchParams.image)
     const [toggleError, setToggleError]=useState(false)
     const [errorMessage, setErrorMessage]=useState('')
+    
+    
     
     console.log(searchParams)
     //This is to handle an error where the create form made recoverable materials just
@@ -67,7 +71,9 @@ export default function EditMaterialForm({searchParams}) {
       fuseAttackPower: searchParams.fuseAttackPower,
       description: searchParams.description,
     })
-    
+    useEffect(()=>{
+        setUserId(localStorage.getItem('userId'))
+    })
     const handleSubmit = (event) => {
     event.preventDefault()
     let form=new FormData()
@@ -175,7 +181,7 @@ export default function EditMaterialForm({searchParams}) {
     
       <>
       <h1 className={styles.title}>Edit Material</h1>
-        {user ? 
+        {userId!='null' ? 
        (<div className={styles.formContainer}>
       <form className={styles.form} onSubmit={handleSubmit}>
       <div className={styles.textInputs}>

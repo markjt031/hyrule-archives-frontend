@@ -9,6 +9,7 @@ import { useUser } from '@/context/user'
 export default function LoginForm() {
     const router=useRouter();
     const {user, setUser}=useUser()
+    const {userId, setUserId}=useUser()
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const [email, setEmail]=useState('')
@@ -37,9 +38,12 @@ export default function LoginForm() {
         body: JSON.stringify(userObj)
     })
     const data= await response.json()
+    console.log(data)
     if (data.username){
         setToggleError(false)
-        await setUser(data)
+        localStorage.setItem("userId", data.id)
+        setUserId(localStorage.getItem('userId'))
+        setUser(data)
         router.push('/')
     }
     else{

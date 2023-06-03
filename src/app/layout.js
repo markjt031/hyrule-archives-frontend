@@ -4,6 +4,7 @@ import '../../node_modules/@fortawesome/fontawesome-svg-core/styles.css'
 config.autoAddCss = false
 import Nav from './components/Nav'
 import UserProvider from '../context/user'
+import Refresher from './components/Refresher'
 
 
 export const metadata = {
@@ -17,6 +18,7 @@ export default function RootLayout({ children }) {
       
         <body>
           <UserProvider>
+              
               <header>
               <Nav />
             </header>
