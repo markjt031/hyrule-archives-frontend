@@ -37,12 +37,22 @@ export default function EditDelete({pathname, itemId, userId, data}){
         {user && user.id===userId ?
             (<div>
                 <div className={styles.buttonContainer}>
+                    {/* This part is for the equipment edit form that needs to be passed as a json string */}
+                    {typeof(data)==='string' ? 
+                    <Link href={{
+                        pathname: `/${pathname}/${itemId}/edit`,
+                        query: {data:data}
+                        }}>
+                        <button className={styles.button}><FontAwesomeIcon icon={faPencil}/></button>
+                    </Link>
+                    :
                     <Link href={{
                         pathname: `/${pathname}/${itemId}/edit`,
                         query: data
                         }}>
                         <button className={styles.button}><FontAwesomeIcon icon={faPencil}/></button>
                     </Link>
+                    }
                     <button className={styles.button} onClick={()=>{deleteButtonHandler()}}><FontAwesomeIcon icon={faTrash}/></button>
                 </div>
                 {confirmDelete ? (<div>

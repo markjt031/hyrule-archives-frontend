@@ -39,7 +39,7 @@ export default function Nav() {
                     <Link href='/items/equipment'>Equipment</Link>
                 </div>
             </div>
-            <Link href="/home">Hyrule Archives</Link>
+            <Link href="/">Hyrule Archives</Link>
         </div>
         <div className={styles.right}>
             <div className={styles.dropdownSearch}>
@@ -69,7 +69,7 @@ export default function Nav() {
             <FontAwesomeIcon icon={faUserCircle}/>
             <div className={styles.dropdownMenu}>
                 <Link href={`/user/profile/${user.id}`}>Profile</Link>
-                <Link href="/home" onClick={handleLogout}>Logout</Link>
+                <Link href="/" onClick={handleLogout}>Logout</Link>
             </div>
         </div>
         }

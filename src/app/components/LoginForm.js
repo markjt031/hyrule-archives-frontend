@@ -40,7 +40,7 @@ export default function LoginForm() {
     if (data.username){
         setToggleError(false)
         await setUser(data)
-        router.push('/home')
+        router.push('/')
     }
     else{
         setToggleError(true)

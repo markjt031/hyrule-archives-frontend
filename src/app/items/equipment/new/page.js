@@ -16,7 +16,6 @@ export default function NewEquipmentForm() {
     const [errorMessage, setErrorMessage]=useState('')
     const [formData, setFormData]= useState({})
     const [otherPropertiesCount, setOtherPropertiesCount]=useState(1)
-    const [otherProperties, setOtherProperties]=useState({})
     const [commonLocationsCount, setCommonLocationsCount]=useState(1)
     const [commonLocations, setCommonLocations]=useState({})
     const [properties, setProperties]=useState({})

@@ -21,7 +21,7 @@ export default async function Equipment({params}){
 
     const equipment=await getEquipment(id)
     const {_id, no, name, properties, commonLocations, description, image, userId }=equipment
-    console.log(equipment)
+    
     return(
         <>
         <div className={styles.largerCard}>
@@ -32,7 +32,7 @@ export default async function Equipment({params}){
                     fill/>
             </div>
             <div className={styles.cardInfo}>
-                <div className={styles.right}><EditDelete pathname='items/equipment' itemId={_id} userId={userId} data={equipment}/></div>
+                <div className={styles.right}><EditDelete pathname='items/equipment' itemId={_id} userId={userId} data={JSON.stringify(equipment)}/></div>
                 <p>No: {no}</p>
                 <p>Name: <span className={utilStyles.capitalize}>{name}</span></p>
                 {properties.attack ? <p className={utilStyles.capitalize}>Attack : {properties.attack}</p> : null}
