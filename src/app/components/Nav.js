@@ -12,16 +12,17 @@ import { faBars, faMagnifyingGlass, faUserCircle } from '@fortawesome/free-solid
 export default function Nav() {
     const {user, setUser}=useUser()
     const router= useRouter()
-    const {userId, setUserId}=useUser()
+    const [userId, setUserId]=useState(null)
     const [formData, setFormData] = useState({
         searchterm: "",
       });
       useEffect(() => {
         if(localStorage.getItem('userId')) {
             setUserId(localStorage.getItem('userId'))
-        } else {
-            setUserId(null)
-        }
+        } 
+        else{
+            setUserId(localStorage.setItem('userId', null)
+            )}
     })
     const handleChange = (event) => {
         setFormData({ ...formData, [event.target.name]: event.target.value });
