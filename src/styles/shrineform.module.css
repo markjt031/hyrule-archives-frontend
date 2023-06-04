@@ -90,7 +90,7 @@
         height: 180px;
     
     }
-    .stepTitle, .textInputs, .btnDiv, .instructions, .guideStep label{
+    .stepTitle, .textInputs, .btnDiv, .instructions, .textInputs, .guideStep label{
         width: 420px;
     }
     
@@ -112,7 +112,7 @@
         height: 360px;
     
     }
-    .stepTitle, .textInputs, .btnDiv, .instructions, .guideStep label{
+    .stepTitle, .textInputs, .btnDiv, .instructions, .textInputs, .guideStep label{
         width: 640px;
     }
     
