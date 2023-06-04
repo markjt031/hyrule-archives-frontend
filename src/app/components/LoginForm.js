@@ -43,7 +43,7 @@ export default function LoginForm() {
         setToggleError(false)
         localStorage.setItem("userId", data.id)
         setUserId(localStorage.getItem('userId'))
-        setUser(data)
+        localStorage.setItem('userName', data.username)
         router.push('/')
     }
     else{

@@ -86,7 +86,6 @@ export default function EditMaterialForm({searchParams}) {
     for (const effect in uniqueCookingEffects){
         form.append(effect, uniqueCookingEffects[effect])
     }
-    form.append('userId', user.id)
     if (validateInput()){
         editMaterial(form)
     }

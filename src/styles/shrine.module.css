@@ -1,0 +1,61 @@
+.imageWrapper{
+    width: 315px;
+    height: 135px;
+    position: relative;
+    margin: 0 auto;
+}
+.guideBlock{
+    background-color: rgb(var(--blue-400));
+    margin: 2% auto;
+    padding: 2% 0;
+    width: 315px;
+}
+
+.titleInformation{
+    text-transform: capitalize;
+    width: 315px;
+    margin: 0 auto;
+}
+.guideBlock p{
+    margin-top: 2%;
+}
+.guideHeader{
+    width: 315px;
+    margin: 5% auto 0 auto;
+}
+
+@media screen and (min-width: 420px){
+    .imageWrapper{
+        width: 420px;
+        height: 240px;
+    }
+    .guideBlock, .titleInformation, .guideHeader{
+        width: 420px;
+    }
+    .guideBlock p{
+        margin-top: 2%;
+    }
+}
+
+@media screen and (min-width: 768px){
+    .guideBlock, .titleInformation, .guideHeader{
+        width: 640px;
+    }
+    .imageWrapper{
+        width: 640px;
+        height: 360px;
+    }
+}
+
+@media screen and (min-width: 1024px){
+    .guideBlock, .titleInformation, .guideHeader{
+        width: 840px;
+    }
+    .imageWrapper{
+        width: 840px;
+        height: 480px;
+    }
+    .guideBlock p{
+        font-size: 1.2rem;
+    }
+}

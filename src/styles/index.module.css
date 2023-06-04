@@ -12,7 +12,10 @@
 .titleRow{
     background-color: rgb(var(--blue-700));
     margin:3% 0 0 0;
-   
+    height: 20px;
+}
+.titleRow li{
+    padding-left: 5px;
 }
 
 .shrineList .shrineUl:nth-child(even){
