@@ -24,7 +24,7 @@ export default function NewMaterialForm() {
 
     useEffect(()=>{
       setUserId(localStorage.getItem('userId'))
-    })
+    },[])
     const handleSubmit = (event) => {
       event.preventDefault()
       let form=new FormData()

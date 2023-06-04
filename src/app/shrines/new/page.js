@@ -111,7 +111,7 @@ export default function NewShrineForm() {
   useEffect(()=>{
     setUserId(localStorage.getItem('userId'))
     setUserName(localStorage.getItem('userName'))
-  })
+  },[])
   return (
     
       <>

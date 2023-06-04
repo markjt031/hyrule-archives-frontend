@@ -70,7 +70,7 @@ export default function EditCritterForm({searchParams}) {
     })
     useEffect(()=>{
       setUserId(localStorage.getItem('userId'))
-    })
+    },[])
     const handleSubmit = (event) => {
       event.preventDefault()
       let form=new FormData()

@@ -23,7 +23,7 @@ export default function NewCreatureForm() {
     const [commonLocations, setCommonLocations]=useState({})
     useEffect(()=>{
       setUserId(localStorage.getItem('userId'))
-    })
+    },[])
     const handleSubmit = (event) => {
       event.preventDefault()
       let form=new FormData()

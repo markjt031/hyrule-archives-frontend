@@ -72,7 +72,7 @@ export default function EditMonsterForm({searchParams}) {
     })
     useEffect(()=>{
       setUserId(localStorage.getItem('userId'))
-    })
+    },[])
    
     const handleSubmit = (event) => {
         event.preventDefault()

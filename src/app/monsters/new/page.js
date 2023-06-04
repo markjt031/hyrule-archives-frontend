@@ -117,7 +117,7 @@ export default function NewMonsterForm() {
   }
   useEffect(()=>{
     setUserId(localStorage.getItem('userId'))
-  })
+  }, [])
   return (
     
       <>

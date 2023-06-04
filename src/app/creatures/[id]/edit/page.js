@@ -72,7 +72,7 @@ export default function EditCreatureForm({searchParams}) {
     })
     useEffect(()=>{
         setUserId(localStorage.getItem('userId'))
-      })
+      },[])
     const handleSubmit = (event) => {
         event.preventDefault()
         let form=new FormData()
