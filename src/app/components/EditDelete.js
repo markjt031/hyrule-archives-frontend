@@ -30,7 +30,7 @@ export default function EditDelete({pathname, itemId, userId, data}){
     }
     useEffect(()=>{
         setUsersId(localStorage.getItem('userId'))
-    })
+    },[])
     const deleteButtonHandler=()=>{
         setConfirmDelete(true)
     }

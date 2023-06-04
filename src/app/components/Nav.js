@@ -23,7 +23,7 @@ export default function Nav() {
         else{
             setUserId(localStorage.setItem('userId', null)
             )}
-    })
+    },[])
     const handleChange = (event) => {
         setFormData({ ...formData, [event.target.name]: event.target.value });
     };
