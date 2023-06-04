@@ -1,5 +1,5 @@
 'use client'
-import styles from '../../../styles/createeditform.module.css'
+import styles from '../../../styles/shrineform.module.css'
 import Link from 'next/link'
 import NotAuthorized from '@/app/components/NotAuthorized'
 import { useState } from 'react'
@@ -9,36 +9,33 @@ import {useEffect} from 'react'
 import Image from "next/image";
 
 
-export default function NewMonsterForm() {
+export default function NewShrineForm() {
     const router=useRouter();
     const [userName, setUserName]=useState(null)
     const [userId, setUserId]=useState(null)
-    const [images, setImagePreviews]=useState({})
+    const [imagePreviews, setImagePreviews]=useState([])
     const [locationImage, setLocationImage]=useState(null)
     const [toggleError, setToggleError]=useState(false)
     const [errorMessage, setErrorMessage]=useState('')
     const [formData, setFormData]= useState({})
-    const [recoverableMaterialsCount, setRecoverableMaterialsCount]=useState(1)
-    const [recoverableMaterials, setRecoverableMaterials]=useState({})
-    const [commonLocationsCount, setCommonLocationsCount]=useState(1)
-    const [commonLocations, setCommonLocations]=useState({})
+    const [guideStepsCount, setGuideStepsCount]=useState(1)
+    
 
   const handleSubmit = (event) => {
     event.preventDefault()
     let form=new FormData()
     for (const key in formData){
-        form.append(key, formData[key])
+        if (formData[key]){
+            form.append(key, formData[key])
+        }
     }
-    for (const location in commonLocations){
-        form.append(location, commonLocations[location])
+    for (const pair of form){
+        console.log(pair[0], pair[1])
     }
-    for (const material in recoverableMaterials){
-        form.append(material, recoverableMaterials[material])
-    }
-    form.append('userId', user.id)
+    form.append('userId', userId)
     form.append('userName', userName)
     if (validateInput()){
-      createMonster(form)
+      createShrine(form)
     }
   }
   const validateInput=()=>{
@@ -48,11 +45,7 @@ export default function NewMonsterForm() {
         setErrorMessage("You must enter a name")
         validated=false
     }
-    if (!formData['no']){
-        setToggleError(true)
-        setErrorMessage("You must enter number for no. This should match the compendium numbers")
-        validated=false
-    }
+    
     return validated
   }
   const handleChange=(e)=>{
@@ -61,56 +54,54 @@ export default function NewMonsterForm() {
     console.log(e.target.value)
     setFormData({...formData, [name] : value})
   }
-  const handleUpload=(e)=>{
+  const handleUpload=(e, index)=>{
     const name=e.target.name;
     const value=e.target.files[0]
     setFormData({...formData, [name]: value})
-    setImagePreview(URL.createObjectURL(e.target.files[0]))
+    const images=[...imagePreviews]
+    
+    images.push(URL.createObjectURL(e.target.files[0]))
+    console.log(images)
+    setImagePreviews(images)
+    
   }
-  const buttonHandlerRecoverableIncrease=(e)=>{
+  const handleLocationImageUpload=(e)=>{
+    const name=e.target.name;
+    const value=e.target.files[0]
+    setFormData({...formData, [name]: value})
+    setLocationImage(URL.createObjectURL(e.target.files[0]))
+  }
+  const buttonHandlerGuideStepIncrease=(e)=>{
     e.preventDefault()
-    incrementRecoverableMaterials()
+    incrementGuideStep()
   }
-  const buttonHandlerRecoverableDecrease=(e)=>{
+  const buttonHandlerGuideStepDecrease=(e)=>{
     e.preventDefault()
-    decrementRecoverableMaterials()
+    decrementGuideStep()
   }
-  const incrementRecoverableMaterials=()=>{
-    setRecoverableMaterialsCount(recoverableMaterialsCount+1)
+  const incrementGuideStep=()=>{
+    setGuideStepsCount(guideStepsCount+1)
   }
-  const decrementRecoverableMaterials=(e)=>{
-    setRecoverableMaterialsCount(recoverableMaterialsCount-1)
+  const decrementGuideStep=(e)=>{
+    setGuideStepsCount(guideStepsCount-1)
   }
-  const buttonHandlerCommonIncrease=(e)=>{
-    e.preventDefault()
-    incrementCommonLocations()
-  }
-  const buttonHandlerCommonDecrease=(e)=>{
-    e.preventDefault()
-    decrementCommonLocations()
-  }
-  const incrementCommonLocations=()=>{
-    setCommonLocationsCount(commonLocationsCount+1)
-  }
-  const decrementCommonLocations=()=>{
-    setCommonLocationsCount(commonLocationsCount-1)
-  }
-  const createMonster = async (monster) => {
-    const response= await fetch(`https://hyrule-archive.herokuapp.com/monsters/`,
+  
+  const createShrine = async (shrine) => {
+    const response= await fetch(`https://hyrule-archive.herokuapp.com/shrines/`,
     {
         method: "POST",
         mode: "cors",
         // headers: {
         //     "Content-Type": "multipart/form-data",
         // },
-        body: monster
+        body: shrine
     })
     const data= await response.json()
     
     if (data.name){
-        setToggleError(true)
+        setToggleError(false)
         router.refresh()
-        router.push('/monsters')
+        router.push('/shrines')
     }
     else{
         setToggleError(true)
@@ -124,60 +115,63 @@ export default function NewMonsterForm() {
   return (
     
       <>
-        {/* <h1 className={styles.title}>New Monster</h1>
+        <h1 className={styles.title}>New Shrine</h1>
         {userId!='null' ?  
        (<div className={styles.formContainer}>
         
       <form className={styles.form}>
         <div className={styles.textInputs}>
-            <input type='number' placeholder='no' name="no" onChange={handleChange}/><br/>
-            <input type='text' placeholder='name' name="name" onChange={handleChange}/>
-            {Array.from(Array(recoverableMaterialsCount)).map((c, index) => {
-            return(
-                <div key={index}>
-                    <input
-                        type="text"
-                        name=""
-                        className={styles.expandingCategory}
-                        placeholder="recoverable material"
-                        onChange={(event) => setRecoverableMaterials({...recoverableMaterials, [`recoverableMaterials[${index}]`]:event.target.value })}
-                    />
-                    {index===recoverableMaterialsCount-1 &&<button onClick={buttonHandlerRecoverableIncrease} className={styles.btnSmall}>+</button>}
-                    {(index>0 && index===recoverableMaterialsCount-1) && <button onClick={buttonHandlerRecoverableDecrease} className={styles.btnSmall}>-</button>}
-                    
-                </div>
-            )})}
-            {Array.from(Array(commonLocationsCount)).map((c, index) => {
-            return(
-                <div key={index}>
-                    <input
-                        type="text"
-                        className={styles.expandingCategory}
-                        name=""
-                        placeholder="common locations"
-                        onChange={(event) => setCommonLocations({...commonLocations, [`commonLocations[${index}]`]:event.target.value })}
-                    />
-                    {index===commonLocationsCount-1 && <button onClick={buttonHandlerCommonIncrease} className={styles.btnSmall}>+</button>}
-                    {index>0 && <button onClick={buttonHandlerCommonDecrease} className={styles.btnSmall}>-</button>}
-            </div>
-        )})}
-            <textarea placeholder='type description here' name='description' rows="4" onChange={handleChange}/>
+            <input type='text' placeholder='name' name="name" onChange={handleChange}/><br/>
+            <input type='text' placeholder='subtitle' name="subtitle" onChange={handleChange}/><br/>
+            <input type='text' placeholder='region' name="region" onChange={handleChange}/><br/>
+            <input type='text' placeholder='coordinates' name='coordinates' onChange={handleChange}/><br/>
+            <label htmlFor='locationImage'>Choose image for Map location</label>
         </div>
-        
         <div className={styles.imagePreview}>
-            {imagePreview ? (
+            {locationImage ? (
             <Image 
-              src={imagePreview} 
+              src={locationImage} 
               alt={formData.name || ''} 
               className={styles.imagePreviewImage}
-              fill
-              sizes=''/>)
+              fill/>
+              )
               : 
-              <div className={styles.box}/>}
-            <label htmlFor='image' className={styles.label}>Select an image</label>
-            <input type='file' name='image' accept='image/*' title=' ' onChange={handleUpload}/>
+            <div className={styles.box}/>}
+
+            <input type='file' title='' name='locationImage' accept='image/*'  onChange={handleLocationImageUpload}/>
         </div>
-        
+            <p className={styles.instructions}>Enter your guide below. For each step, provide body text and an image. For best results use an image with a 4/3 aspect ratio. To add steps, press +</p>
+            {Array.from(Array(guideStepsCount)).map((c, index) => {
+            return(
+                <div className={styles.container}>
+                    <div key={index} className={styles.guideStep}>
+                        <h3 className={styles.stepTitle}>Step {index+1}</h3>
+                        <textarea
+                            name={`bodyText[${index}]`}
+                            placeholder="Enter body text for your guide"
+                            onChange={handleChange}
+                        />
+                        <label htmlFor='locationImage'>Choose image for guide step</label>
+                        <div className={styles.imagePreview}>
+                        {imagePreviews[index] ? (
+                            <Image 
+                                src={imagePreviews[index]} 
+                                alt={formData.name || ''} 
+                                className={styles.imagePreviewImage}
+                                fill
+                                sizes=''/>)
+                            : 
+                            <div className={styles.box}/>}
+                            <input type='file' title='' name={`images[${index}]`} accept='image/*'  onChange={(e, index)=>handleUpload(e, index)}/>
+                        </div>
+                    </div>
+                    <div className={styles.btnDiv}>
+                        {index===guideStepsCount-1 &&<button onClick={buttonHandlerGuideStepIncrease} className={styles.btnSmall}>+</button>}
+                        {(index>0 && index===guideStepsCount-1) && <button onClick={buttonHandlerGuideStepDecrease} className={styles.btnSmall}>-</button>}
+                    </div>
+                </div>
+               
+            )})}
       </form>
       <input type='submit' onClick={handleSubmit} value='Submit'/>
       {toggleError ? <h5>{errorMessage}</h5>
@@ -186,7 +180,7 @@ export default function NewMonsterForm() {
       }
       </div>)
         :
-      <NotAuthorized/>} */}
+      <NotAuthorized/>}
        
       </>
       

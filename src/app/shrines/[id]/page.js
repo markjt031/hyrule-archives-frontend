@@ -3,6 +3,7 @@ import utilStyles from '../../../styles/utils.module.css'
 import Image from 'next/image';
 import EditDelete from '@/app/components/EditDelete';
 import Refresher from '@/app/components/Refresher'
+import { format } from 'date-fns';
 
 
 export async function generateStaticParams() {
@@ -42,7 +43,7 @@ export default async function Shrine({params}){
                 <div className={styles.guideHeader}>
                     <h1>Guide</h1>
                     <h3>Created By: {userName}</h3>
-                    <h3>On: {createdAt}</h3>
+                    <h3>On: {format(new Date(createdAt), 'MM/dd/yyyy ')}</h3>
                 </div>
                 {bodyText.map((article, index)=>{
                     return(

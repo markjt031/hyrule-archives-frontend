@@ -1,0 +1,131 @@
+.title{
+   text-align: center;
+}
+.instructions{
+    width: 315px;
+    margin: 10% auto 0 auto;
+}
+.btnDiv{
+    width: 315px;
+    margin: 0 auto;
+    display: flex;
+}
+.btnSmall{
+    background-color: rgb(var(--blue-400));
+    font-family: inherit;
+    color: rgb(var(--blue-100));
+    border: solid rgb(var(--blue-100));
+    padding: 0px 4px;
+    font-size: 1.5rem;
+    transform: translateY(10%); 
+    cursor: pointer;
+    
+}
+.imagePreview input[type=file]::file-selector-button, .formContainer input[type=submit]{
+    border-radius: 28px;
+    padding: 5px 15px;
+    background-color: rgb(var(--blue-400));
+    font-family: inherit;
+    color: rgb(var(--blue-100));
+    cursor: pointer;
+    border: solid rgb(var(--blue-100));
+}
+.imagePreview, .box{
+    width: 315px;
+    height: 135px;
+    position: relative;
+    margin: 0 auto;
+    border: 1px solid rgb(var(--blue-100));
+
+}
+.formContainer input[type=submit]{
+    margin: 10% auto 0 auto;
+    display: block;
+
+}
+.imagePreview input[type=file]::file-selector-button:hover, .formContainer input[type=submit]:hover, .btnSmall:hover{
+    background-color: rgb(var(--blue-300));
+}
+.imagePreview input[type=file]::file-selector-button:hover, .formContainer input[type=submit]:hover{
+    transform: translateY(-2%);
+}
+.textInputs input[type=text]{
+    background-color: rgb(var(--blue-100));
+    width:315px;
+    margin: 2px auto;
+    border-radius:10px;
+    padding: .5rem;
+    color: rgb(var(--blue-300));
+}
+.textInputs{
+    margin: 0 auto;
+    width: 315px;
+}
+
+.stepTitle, .guideStep label{
+    margin: 0 auto;
+    width: 315px;
+}
+.guideStep{
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(var(--blue-500));
+    padding-bottom: 10%;
+    margin-top: 5%;
+}
+.guideStep textarea{
+    height: 135px;
+    width: 315px;
+    margin: 0 auto;
+    font-family: sans-serif;
+    background-color: rgb(var(--blue-100));
+    color: rgb(var(--blue-300));
+}
+.guideStep .imagePreview{
+    margin: 0 auto;
+}
+@media screen and (min-width: 420px){
+    .imagePreview, .box{
+        width: 420px;
+        height: 180px;
+    
+    }
+    .stepTitle, .textInputs, .btnDiv, .instructions, .guideStep label{
+        width: 420px;
+    }
+    
+    .guideStep textarea{
+        height: 200px;
+        width: 420px;
+    }
+    
+    .guideStep{
+        width: 450px;
+        margin: 0 auto;
+    }
+    
+}
+
+@media screen and (min-width: 768px){
+    .imagePreview, .box{
+        width: 640px;
+        height: 360px;
+    
+    }
+    .stepTitle, .textInputs, .btnDiv, .instructions, .guideStep label{
+        width: 640px;
+    }
+    
+    .guideStep textarea{
+        height: 360px;
+        width: 640px;
+    }
+    
+    .guideStep{
+        width: 700px;
+        margin: 0 auto;
+    }
+    .formContainer input[type=submit], .instructions{
+        margin: 4% auto 0 auto;
+    }
+}
