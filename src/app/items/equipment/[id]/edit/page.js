@@ -47,7 +47,6 @@ export default function NewEquipmentForm({searchParams}) {
         }
         
     }
-    console.log(data)
     let commonCount
     let locationObj={}
     if (data.commonLocations.length===0){
@@ -91,11 +90,9 @@ export default function NewEquipmentForm({searchParams}) {
         for (const property in properties){
             form.append(property, properties[property])
         }
-        for (const pair of form){
-            console.log(pair[0], pair[1])
-        }
+        console.log(validateInput())
         if (validateInput()){
-            editEquipment(form, data._id)
+            editEquipment(form)
         }
     }
     const validateInput=()=>{
@@ -110,6 +107,7 @@ export default function NewEquipmentForm({searchParams}) {
             setErrorMessage("You must enter number for no. This should match the compendium numbers")
             validated=false
         }
+        return validated
     }
     const handleChange=(e)=>{
         const name=e.target.name;
@@ -150,8 +148,8 @@ export default function NewEquipmentForm({searchParams}) {
     const decrementCommonLocations=()=>{
         setCommonLocationsCount(commonLocationsCount-1)
     }
-    const editEquipment = async (equipment, id) => {
-        const response= await fetch(`https://hyrule-archive.herokuapp.com/items/equipment/${id}`,
+    const editEquipment = async (equipment) => {
+        const response= await fetch(`https://hyrule-archive.herokuapp.com/items/equipment/${data._id}`,
         {
             method: "PUT",
             mode: "cors",
@@ -160,16 +158,15 @@ export default function NewEquipmentForm({searchParams}) {
             // },
             body: equipment
         })
-        const data= await response.json()
-        
-        if (data.name){
+        const item= await response.json()
+        console.log(item)
+        if (item.data.name){
             setToggleError(false)
-            router.refresh()
             router.push('/items/equipment')
         }
         else{
             setToggleError(true)
-            setErrorMessage(data.message)
+            setErrorMessage(item.message)
         }
     }
     
