@@ -143,8 +143,8 @@ export default function NewShrineForm() {
             <p className={styles.instructions}>Enter your guide below. For each step, provide body text and an image. For best results use an image with a 4/3 aspect ratio. To add steps, press +</p>
             {Array.from(Array(guideStepsCount)).map((c, index) => {
             return(
-                <div className={styles.container}>
-                    <div key={index} className={styles.guideStep}>
+                <div key={index} className={styles.container}>
+                    <div  className={styles.guideStep}>
                         <h3 className={styles.stepTitle}>Step {index+1}</h3>
                         <textarea
                             name={`bodyText[${index}]`}
