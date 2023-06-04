@@ -5,10 +5,10 @@
     background-color: rgb(var(--blue-400));
     color: rgb(var(--blue-100));
     border-radius: 28px;
-    border: solid rgb(var(--blue-100));
+    border: solid 1px rgb(var(--blue-100));
     font-family: inherit;
-    padding: 10px;
-    font-size: 1.5rem;
+    padding: 6px;
+    font-size: 1rem;
     cursor: pointer;
     
 }

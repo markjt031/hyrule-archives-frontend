@@ -12,9 +12,8 @@ export default function NewButton({pathname}){
     useEffect(()=>{
         setUserId(localStorage.getItem('userId'))
     })
-    
     return <>
-        {userId!=null ?
+        {userId!='null' ?
             (<Link href={`${pathname}/new`}><button className={utilStyles.btn}>Create New</button></Link>)
          :
         null

@@ -39,7 +39,7 @@
 }
 .formContainer{
     width: 100%;
-    margin: 0 26%;
+    margin: 0 auto;
 }
 .imagePreview input[type=file]::file-selector-button, .formContainer input[type=submit]{
     border-radius: 28px;
@@ -84,6 +84,7 @@
     }
     .form{
         flex-flow: row-reverse;
+        margin: 0 auto;
     }
     .textInputs{
         width: 50%;

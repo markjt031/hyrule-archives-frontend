@@ -50,6 +50,7 @@ export default function Nav() {
                     <Link href="/creatures">Creatures</Link>
                     <Link href='/items/materials'>Materials</Link>
                     <Link href='/items/equipment'>Equipment</Link>
+                    <Link href='/shrines'>Shrines</Link>
                 </div>
             </div>
             <Link href="/">Hyrule Archives</Link>

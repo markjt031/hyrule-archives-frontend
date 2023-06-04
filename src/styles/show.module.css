@@ -34,7 +34,15 @@
         display: flex;
         width: 85%;
     }
-    .cardInfo{
+    /* .cardInfo{
         max-width: 50%;
+    } */
+}
+@media screen and (min-width: 1024px){
+    .largerCard{
+        width: 60%;
+    }
+    .description{
+        width: 60%;
     }
 }
