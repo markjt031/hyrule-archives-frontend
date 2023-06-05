@@ -152,7 +152,7 @@ export default function EditShrineForm({searchParams}) {
     
     const editShrine = async (shrine) => {
         
-        const response= await fetch(`http://localhost:3002/shrines/${searchParams._id}`,
+        const response= await fetch(`https://hyrule-archive.herokuapp.com/shrines/${searchParams._id}`,
         {
             method: "PUT",
             mode: "cors",

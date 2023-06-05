@@ -87,7 +87,7 @@ export default function NewShrineForm() {
   }
   
   const createShrine = async (shrine) => {
-    const response= await fetch(`http://localhost:3002/shrines`,
+    const response= await fetch(`https://hyrule-archive.herokuapp.com/shrines`,
     {
         method: "POST",
         mode: "cors",
