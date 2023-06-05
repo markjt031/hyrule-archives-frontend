@@ -7,7 +7,6 @@ import { faPencil, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Link from "next/link";
 import styles from '../../styles/editdelete.module.css'
-import { revalidatePath } from "next/cache";
 
 
 export default function EditDelete({pathname, itemId, userId, data}){
@@ -23,7 +22,6 @@ export default function EditDelete({pathname, itemId, userId, data}){
             method: 'DELETE',
             mode: 'cors',
         }).then(()=>{
-            revalidatePath(`/${pathname}/`)
             console.log('did it work?')
             router.push(`/${pathname}`)
         })

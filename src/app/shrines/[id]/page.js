@@ -6,6 +6,7 @@ import Refresher from '@/app/components/Refresher'
 import { format } from 'date-fns';
 
 
+
 export async function generateStaticParams() {
     const response = await fetch(process.env.FETCH_URL+"shrines");
     const data=await response.json()
@@ -25,6 +26,7 @@ export default async function Shrine({params}){
     const {name, subtitle, region, locationImage, coordinates, bodyText, images, userId, userName, createdAt, updatedAt}=shrine
     return <>
         <Refresher/>
+        <EditDelete pathname='shrines' itemId={id} userId={userId} data={shrine}/>
         <section className={styles.titleInformation}>
             <h1>{name}</h1>
             <h2>{subtitle}</h2>
@@ -49,11 +51,13 @@ export default async function Shrine({params}){
                     return(
                     <article key={index} className={styles.guideBlock}>
                         <div className={styles.imageWrapper}>
+                        {images[index]&&
                         <Image 
                             src={images[index]}
                             alt={name}
-                            fill/>
+                            fill/>}
                         </div>
+                        
                         <p>{bodyText[index]}</p>
                     </article>
                     )

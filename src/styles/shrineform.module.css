@@ -38,6 +38,10 @@
     border: 1px solid rgb(var(--blue-100));
 
 }
+.imagePreview input[type=file]::file-selector-button{
+    position: absolute;
+    bottom: 0%;
+}
 .formContainer input[type=submit]{
     margin: 10% auto 0 auto;
     display: block;
@@ -84,13 +88,14 @@
 .guideStep .imagePreview{
     margin: 0 auto;
 }
+
 @media screen and (min-width: 420px){
     .imagePreview, .box{
         width: 420px;
         height: 180px;
     
     }
-    .stepTitle, .textInputs, .btnDiv, .instructions, .textInputs, .guideStep label{
+    .stepTitle, .textInputs, .textInputs input[type=text], .btnDiv, .instructions, .textInputs, .guideStep label{
         width: 420px;
     }
     
@@ -112,7 +117,7 @@
         height: 360px;
     
     }
-    .stepTitle, .textInputs, .btnDiv, .instructions, .textInputs, .guideStep label{
+    .stepTitle, .textInputs, .btnDiv, .textInputs input[type=text], .instructions, .textInputs, .guideStep label{
         width: 640px;
     }
     
