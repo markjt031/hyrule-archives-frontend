@@ -22,7 +22,11 @@ export default function EditDelete({pathname, itemId, userId, data}){
             method: 'DELETE',
             mode: 'cors',
         }).then(()=>{
-            router.push(`/${pathname}`)
+            if (pathname==='koroks'){
+                router.refresh()
+                router.push(`/${pathname}`)
+            }
+            else router.push(`/${pathname}`)
         })
     }
     useEffect(()=>{

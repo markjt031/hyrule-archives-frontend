@@ -1,0 +1,77 @@
+.title{
+    text-align: center;
+ }
+ .imageInputs{
+    margin: 3% auto;
+ }
+.imagePreview input[type=file]::file-selector-button, .formContainer input[type=submit]{
+    border-radius: 28px;
+    padding: 5px 15px;
+    background-color: rgb(var(--blue-400));
+    font-family: inherit;
+    color: rgb(var(--blue-100));
+    cursor: pointer;
+    border: solid rgb(var(--blue-100));
+}
+.imagePreview, .box{
+    width: 315px;
+    height: 135px;
+    position: relative;
+    border: 1px solid rgb(var(--blue-100));
+    margin: 0 auto;
+   
+}
+.imagePreview input[type=file]{
+    color: transparent;
+}
+.imagePreview input[type=file]::file-selector-button{
+    position: absolute;
+    bottom: 0%;
+}
+.formContainer input[type=submit]{
+    margin: 10% auto 0 auto;
+    display: block;
+
+}
+.imagePreview input[type=file]::file-selector-button:hover, .formContainer input[type=submit]:hover, .btnSmall:hover{
+    background-color: rgb(var(--blue-300));
+}
+.imagePreview input[type=file]::file-selector-button:hover, .formContainer input[type=submit]:hover{
+    transform: translateY(-2%);
+}
+.label{
+    position: absolute;
+}
+.textInputs{
+    margin: 10% auto;
+    width: 315px;
+}
+.textInputs input[type=text], .textInputs textarea{
+    background-color: rgb(var(--blue-100));
+    width:315px;
+    margin: 2px auto;
+    border-radius:10px;
+    padding: .5rem;
+    color: rgb(var(--blue-300));
+}
+.textInputs textarea{
+    height: 200px;   
+    font-family: 'Inter', sans-serif;
+}
+
+.textInputs input[type=text]::placeholder, .textInputs textarea::placeholder{
+    color: rgba(var(--blue-300), .8);
+    font-family: sans-serif;
+}
+
+@media screen and (min-width: 420px){
+    .textInputs, .textInputs input[type=text], .textInputs textarea, .imagePreview, .box{
+        width: 420px;
+    }
+    .imagePreview, .box{
+        height: 180px;
+    }
+    .textInputs{
+        margin: 3% auto;
+    }
+}

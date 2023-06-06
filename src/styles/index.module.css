@@ -58,7 +58,7 @@
     margin: 5% auto;
 }
 .korokCard{
-    height: 600px;
+    height: 700px;
     width: 350px;
     margin: 2% auto;
     padding:2%;
@@ -89,7 +89,11 @@
 }
 @media screen and (min-width: 768px){
     .korokGrid{
-        grid-template-columns: 1fr 1fr;
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+        gap: 15px;
+        width: 90%;
+        margin: 0 auto;
     }
     .grid{
         grid-template-columns: 1fr 1fr 1fr;
@@ -103,6 +107,10 @@
 @media screen and (min-width: 1024px){
     .korokCard{
         padding: 1%;
+    }
+    .korokGrid{
+        grid-template-columns: 1fr 1fr 1fr;
+        
     }
     .card{
         margin: 2% auto;

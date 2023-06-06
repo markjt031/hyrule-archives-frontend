@@ -26,7 +26,7 @@ export default async function Shrine({params}){
     const {name, subtitle, region, locationImage, coordinates, bodyText, images, userId, userName, createdAt, updatedAt}=shrine
     return <>
         <Refresher/>
-        <EditDelete pathname='shrines' itemId={id} userId={userId} data={shrine}/>
+        <div className={styles.btnContainer}><EditDelete pathname='shrines' itemId={id} userId={userId} data={shrine}/></div>
         <section className={styles.titleInformation}>
             <h1>{name}</h1>
             <h2>{subtitle}</h2>

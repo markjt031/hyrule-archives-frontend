@@ -39,7 +39,7 @@ export default function Nav() {
         localStorage.setItem('userId', null)
         setUserId(null)
     }
-    console.log(userId=='null')
+    
   return (
     <nav className={styles.nav}>
         <div className={styles.left}>
