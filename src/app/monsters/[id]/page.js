@@ -30,6 +30,7 @@ export default async function Monsters({params}){
                 <Image
                     src={image}
                     alt={name}
+                    className={styles.image}
                     fill/>
             </div>
             <div className={styles.cardInfo}>

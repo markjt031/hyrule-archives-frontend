@@ -44,9 +44,9 @@
         border-right: solid rgb(var(--blue-100));
         border-bottom: none;
     }
-    /* .cardInfo{
+    .cardInfo{
         max-width: 50%;
-    } */
+    }
 }
 @media screen and (min-width: 1024px){
     .largerCard{
