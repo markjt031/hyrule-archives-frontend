@@ -25,7 +25,7 @@ export default async function Profile({params}){
     return(
         <div>
             <div>
-                <h2>{profile.username}'s Profile</h2>
+                <h2>{profile.username}&apos;s Profile</h2>
                 <div>
                     <UploadAvatar currentAvatar={profile.avatar}/>
                 </div>
