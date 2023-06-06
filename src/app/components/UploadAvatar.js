@@ -73,13 +73,13 @@ export default function UploadAvatar({currentAvatar}){
         {editing ?
         (
         <>
-            <form className={styles.form}>
-                <div className={styles.imagePreview}>
+            <form>
+                <div className={utilStyles.imagePreview}>
                     {imagePreview ? (
                     <Image 
                         src={imagePreview} 
                         alt='user avatar' 
-                        className={styles.imagePreviewImage}
+                        className={utilStyles.imagePreview}
                         fill/>
                     )
                     :
@@ -93,12 +93,12 @@ export default function UploadAvatar({currentAvatar}){
             <button className={utilStyles.btn} onClick={()=>setEditing(!editing)}>Cancel</button>
         </>)
             :
-            (<div className={styles.imagePreview}>
+            (<div className={utilStyles.imagePreview}>
                 {imagePreview ? (
                 <Image 
                 src={imagePreview} 
                 alt='user avatar' 
-                className={styles.imagePreviewImage}
+                className={utilStyles.imagePreview}
                 fill/>)
                 :
                 <div className={styles.box}/>}

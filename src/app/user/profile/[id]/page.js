@@ -1,6 +1,7 @@
 import { pathByNumber } from "@/lib/pathByNo";
 import Link from "next/link";
 import utilStyles from '../../../../styles/utils.module.css'
+import styles from '../../../../styles/profile.module.css'
 import UploadAvatar from "@/app/components/UploadAvatar";
 
 export async function generateStaticParams() {
@@ -24,12 +25,11 @@ export default async function Profile({params}){
     console.log(profile)
     return(
         <div>
-            <div>
-                <h2>{profile.username}&apos;s Profile</h2>
-                <div>
+                <h2 className={styles.title}>{profile.username}&apos;s Profile</h2>
+                <div className={styles.avatarContainer}>
                     <UploadAvatar currentAvatar={profile.avatar}/>
                 </div>
-                <div>
+                <div className={styles.profiles}>
                     
                     <h2>Created Monsters:</h2>
                     {profile.monsters.length>0 ? 
@@ -74,6 +74,7 @@ export default async function Profile({params}){
                     :
                     <h5>No equipment added</h5>
                     }
+                    <h2>Created Shrines</h2>
                     {profile.shrines.length>0 ?
                     (<ul>
                         {profile.shrines.map((shrine)=>{
@@ -83,6 +84,7 @@ export default async function Profile({params}){
                     :
                     <h5>No shrines found</h5>
                     }
+                    <h2>Created Koroks</h2>
                     {profile.koroks.length>0 ?
                     (<ul>
                         {profile.koroks.map((korok)=>{
@@ -93,7 +95,7 @@ export default async function Profile({params}){
                     <h5>No koroks found</h5>
                     }   
                 </div>
-            </div>
+            
         </div>
     )
 

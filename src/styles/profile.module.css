@@ -1,0 +1,28 @@
+.title{
+    width: 300px;
+    margin: 0 auto;
+}
+.avatarContainer{
+    width: 300px;
+    margin: 0 auto;
+}
+.profiles{
+    max-width: 800px;
+    margin: 0 auto;
+}
+.profiles h2{
+    margin: 2% auto 0 auto;
+    background-color: rgb(var(--blue-500));
+}
+.profiles ul{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background-color: rgb(var(--blue-400));
+    list-style-type: none;
+}
+
+@media screen and (min-width: 768px){
+    .profiles ul{
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+}
