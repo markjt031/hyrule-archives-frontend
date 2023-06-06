@@ -1,6 +1,7 @@
 import { pathByNumber } from "@/lib/pathByNo";
 import Link from "next/link";
 import utilStyles from '../../../../styles/utils.module.css'
+import UploadAvatar from "@/app/components/UploadAvatar";
 
 export async function generateStaticParams() {
     const response = await fetch(process.env.FETCH_URL+"users");
@@ -24,8 +25,12 @@ export default async function Profile({params}){
     return(
         <div>
             <div>
-                <h2>User Profile</h2>
+                <h2>{profile.username}'s Profile</h2>
                 <div>
+                    <UploadAvatar currentAvatar={profile.avatar}/>
+                </div>
+                <div>
+                    
                     <h2>Created Monsters:</h2>
                     {profile.monsters.length>0 ? 
                     (<ul>
@@ -69,7 +74,24 @@ export default async function Profile({params}){
                     :
                     <h5>No equipment added</h5>
                     }
-                        
+                    {profile.shrines.length>0 ?
+                    (<ul>
+                        {profile.shrines.map((shrine)=>{
+                            return <li key={shrine._id} className={utilStyles.capitalize}><Link href={`/shrines/${shrine._id}`}>{shrine.name}</Link></li>
+                        })}
+                    </ul>)
+                    :
+                    <h5>No shrines found</h5>
+                    }
+                    {profile.koroks.length>0 ?
+                    (<ul>
+                        {profile.koroks.map((korok)=>{
+                            return <li key={korok._id} className={utilStyles.capitalize}><Link href={`/koroks/${korok._id}`}>{korok.name}</Link></li>
+                        })}
+                    </ul>)
+                    :
+                    <h5>No koroks found</h5>
+                    }   
                 </div>
             </div>
         </div>
