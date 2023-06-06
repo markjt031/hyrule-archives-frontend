@@ -6,7 +6,7 @@ import NewButton from "@/app/components/NewButton";
 import styles from "../../../styles/index.module.css"
 
 export const getKorok=async(searchTerm)=>{
-    const response=await fetch(`http://localhost:3002/koroks/search?region=${searchTerm}`, {next: {revalidate: 1}})
+    const response=await fetch(`${process.env.FETCH_URL}koroks/search?region=${searchTerm}`, {next: {revalidate: 1}})
     const data=await response.json();
     return data.data
    
