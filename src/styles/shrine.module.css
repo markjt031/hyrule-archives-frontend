@@ -8,7 +8,8 @@
     background-color: rgb(var(--blue-400));
     margin: 2% auto;
     padding: 2% 0;
-    width: 315px;
+    width: 320px;
+    border: solid rgb(var(--blue-100));
 }
 
 .titleInformation{
@@ -18,6 +19,7 @@
 }
 .guideBlock p{
     margin-top: 2%;
+    
 }
 .guideHeader{
     width: 315px;
@@ -30,7 +32,7 @@
         height: 240px;
     }
     .guideBlock, .titleInformation, .guideHeader{
-        width: 420px;
+        width: 440px;
     }
     .guideBlock p{
         margin-top: 2%;
@@ -39,7 +41,7 @@
 
 @media screen and (min-width: 768px){
     .guideBlock, .titleInformation, .guideHeader{
-        width: 640px;
+        width: 660px;
     }
     .imageWrapper{
         width: 640px;
@@ -49,7 +51,7 @@
 
 @media screen and (min-width: 1024px){
     .guideBlock, .titleInformation, .guideHeader{
-        width: 840px;
+        width: 860px;
     }
     .imageWrapper{
         width: 840px;

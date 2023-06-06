@@ -22,7 +22,6 @@ export default function EditDelete({pathname, itemId, userId, data}){
             method: 'DELETE',
             mode: 'cors',
         }).then(()=>{
-            console.log('did it work?')
             router.push(`/${pathname}`)
         })
     }

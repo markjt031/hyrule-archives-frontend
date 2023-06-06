@@ -167,7 +167,6 @@ export default function EditMaterialForm({searchParams}) {
     console.log(data)
     if (data.data.name){
         setToggleError(false)
-        router.refresh()
         router.push('/items/materials')
     }
     else{

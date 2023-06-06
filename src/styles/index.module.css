@@ -45,6 +45,26 @@
     width: 70%;
     gap: 5px 0px;
 }
+.imageWrapper{
+    position: relative;
+    height: 200px;
+    width: 315px;
+    
+}
+.filter{
+    text-align: center;
+    color: rgb(var(--blue-100));
+    width: 80%;
+    margin: 5% auto;
+}
+.korokCard{
+    height: 600px;
+    width: 350px;
+    margin: 2% auto;
+    padding:2%;
+    background-color: rgba(var(--blue-400));
+    border: solid rgb(var(--blue-100));
+}
 .card{
     position: relative;
     width: 200px;
@@ -68,6 +88,9 @@
     width: 100%;
 }
 @media screen and (min-width: 768px){
+    .korokGrid{
+        grid-template-columns: 1fr 1fr;
+    }
     .grid{
         grid-template-columns: 1fr 1fr 1fr;
         width: 100%;
@@ -78,6 +101,9 @@
     }
 }
 @media screen and (min-width: 1024px){
+    .korokCard{
+        padding: 1%;
+    }
     .card{
         margin: 2% auto;
         width: 300px;

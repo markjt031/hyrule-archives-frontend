@@ -1,7 +1,9 @@
 .largerCard{
     margin: 6% auto 0 auto;
     background-color: rgb(var(--blue-400));
-    width: 350px;
+    width: 360px;
+    border: solid rgb(var(--blue-100));
+    
 }
 .imageWrapper{
     width: 350px;
@@ -29,10 +31,18 @@
         margin: 0 auto;
         background-color: rgb(var(--blue-400));
         padding: 2%;
+        border-left: solid rgb(var(--blue-100));
+        border-right: solid rgb(var(--blue-100));
+        border-bottom: solid rgb(var(--blue-100));
+        border-top: none
     }
     .largerCard{
         display: flex;
         width: 85%;
+        border-top: solid rgb(var(--blue-100));
+        border-left: solid rgb(var(--blue-100));
+        border-right: solid rgb(var(--blue-100));
+        border-bottom: none;
     }
     /* .cardInfo{
         max-width: 50%;

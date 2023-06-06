@@ -5,14 +5,14 @@ import utilStyles from '../../styles/utils.module.css'
 import Link from "next/link";
 
 
-export const getData=async()=>{
+export const getShrine=async()=>{
     const response=await fetch(`${process.env.FETCH_URL}shrines`, {next: {revalidate: 1}})
     const data=await response.json();
     return data.data
 }
 
 export default async function Shrines(){
-    const shrines=await getData();
+    const shrines=await getShrine();
     console.log(shrines)
     return(
         <>
