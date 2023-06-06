@@ -180,7 +180,7 @@ export default function EditShrineForm({searchParams}) {
     return (
         
         <>
-            <h1 className={styles.title}>New Shrine</h1>
+            <h1 className={styles.title}>Edit Shrine</h1>
             {userId!='null' ?  
         (<div className={styles.formContainer}>
             
