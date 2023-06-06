@@ -80,7 +80,6 @@
 @media screen and (min-width: 768px){
     .formContainer{
         width: 80%;
-        transform: translateX(-13%);
     }
     .form{
         flex-flow: row-reverse;
