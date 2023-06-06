@@ -16,7 +16,7 @@
     cursor: pointer;
     
 }
-.btn:hover{
+.btn:hover, .imagePreview input[type=file]::file-selector-button{
     background-color: rgb(var(--blue-300));
     transform: translateY(-2%);
 }
@@ -26,3 +26,16 @@
     border: solid 1px rgb(var(--blue-100));
     position: relative;
 } 
+.imagePreview input[type=file]::file-selector-button{
+    position: absolute;
+    background-color: rgb(var(--blue-400));
+    color: rgb(var(--blue-100));
+    border-radius: 28px;
+    border: solid 1px rgb(var(--blue-100));
+    font-family: inherit;
+    padding: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+    bottom: 0%;
+    right: 0%;
+}
