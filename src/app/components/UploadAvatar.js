@@ -74,7 +74,7 @@ export default function UploadAvatar({currentAvatar}){
         (
         <>
             <form>
-                <div className={utilStyles.imagePreview}>
+                <figure className={utilStyles.imagePreview}>
                     {imagePreview ? (
                     <Image 
                         src={imagePreview} 
@@ -87,13 +87,13 @@ export default function UploadAvatar({currentAvatar}){
                     <label htmlFor="avatar">Upload an Avatar</label>
                     <input type='file' title='' name='avatar' accept='image/*'  onChange={handleUpload}/>
                     
-                </div>
+                </figure>
             </form>
             <input className={utilStyles.btn} type='submit' onClick={handleSubmit}/>
             <button className={utilStyles.btn} onClick={()=>setEditing(!editing)}>Cancel</button>
         </>)
             :
-            (<div className={utilStyles.imagePreview}>
+            (<figure className={utilStyles.imagePreview}>
                 {imagePreview ? (
                 <Image 
                 src={imagePreview} 
@@ -102,7 +102,7 @@ export default function UploadAvatar({currentAvatar}){
                 fill/>)
                 :
                 <div className={styles.box}/>}
-                </div>)}
+            </figure>)}
             {(userId!='null' &&!editing) && <button className={utilStyles.btn} onClick={()=>setEditing(!editing)}>Change Avatar</button>}
             {toggleError && <h5>{errorMessage}</h5>}
         </>

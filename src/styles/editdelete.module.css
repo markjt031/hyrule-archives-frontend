@@ -9,3 +9,18 @@
     border: none;
     font-size: 1.5rem;
 }
+
+.confirmDelete button{
+    padding: 1%;
+    color: rgb(var(--blue-100));
+    background-color: rgb(var(--blue-500));
+    font-size: 1rem;
+    font-family: inherit;
+    border-radius: 8px;
+    margin-right: 1.5%;
+    border: solid 1px rgb(var(--blue-100));
+}
+.confirmDelete button:hover{
+    background-color: rgb(var(--blue-300));
+    transform: translateY(-1%);
+}

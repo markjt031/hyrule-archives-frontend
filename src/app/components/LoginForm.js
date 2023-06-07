@@ -53,21 +53,21 @@ export default function LoginForm() {
   }
 
   return (
-      <div className={styles.loginWrapper}>
-       <h1 className='form-title'>Login</h1>
-      <form onSubmit={triggerLogin} className={styles.loginForm}>
-        <input type='text' placeholder='username' className='text-input' onChange={(event)=> {setUsername(event.target.value)}}/>
-        <input type='email' placeholder='email' className='text-input' onChange={(event)=>{setEmail(event.target.value)}}/>
-        <input type='password' placeholder='password' className='text-input' onChange={(event)=> {setPassword(event.target.value)}}/>
-        <h2>New user? Register <Link href="/user/register" ><span className={styles.registerLink}>here</span></Link> </h2>
-        {toggleError ?
-          <h5 className='error-msg'>{errorMessage}</h5>
-          :
-          null
-        }
-        <input type='submit' value='Login'/>
-      </form>
-      </div>
+      <section className={styles.loginWrapper}>
+        <h1 className='form-title'>Login</h1>
+        <form onSubmit={triggerLogin} className={styles.loginForm}>
+          <input type='text' placeholder='username' className='text-input' onChange={(event)=> {setUsername(event.target.value)}}/>
+          <input type='email' placeholder='email' className='text-input' onChange={(event)=>{setEmail(event.target.value)}}/>
+          <input type='password' placeholder='password' className='text-input' onChange={(event)=> {setPassword(event.target.value)}}/>
+          <h2>New user? Register <Link href="/user/register" ><span className={styles.registerLink}>here</span></Link> </h2>
+          {toggleError ?
+            <h5 className='error-msg'>{errorMessage}</h5>
+            :
+            null
+          }
+          <input type='submit' value='Login'/>
+        </form>
+      </section>
   );
 }
 

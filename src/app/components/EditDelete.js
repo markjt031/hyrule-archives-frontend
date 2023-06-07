@@ -60,7 +60,7 @@ export default function EditDelete({pathname, itemId, userId, data}){
                     }
                     <button className={styles.button} onClick={()=>{deleteButtonHandler()}}><FontAwesomeIcon icon={faTrash}/></button>
                 </div>
-                {confirmDelete ? (<div>
+                {confirmDelete ? (<div className={styles.confirmDelete}>
                     <h3>Are you sure you want to delete?</h3>
                     <button onClick={()=>{handleDelete()}}>Yes</button>
                     <button onClick={()=>{noButtonHandler()}}>No</button>
