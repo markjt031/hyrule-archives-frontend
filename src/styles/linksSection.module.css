@@ -3,6 +3,7 @@
     margin: 5% auto;
     background-color: rgb(var(--blue-400));
     border: solid rgb(var(--blue-100));
+    padding: 2% 0;
 }
 .linksSection h4{
     text-align: center;

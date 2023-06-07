@@ -92,12 +92,12 @@
         display: grid;
         grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
         gap: 15px;
-        width: 90%;
+        width: 750px;
         margin: 0 auto;
     }
     .grid{
         grid-template-columns: 1fr 1fr 1fr;
-        width: 100%;
+        width: 700px;
     }
     .card{
         margin: 2% auto;
@@ -110,7 +110,7 @@
     }
     .korokGrid{
         grid-template-columns: 1fr 1fr 1fr;
-        
+        width: 1024px
     }
     .card{
         margin: 2% auto;
@@ -118,6 +118,6 @@
         height: 300px;
     }
     .grid{
-        width: 100%;
+        width: 1000px;
     }
 }
