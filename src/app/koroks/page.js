@@ -12,7 +12,6 @@ export const getKorok=async()=>{
 
 export default async function Korok(){
     const koroks=await getKorok()
-    console.log(koroks)
     return(
         <>
             <Refresher/>

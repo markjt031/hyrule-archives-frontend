@@ -20,7 +20,6 @@ export default function EditMaterialForm({searchParams}) {
     
     
     
-    console.log(searchParams)
     //This is to handle an error where the create form made recoverable materials just
     //a string when there was only one value, but an array if there was more than one.
     //Also handles empty arrays for this data
@@ -71,24 +70,24 @@ export default function EditMaterialForm({searchParams}) {
       fuseAttackPower: searchParams.fuseAttackPower,
       description: searchParams.description,
     })
-    useEffect(()=>{
-        setUserId(localStorage.getItem('userId'))
+  useEffect(()=>{
+      setUserId(localStorage.getItem('userId'))
     },[])
-    const handleSubmit = (event) => {
-    event.preventDefault()
-    let form=new FormData()
-    for (const key in formData){
-        form.append(key, formData[key])
-    }
-    for (const location in commonLocations){
-        form.append(location, commonLocations[location])
-    }
-    for (const effect in uniqueCookingEffects){
-        form.append(effect, uniqueCookingEffects[effect])
-    }
-    if (validateInput()){
-        editMaterial(form)
-    }
+  const handleSubmit = (event) => {
+      event.preventDefault()
+      let form=new FormData()
+      for (const key in formData){
+          form.append(key, formData[key])
+      }
+      for (const location in commonLocations){
+          form.append(location, commonLocations[location])
+      }
+      for (const effect in uniqueCookingEffects){
+          form.append(effect, uniqueCookingEffects[effect])
+      }
+      if (validateInput()){
+          editMaterial(form)
+      }
   }
   const validateInput=()=>{
     let validated=true;
@@ -125,34 +124,7 @@ export default function EditMaterialForm({searchParams}) {
     setFormData({...formData, [name]: value})
     setImagePreview(URL.createObjectURL(e.target.files[0]))
   }
-  const buttonHandlerUniqueIncrease=(e)=>{
-    e.preventDefault()
-    incrementUniqueCooking()
-  }
-  const buttonHandlerUniqueDecrease=(e)=>{
-    e.preventDefault()
-    decrementUniqueCooking()
-  }
-  const incrementUniqueCooking=()=>{
-    setUniqueCookingEffectsCount(uniqueCookingEffectsCount+1)
-  }
-  const decrementUniqueCooking=(e)=>{
-    setUniqueCookingEffectsCount(uniqueCookingEffectsCount-1)
-  }
-  const buttonHandlerCommonIncrease=(e)=>{
-    e.preventDefault()
-    incrementCommonLocations()
-  }
-  const buttonHandlerCommonDecrease=(e)=>{
-    e.preventDefault()
-    decrementCommonLocations()
-  }
-  const incrementCommonLocations=()=>{
-    setCommonLocationsCount(commonLocationsCount+1)
-  }
-  const decrementCommonLocations=()=>{
-    setCommonLocationsCount(commonLocationsCount-1)
-  }
+
   const editMaterial = async (material) => {
     const response= await fetch(`https://hyrule-archive.herokuapp.com/items/materials/${searchParams._id}`,
     {
@@ -164,7 +136,6 @@ export default function EditMaterialForm({searchParams}) {
         body: material
     })
     const data= await response.json()
-    console.log(data)
     if (data.data.name){
         setToggleError(false)
         router.push('/items/materials')
@@ -190,20 +161,28 @@ export default function EditMaterialForm({searchParams}) {
           {Array.from(Array(uniqueCookingEffectsCount)).map((c, index) => {
           return(
               <div key={index}>
+                {index<uniqueArray.length ?
                   <input
                       type="text"
-                      name=""
                       value={uniqueCookingEffects[`uniqueCookingEffects[${index}]`]}
                       placeholder="unique cooking effects"
                       onChange={(event) => setUniqueCookingEffects({...uniqueCookingEffects, [`uniqueCookingEffects[${index}]`]:event.target.value })}
                   />
-                  {index===uniqueCookingEffectsCount-1 &&<button className={styles.btnSmall} onClick={buttonHandlerUniqueIncrease}>+</button>}
-                  {(index>0 && index===uniqueCookingEffectsCount-1) && <button className={styles.btnSmall} onClick={buttonHandlerUniqueDecrease}>-</button>}
+                :
+                <input
+                      type="text"
+                      placeholder="unique cooking effects"
+                      onChange={(event) => setUniqueCookingEffects({...uniqueCookingEffects, [`uniqueCookingEffects[${index}]`]:event.target.value })}
+                  />
+                }
+                  {index===uniqueCookingEffectsCount-1 &&<button className={styles.btnSmall} onClick={()=>setUniqueCookingEffectsCount(uniqueCookingEffectsCount+1)}>+</button>}
+                  {(index>0 && index===uniqueCookingEffectsCount-1) && <button className={styles.btnSmall} onClick={()=>setUniqueCookingEffectsCount(uniqueCookingEffectsCount-1)}>-</button>}
               </div>
           )})}
           {Array.from(Array(commonLocationsCount)).map((c, index) => {
           return(
               <div key={index}>
+                {index<commonArray.length ?
                   <input
                       type="text"
                       value={commonLocations[`commonLocations[${index}]`]}
@@ -211,8 +190,16 @@ export default function EditMaterialForm({searchParams}) {
                       placeholder="common locations"
                       onChange={(event) => setCommonLocations({...commonLocations, [`commonLocations[${index}]`]:event.target.value })}
                   />
-                  {index===commonLocationsCount-1 &&<button className={styles.btnSmall} onClick={buttonHandlerCommonIncrease}>+</button>}
-                  {(index>0 && index===commonLocationsCount-1)&& <button className={styles.btnSmall} onClick={buttonHandlerCommonDecrease}>-</button>}
+                  :
+                  <input
+                  type="text"
+                  name=""
+                  placeholder="common locations"
+                  onChange={(event) => setCommonLocations({...commonLocations, [`commonLocations[${index}]`]:event.target.value })}
+              />
+                  }
+                  {index===commonLocationsCount-1 &&<button className={styles.btnSmall} onClick={()=>setCommonLocationsCount(commonLocationsCount+1)}>+</button>}
+                  {(index>0 && index===commonLocationsCount-1)&& <button className={styles.btnSmall} onClick={()=>setCommonLocationsCount(commonLocationsCount-1)}>-</button>}
               </div>
           )})}
           <textarea placeholder='type description here' name='description' value={searchParams.description} rows="4" onChange={handleChange}/>

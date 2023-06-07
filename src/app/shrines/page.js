@@ -13,7 +13,6 @@ export const getShrine=async()=>{
 
 export default async function Shrines(){
     const shrines=await getShrine();
-    console.log(shrines)
     return(
         <>
             <Refresher/>

@@ -25,14 +25,14 @@ export default async function Monsters({params}){
         <>
         <Refresher/>
         <div className={styles.largerCard}>
-            
+            {image &&
             <div className={styles.imageWrapper}>
                 <Image
                     src={image}
                     alt={name}
                     className={styles.image}
                     fill/>
-            </div>
+            </div>}
             <div className={styles.cardInfo}>
             <div className={styles.right}><EditDelete pathname='monsters' itemId={id} userId={monster.userId} data={monster}/></div>
                 <p>No: {no}</p>

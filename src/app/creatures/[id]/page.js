@@ -37,7 +37,7 @@ export default async function Creature({params}){
             <div className={styles.right}><EditDelete pathname='creatures' itemId={id} userId={creature.userId} data={creature}/></div>
                 <p>No: {no}</p>
                 <p>Name: <span className={utilStyles.capitalize}>{name}</span></p>
-                <p>Recoverable Materials: <span className={utilStyles.capitalize}>{recoverableMaterials.join(', ')}</span></p>
+                {recoverableMaterials && <p>Recoverable Materials: <span className={utilStyles.capitalize}>{recoverableMaterials.join(', ')}</span></p>}
                 <p>Common Locations: <span className={utilStyles.capitalize}>{commonLocations.join(', ')}</span></p>
                 <p className={styles.descriptionMobile}>Description: {description}</p>
             </div>

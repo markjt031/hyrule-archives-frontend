@@ -20,8 +20,6 @@ export async function getShrine(id) {
 }
 export default async function Shrine({params}){
     const {id}=params
-    console.log(params)
-    console.log(id)
     const shrine = await getShrine(id)
     const {name, subtitle, region, locationImage, coordinates, bodyText, images, userId, userName, createdAt, updatedAt}=shrine
     return <>

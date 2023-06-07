@@ -17,12 +17,10 @@ export async function getProfile(id) {
 }
 
 export default async function Profile({params}){
-    console.log(params)
     const {id}=params
-
     const profile=await getProfile(id)
     
-    console.log(profile)
+    
     return(
         <div>
                 <h2 className={styles.title}>{profile.username}&apos;s Profile</h2>

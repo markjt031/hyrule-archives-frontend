@@ -30,9 +30,6 @@ export default function NewKorokForm(){
                 form.append(key, formData[key])
             }
         }
-        for (const pair of form){
-            console.log(pair[0], pair[1])
-        }
         form.append('userId', userId)
         form.append('userName', userName)
         if (validateInput()){

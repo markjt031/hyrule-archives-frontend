@@ -17,22 +17,20 @@ export async function getMaterial(id) {
 }
     
 export default async function Materials({params}){
-    console.log(params)
     const {id}=params
 
     const material=await getMaterial(id)
     const {_id, no, name, heartsRecovered, uniqueCookingEffects, commonLocations, description, image, userId }=material
-    console.log(material)
     return(
         <>
         <Refresher/>
         <div className={styles.largerCard}>
-            <div className={styles.imageWrapper}>
+            {image && <div className={styles.imageWrapper}>
                 <Image
                     src={image}
                     alt={name}
                     fill/>
-            </div>
+            </div>}
             <div className={styles.cardInfo}>
                 <div className={styles.right}><EditDelete pathname='items/materials' itemId={_id} userId={userId} data={material}/></div>
                 <p>No: {no}</p>

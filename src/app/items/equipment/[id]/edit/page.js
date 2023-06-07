@@ -90,7 +90,6 @@ export default function NewEquipmentForm({searchParams}) {
         for (const property in properties){
             form.append(property, properties[property])
         }
-        console.log(validateInput())
         if (validateInput()){
             editEquipment(form)
         }
@@ -120,34 +119,7 @@ export default function NewEquipmentForm({searchParams}) {
         setFormData({...formData, [name]: value})
         setImagePreview(URL.createObjectURL(e.target.files[0]))
     }
-    const buttonHandlerPropertiesIncrease=(e)=>{
-        e.preventDefault()
-        incrementProperties()
-    }
-    const buttonHandlerPropertiesDecrease=(e)=>{
-        e.preventDefault()
-        decrementProperties()
-    }
-    const incrementProperties=()=>{
-        setOtherPropertiesCount(otherPropertiesCount+1)
-    }
-    const decrementProperties=(e)=>{
-        setOtherPropertiesCount(otherPropertiesCount-1)
-    }
-    const buttonHandlerCommonIncrease=(e)=>{
-        e.preventDefault()
-        incrementCommonLocations()
-    }
-    const buttonHandlerCommonDecrease=(e)=>{
-        e.preventDefault()
-        decrementCommonLocations()
-    }
-    const incrementCommonLocations=()=>{
-        setCommonLocationsCount(commonLocationsCount+1)
-    }
-    const decrementCommonLocations=()=>{
-        setCommonLocationsCount(commonLocationsCount-1)
-    }
+   
     const editEquipment = async (equipment) => {
         const response= await fetch(`https://hyrule-archive.herokuapp.com/items/equipment/${data._id}`,
         {
@@ -159,7 +131,6 @@ export default function NewEquipmentForm({searchParams}) {
             body: equipment
         })
         const item= await response.json()
-        console.log(item)
         if (item.data.name){
             setToggleError(false)
             router.push('/items/equipment')
@@ -186,30 +157,44 @@ export default function NewEquipmentForm({searchParams}) {
             {Array.from(Array(otherPropertiesCount)).map((c, index) => {
             return(
                 <div key={index}>
+                    {index<propertyCount ?
                     <input
                         type="text"
-                        name=""
                         value={properties[`otherProperties][${index}`]}
                         placeholder="other properties"
                         onChange={(event) => setProperties({...properties, [`properties[otherProperties][${index}]`]:event.target.value })}
                     />
-                    {index===otherPropertiesCount-1 &&<button onClick={buttonHandlerPropertiesIncrease} className={styles.btnSmall}>+</button>}
-                    {(index>0 && index===otherPropertiesCount-1) && <button onClick={buttonHandlerPropertiesDecrease} className={styles.btnSmall}>-</button>}
+                    :
+                    <input
+                        type="text"
+                        placeholder="other properties"
+                        onChange={(event) => setProperties({...properties, [`properties[otherProperties][${index}]`]:event.target.value })}
+                    />
+                    }
+                    {index===otherPropertiesCount-1 &&<button onClick={()=>{setOtherPropertiesCount(otherPropertiesCount+1)}} className={styles.btnSmall}>+</button>}
+                    {(index>0 && index===otherPropertiesCount-1) && <button onClick={()=>setOtherPropertiesCount(otherPropertiesCount-1)} className={styles.btnSmall}>-</button>}
                     
                 </div>
             )})}
             {Array.from(Array(commonLocationsCount)).map((c, index) => {
             return(
                 <div key={index}>
+                    {index<commonCount ?
                     <input
                         type="text"
-                        className={styles.expandingCategory}
                         value={commonLocations[`commonLocations[${index}]`]}
                         placeholder="common locations"
                         onChange={(event) => setCommonLocations({...commonLocations, [`commonLocations[${index}]`]:event.target.value })}
                     />
-                    {index===commonLocationsCount-1 &&<button onClick={buttonHandlerCommonIncrease} className={styles.btnSmall}>+</button>}
-                    {(index>0 && index===commonLocationsCount-1) && <button onClick={buttonHandlerCommonDecrease} className={styles.btnSmall}>-</button>}
+                    :
+                    <input
+                        type="text"
+                        placeholder="common locations"
+                        onChange={(event) => setCommonLocations({...commonLocations, [`commonLocations[${index}]`]:event.target.value })}
+                    />}
+
+                    {index===commonLocationsCount-1 &&<button onClick={()=>setCommonLocationsCount(commonLocationsCount+1)} className={styles.btnSmall}>+</button>}
+                    {(index>0 && index===commonLocationsCount-1) && <button onClick={()=>setCommonLocationsCount(commonLocationsCount-1)} className={styles.btnSmall}>-</button>}
             </div>
         )})}
             <textarea placeholder='type description here' value={formData.description} name='description' rows="4" onChange={handleChange}/>

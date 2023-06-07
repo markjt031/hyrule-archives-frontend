@@ -27,12 +27,12 @@ export default async function Equipment({params}){
         <>
         <Refresher/>
         <div className={styles.largerCard}>
-            <div className={styles.imageWrapper}>
+            {image && <div className={styles.imageWrapper}>
                 <Image
                     src={image}
                     alt={name}
                     fill/>
-            </div>
+            </div>}
             <div className={styles.cardInfo}>
                 <div className={styles.right}><EditDelete pathname='items/equipment' itemId={_id} userId={userId} data={JSON.stringify(equipment)}/></div>
                 <p>No: {no}</p>

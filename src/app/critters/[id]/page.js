@@ -17,22 +17,20 @@ export async function getCritter(id) {
 }
     
 export default async function Critter({params}){
-    console.log(params)
     const {id}=params
 
     const critter=await getCritter(id)
     const {_id, no, name, heartsRecovered, uniqueCookingEffects, commonLocations, description, image, userId }=critter
-    console.log(critter)
     return(
         <>
         <Refresher/>
         <div className={styles.largerCard}>
-            <div className={styles.imageWrapper}>
+            {image &&<div className={styles.imageWrapper}>
                 <Image
                     src={image}
                     alt={name}
                     fill/>
-            </div>
+            </div>}
             <div className={styles.cardInfo}>
             <div className={styles.right}><EditDelete pathname='critters' itemId={id} userId={userId} data={critter}/></div>
                 <p>No: {no}</p>

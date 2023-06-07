@@ -4,7 +4,6 @@ import Link from 'next/link'
 import NotAuthorized from '@/app/components/NotAuthorized'
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { useUser } from '@/context/user'
 import {useEffect} from 'react'
 
 import Image from 'next/image'
@@ -12,15 +11,12 @@ import Image from 'next/image'
 
 
 export default function EditMonsterForm({searchParams}) {
-    console.log(searchParams)
     const router=useRouter();
-    const {user, setUser}=useUser()
     const [userId, setUserId]=useState(null)
     const [imagePreview, setImagePreview]=useState(searchParams.image)
     const [toggleError, setToggleError]=useState(false)
     const [errorMessage, setErrorMessage]=useState('')
     
-    console.log(searchParams)
     //This is to handle an error where the create form made recoverable materials just
     //a string when there was only one value, but an array if there was more than one.
     //Also handles empty arrays for this data
@@ -114,34 +110,7 @@ export default function EditMonsterForm({searchParams}) {
     setFormData({...formData, [name]: value})
     setImagePreview(URL.createObjectURL(e.target.files[0]))
   }
-  const buttonHandlerRecoverableIncrease=(e)=>{
-    e.preventDefault()
-    incrementRecoverableMaterials()
-  }
-  const buttonHandlerRecoverableDecrease=(e)=>{
-    e.preventDefault()
-    decrementRecoverableMaterials()
-  }
-  const incrementRecoverableMaterials=()=>{
-    setRecoverableMaterialsCount(recoverableMaterialsCount+1)
-  }
-  const decrementRecoverableMaterials=(e)=>{
-    setRecoverableMaterialsCount(recoverableMaterialsCount-1)
-  }
-  const buttonHandlerCommonIncrease=(e)=>{
-    e.preventDefault()
-    incrementCommonLocations()
-  }
-  const buttonHandlerCommonDecrease=(e)=>{
-    e.preventDefault()
-    decrementCommonLocations()
-  }
-  const incrementCommonLocations=()=>{
-    setCommonLocationsCount(commonLocationsCount+1)
-  }
-  const decrementCommonLocations=()=>{
-    setCommonLocationsCount(commonLocationsCount-1)
-  }
+  
   const createMonster = async (monster) => {
     const response= await fetch(`https://hyrule-archive.herokuapp.com/monsters/${searchParams._id}`,
     {
@@ -176,34 +145,47 @@ export default function EditMonsterForm({searchParams}) {
             <input type='number' placeholder='no' name="no" value={formData.no} onChange={handleChange}/><br/>
             <input type='text' placeholder='name' name="name" value={formData.name} onChange={handleChange}/>
             {Array.from(Array(recoverableMaterialsCount)).map((c, index) => {
-                console.log(recoverableMaterialsCount)
-            console.log(index)
             return(
                 <div key={index}>
+                    {index<recoverableArray.length ?
                     <input
                         type="text"
                         value={recoverableMaterials[`recoverableMaterials[${index}]`]}
                         placeholder="recoverable material"
                         onChange={(event) => setRecoverableMaterials({...recoverableMaterials, [`recoverableMaterials[${index}]`]:event.target.value })}
                     />
-                    {index===recoverableMaterialsCount-1 && <button onClick={buttonHandlerRecoverableIncrease} className={styles.btnSmall}>+</button>}
-                    {(index>0 && index===recoverableMaterialsCount-1) && <button onClick={buttonHandlerRecoverableDecrease} className={styles.btnSmall}>-</button>}
+                     :
+                     <input
+                     type="text"
+                     placeholder="recoverable material"
+                     onChange={(event) => setRecoverableMaterials({...recoverableMaterials, [`recoverableMaterials[${index}]`]:event.target.value })}
+                    />
+                    }
+                    {index===recoverableMaterialsCount-1 && <button onClick={()=>setRecoverableMaterialsCount(recoverableMaterialsCount+1)} className={styles.btnSmall}>+</button>}
+                    {(index>0 && index===recoverableMaterialsCount-1) && <button onClick={()=>setRecoverableMaterialsCount(recoverableMaterialsCount-1)} className={styles.btnSmall}>-</button>}
                     
                 </div>
             )})}
-            {Array.from(Array(commonLocationsCount)).map((c, index) => {
-            console.log(index)
+            {Array.from(Array(commonLocationsCount)).map((c, index) => {                   
             return(
                 <div key={index}>
+                    {index<commonArray.length ? 
                     <input
                         type="text"
                         value={commonLocations[`commonLocations[${index}]`]}
-                        
                         placeholder="common locations"
                         onChange={(event) => setCommonLocations({...commonLocations, [`commonLocations[${index}]`]:event.target.value })}
                     />
-                    {index===commonLocationsCount-1 && <button onClick={buttonHandlerCommonIncrease} className={styles.btnSmall}>+</button>}
-                    {(index>0 && index===commonLocationsCount-1) && <button onClick={buttonHandlerCommonDecrease} className={styles.btnSmall}>-</button>}
+                    :
+                    <input
+                        type="text"
+                        name={`commonLocations[${index}]`}
+                        placeholder="common locations"
+                        onChange={(event) => setCommonLocations({...commonLocations, [`commonLocations[${index}]`]:event.target.value })}
+                    />
+                    }
+                    {index===commonLocationsCount-1 && <button onClick={()=>setCommonLocationsCount(commonLocationsCount+1)} className={styles.btnSmall}>+</button>}
+                    {(index>0 && index===commonLocationsCount-1) && <button onClick={()=>setCommonLocationsCount(commonLocationsCount-1)} className={styles.btnSmall}>-</button>}
                     
                 </div>
             )})}

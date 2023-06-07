@@ -14,9 +14,7 @@ export const getKorok=async(searchTerm)=>{
 
 export default async function Korok({searchParams}){
     const {region}=searchParams
-    console.log(region)
     const koroks=await getKorok(region)
-    console.log(koroks)
     return(
         <>
         {koroks.length>0 ? 

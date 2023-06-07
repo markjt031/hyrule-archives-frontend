@@ -33,9 +33,6 @@ export default function EditKorokForm({searchParams}){
                 form.append(key, formData[key])
             }
         }
-        for (const pair of form){
-            console.log(pair[0], pair[1])
-        }
         if (validateInput()){
           editKorok(form)
         }

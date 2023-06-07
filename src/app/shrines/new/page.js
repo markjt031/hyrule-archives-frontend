@@ -29,9 +29,6 @@ export default function NewShrineForm() {
             form.append(key, formData[key])
         }
     }
-    for (const pair of form){
-        console.log(pair[0], pair[1])
-    }
     form.append('userId', userId)
     form.append('userName', userName)
     if (validateInput()){
@@ -51,7 +48,6 @@ export default function NewShrineForm() {
   const handleChange=(e)=>{
     const name=e.target.name;
     const value=e.target.value;
-    console.log(e.target.value)
     setFormData({...formData, [name] : value})
   }
   const handleUpload=(e, index)=>{
@@ -59,9 +55,7 @@ export default function NewShrineForm() {
     const value=e.target.files[0]
     setFormData({...formData, [name]: value})
     const images=[...imagePreviews]
-    
     images.push(URL.createObjectURL(e.target.files[0]))
-    console.log(images)
     setImagePreviews(images)
     
   }
@@ -71,21 +65,6 @@ export default function NewShrineForm() {
     setFormData({...formData, [name]: value})
     setLocationImage(URL.createObjectURL(e.target.files[0]))
   }
-  const buttonHandlerGuideStepIncrease=(e)=>{
-    e.preventDefault()
-    incrementGuideStep()
-  }
-  const buttonHandlerGuideStepDecrease=(e)=>{
-    e.preventDefault()
-    decrementGuideStep()
-  }
-  const incrementGuideStep=()=>{
-    setGuideStepsCount(guideStepsCount+1)
-  }
-  const decrementGuideStep=(e)=>{
-    setGuideStepsCount(guideStepsCount-1)
-  }
-  
   const createShrine = async (shrine) => {
     const response= await fetch(`https://hyrule-archive.herokuapp.com/shrines`,
     {
@@ -166,8 +145,8 @@ export default function NewShrineForm() {
                         </div>
                     </div>
                     <div className={styles.btnDiv}>
-                        {index===guideStepsCount-1 &&<button onClick={buttonHandlerGuideStepIncrease} className={styles.btnSmall}>+</button>}
-                        {(index>0 && index===guideStepsCount-1) && <button onClick={buttonHandlerGuideStepDecrease} className={styles.btnSmall}>-</button>}
+                        {index===guideStepsCount-1 &&<button onClick={()=>setGuideStepsCount(guideStepsCount+1)} className={styles.btnSmall}>+</button>}
+                        {(index>0 && index===guideStepsCount-1) && <button onClick={()=>setGuideStepsCount(guideStepsCount-1)} className={styles.btnSmall}>-</button>}
                     </div>
                 </div>
                

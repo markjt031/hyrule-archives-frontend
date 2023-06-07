@@ -11,28 +11,19 @@ import Image from "next/image";
 
 export default function NewMonsterForm() {
     const router=useRouter();
-    const {user, setUser}=useUser()
     const [userId, setUserId]=useState(null)
     const [imagePreview, setImagePreview]=useState(null)
     const [toggleError, setToggleError]=useState(false)
     const [errorMessage, setErrorMessage]=useState('')
     const [formData, setFormData]= useState({})
     const [recoverableMaterialsCount, setRecoverableMaterialsCount]=useState(1)
-    const [recoverableMaterials, setRecoverableMaterials]=useState({})
     const [commonLocationsCount, setCommonLocationsCount]=useState(1)
-    const [commonLocations, setCommonLocations]=useState({})
 
   const handleSubmit = (event) => {
     event.preventDefault()
     let form=new FormData()
     for (const key in formData){
         form.append(key, formData[key])
-    }
-    for (const location in commonLocations){
-        form.append(location, commonLocations[location])
-    }
-    for (const material in recoverableMaterials){
-        form.append(material, recoverableMaterials[material])
     }
     form.append('userId', userId)
     if (validateInput()){
@@ -56,7 +47,6 @@ export default function NewMonsterForm() {
   const handleChange=(e)=>{
     const name=e.target.name;
     const value=e.target.value;
-    console.log(e.target.value)
     setFormData({...formData, [name] : value})
   }
   const handleUpload=(e)=>{
@@ -65,34 +55,7 @@ export default function NewMonsterForm() {
     setFormData({...formData, [name]: value})
     setImagePreview(URL.createObjectURL(e.target.files[0]))
   }
-  const buttonHandlerRecoverableIncrease=(e)=>{
-    e.preventDefault()
-    incrementRecoverableMaterials()
-  }
-  const buttonHandlerRecoverableDecrease=(e)=>{
-    e.preventDefault()
-    decrementRecoverableMaterials()
-  }
-  const incrementRecoverableMaterials=()=>{
-    setRecoverableMaterialsCount(recoverableMaterialsCount+1)
-  }
-  const decrementRecoverableMaterials=(e)=>{
-    setRecoverableMaterialsCount(recoverableMaterialsCount-1)
-  }
-  const buttonHandlerCommonIncrease=(e)=>{
-    e.preventDefault()
-    incrementCommonLocations()
-  }
-  const buttonHandlerCommonDecrease=(e)=>{
-    e.preventDefault()
-    decrementCommonLocations()
-  }
-  const incrementCommonLocations=()=>{
-    setCommonLocationsCount(commonLocationsCount+1)
-  }
-  const decrementCommonLocations=()=>{
-    setCommonLocationsCount(commonLocationsCount-1)
-  }
+
   const createMonster = async (monster) => {
     const response= await fetch(`https://hyrule-archive.herokuapp.com/monsters/`,
     {
@@ -137,10 +100,10 @@ export default function NewMonsterForm() {
                         name=""
                         className={styles.expandingCategory}
                         placeholder="recoverable material"
-                        onChange={(event) => setRecoverableMaterials({...recoverableMaterials, [`recoverableMaterials[${index}]`]:event.target.value })}
+                        onChange={(event) => setFormData({...formData, [`recoverableMaterials[${index}]`]:event.target.value })}
                     />
-                    {index===recoverableMaterialsCount-1 &&<button onClick={buttonHandlerRecoverableIncrease} className={styles.btnSmall}>+</button>}
-                    {(index>0 && index===recoverableMaterialsCount-1) && <button onClick={buttonHandlerRecoverableDecrease} className={styles.btnSmall}>-</button>}
+                    {index===recoverableMaterialsCount-1 &&<button onClick={()=>setRecoverableMaterialsCount(recoverableMaterialsCount+1)} className={styles.btnSmall}>+</button>}
+                    {(index>0 && index===recoverableMaterialsCount-1) && <button onClick={()=>setRecoverableMaterialsCount(recoverableMaterialsCount-1)} className={styles.btnSmall}>-</button>}
                     
                 </div>
             )})}
@@ -152,10 +115,10 @@ export default function NewMonsterForm() {
                         className={styles.expandingCategory}
                         name=""
                         placeholder="common locations"
-                        onChange={(event) => setCommonLocations({...commonLocations, [`commonLocations[${index}]`]:event.target.value })}
+                        onChange={(event) => setFormData({...formData, [`commonLocations[${index}]`]:event.target.value })}
                     />
-                    {index===commonLocationsCount-1 && <button onClick={buttonHandlerCommonIncrease} className={styles.btnSmall}>+</button>}
-                    {index>0 && <button onClick={buttonHandlerCommonDecrease} className={styles.btnSmall}>-</button>}
+                    {index===commonLocationsCount-1 && <button onClick={()=>setCommonLocationsCount(commonLocationsCount+1)} className={styles.btnSmall}>+</button>}
+                    {index>0 && <button onClick={()=>setCommonLocationsCount(commonLocationsCount-1)} className={styles.btnSmall}>-</button>}
             </div>
         )})}
             <textarea placeholder='type description here' name='description' rows="4" onChange={handleChange}/>

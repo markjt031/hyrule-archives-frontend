@@ -28,6 +28,7 @@
     border-radius:10px;
     padding: .5rem;
     color: rgb(var(--blue-300));
+    font-family: "Inter", sans-serif;
 }
 .textInputs input[type=text]::placeholder, .textInputs input[type=number]::placeholder, .textInputs textarea::placeholder{
     color: rgba(var(--blue-300), .8);
@@ -35,7 +36,7 @@
 }
 .textInputs{
     width: 100%;
-    margin: 0 auto;
+    margin: 5% auto 0 auto;
 }
 .formContainer{
     width: 100%;
@@ -87,6 +88,7 @@
     }
     .textInputs{
         width: 50%;
+        margin: 0 auto;
     }
     .box{
         width: 100%;

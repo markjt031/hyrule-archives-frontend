@@ -4,42 +4,32 @@ import Link from 'next/link'
 import NotAuthorized from '@/app/components/NotAuthorized'
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
-import { useUser } from '@/context/user'
 import Image from 'next/image'
 
 
 
 export default function NewCreatureForm() {
     const router=useRouter();
-    const {user, setUser}=useUser()
     const [userId, setUserId]=useState(null)
     const [imagePreview, setImagePreview]=useState(null)
     const [toggleError, setToggleError]=useState(false)
     const [errorMessage, setErrorMessage]=useState('')
     const [formData, setFormData]= useState({})
     const [recoverableMaterialsCount, setRecoverableMaterialsCount]=useState(1)
-    const [recoverableMaterials, setRecoverableMaterials]=useState({})
     const [commonLocationsCount, setCommonLocationsCount]=useState(1)
-    const [commonLocations, setCommonLocations]=useState({})
+
     useEffect(()=>{
       setUserId(localStorage.getItem('userId'))
     },[])
+
     const handleSubmit = (event) => {
       event.preventDefault()
       let form=new FormData()
       for (const key in formData){
           form.append(key, formData[key])
       }
-      for (const location in commonLocations){
-          form.append(location, commonLocations[location])
-      }
-      for (const material in recoverableMaterials){
-          form.append(material, recoverableMaterials[material])
-      }
       form.append('userId', userId)
-      for (const pair of form){
-        console.log(pair[0], pair[1])
-      }
+     
       if (validateInput()){
         createCreature(form)
       }
@@ -69,36 +59,7 @@ export default function NewCreatureForm() {
       setFormData({...formData, [name]: value})
       setImagePreview(URL.createObjectURL(e.target.files[0]))
     }
-    const buttonHandlerRecoverableIncrease=(e)=>{
-      e.preventDefault()
-      incrementRecoverableMaterials()
-    }
-    const buttonHandlerRecoverableDecrease=(e)=>{
-      e.preventDefault()
-      decrementRecoverableMaterials()
-    }
-    const incrementRecoverableMaterials=()=>{
-      setRecoverableMaterialsCount(recoverableMaterialsCount+1)
-    }
-    const decrementRecoverableMaterials=(e)=>{
-      setRecoverableMaterialsCount(recoverableMaterialsCount-1)
-    }
-    const buttonHandlerCommonIncrease=(e)=>{
-      e.preventDefault()
-      incrementCommonLocations()
-    }
-    const buttonHandlerCommonDecrease=(e)=>{
-      e.preventDefault()
-      decrementCommonLocations()
-    }
-    const incrementCommonLocations=()=>{
-      setCommonLocationsCount(commonLocationsCount+1)
-    }
-    const decrementCommonLocations=()=>{
-      setCommonLocationsCount(commonLocationsCount-1)
-    }
     const createCreature = async (creature) => {
-      console.log(creature)
       const response= await fetch(`https://hyrule-archive.herokuapp.com/creatures/`,
       {
           method: "POST",
@@ -137,12 +98,11 @@ export default function NewCreatureForm() {
                   <div key={index}>
                       <input
                           type="text"
-                          name=""
                           placeholder="recoverable material"
-                          onChange={(event) => setRecoverableMaterials({...recoverableMaterials, [`recoverableMaterials[${index}]`]:event.target.value })}
+                          onChange={(event) => setFormData({...formData, [`recoverableMaterials[${index}]`]:event.target.value })}
                       />
-                      {index===recoverableMaterialsCount-1 &&<button onClick={buttonHandlerRecoverableIncrease} className={styles.btnSmall}>+</button>}
-                      {(index>0 && index===recoverableMaterialsCount-1) && <button onClick={buttonHandlerRecoverableDecrease} className={styles.btnSmall}>-</button>}
+                      {index===recoverableMaterialsCount-1 &&<button onClick={()=>setRecoverableMaterialsCount(recoverableMaterialsCount+1)} className={styles.btnSmall}>+</button>}
+                      {(index>0 && index===recoverableMaterialsCount-1) && <button onClick={()=>setRecoverableMaterialsCount(recoverableMaterialsCount-1)} className={styles.btnSmall}>-</button>}
                       
                   </div>
               )})}
@@ -151,12 +111,11 @@ export default function NewCreatureForm() {
                   <div key={index}>
                       <input
                           type="text"
-                          name=""
                           placeholder="common locations"
-                          onChange={(event) => setCommonLocations({...commonLocations, [`commonLocations[${index}]`]:event.target.value })}
+                          onChange={(event) => setFormData({...formData, [`commonLocations[${index}]`]:event.target.value })}
                       />
-                      {index===commonLocationsCount-1 && <button onClick={buttonHandlerCommonIncrease} className={styles.btnSmall}>+</button>}
-                      {(index>0 && index===commonLocationsCount-1)&& <button onClick={buttonHandlerCommonDecrease} className={styles.btnSmall}>-</button>}
+                      {index===commonLocationsCount-1 && <button onClick={()=>setCommonLocationsCount(commonLocationsCount+1)} className={styles.btnSmall}>+</button>}
+                      {(index>0 && index===commonLocationsCount-1)&& <button onClick={()=>setCommonLocationsCount(commonLocationsCount-1)} className={styles.btnSmall}>-</button>}
                   </div>
                   )})}
               <textarea placeholder='type description here' name='description' rows="4" onChange={handleChange}/>
