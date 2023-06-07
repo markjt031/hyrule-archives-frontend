@@ -97,7 +97,7 @@ export default function NewCritterForm() {
         <>
         {userId!='null' ? 
         (<div className={styles.formContainer}>
-          <h1>New Creature Material</h1>
+        <h1 className={styles.title}>New Creature Material</h1>
         <form className={styles.form}>
           <div className={styles.textInputs}>
             <input type='number' placeholder='no' name="no" onChange={handleChange}/><br/>

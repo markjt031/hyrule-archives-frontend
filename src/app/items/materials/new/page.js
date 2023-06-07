@@ -99,7 +99,7 @@ export default function NewMaterialForm() {
     return (
       
         <>
-        <h1>New Material</h1>
+        <h1 className={styles.title}>New Material</h1>
           {userId!='null' ? 
         (<div className={styles.formContainer}>
         <form className={styles.form} onSubmit={handleSubmit}>
