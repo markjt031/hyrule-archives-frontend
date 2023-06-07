@@ -201,7 +201,7 @@ export default function EditCritterForm({searchParams}) {
                   {(index>0 && index===commonLocationsCount-1)&& <button className={styles.btnSmall} onClick={()=>setCommonLocationsCount(commonLocationsCount-1)}>-</button>}
               </div>
           )})}
-          <textarea placeholder='type description here' name='description' value={searchParams.description} rows="4" onChange={handleChange}/>
+          <textarea placeholder='type description here' name='description' value={formData.description} rows="4" onChange={handleChange}/>
         </div>
         <div className={styles.imagePreview}>
         {imagePreview ? (
