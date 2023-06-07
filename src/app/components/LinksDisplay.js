@@ -28,7 +28,7 @@ export default async function LinksDisplay(){
                 {newData.filter(item=>item.pathname==='creatures/').map((item)=>{
                     const {name, pathname, id}=item
                     return(
-                    <li>
+                    <li key={id}>
                         <Link href={`/${pathname}${id}`}><h6 className={utilStyles.capitalize}>{name}</h6></Link>
                     </li>)
                 })}
@@ -38,7 +38,7 @@ export default async function LinksDisplay(){
                 {newData.filter(item=>item.pathname==='critters/').map((item)=>{
                     const {name, pathname, id}=item
                     return(
-                    <li>
+                    <li key={id}>
                         <Link href={`/${pathname}${id}`}><h6 className={utilStyles.capitalize}>{name}</h6></Link>
                     </li>)
                 })}
@@ -48,7 +48,7 @@ export default async function LinksDisplay(){
                 {newData.filter(item=>item.pathname==='monsters/').map((item)=>{
                     const {name, pathname, id}=item
                     return(
-                    <li>
+                    <li key={id}>
                         <Link href={`/${pathname}${id}`}><h6 className={utilStyles.capitalize}>{name}</h6></Link>
                     </li>)
                 })}
@@ -58,7 +58,7 @@ export default async function LinksDisplay(){
                 {newData.filter(item=>item.pathname==='items/materials/').map((item)=>{
                     const {name, pathname, id}=item
                     return(
-                    <li>
+                    <li key={id}>
                         <Link href={`/${pathname}${id}`}><h6 className={utilStyles.capitalize}>{name}</h6></Link>
                     </li>)
                 })}
@@ -68,7 +68,7 @@ export default async function LinksDisplay(){
                 {newData.filter(item=>item.pathname==='items/equipment/').map((item)=>{
                     const {name, pathname, id}=item
                     return(
-                    <li>
+                    <li key={id}>
                         <Link href={`/${pathname}${id}`}><h6 className={utilStyles.capitalize}>{name}</h6></Link>
                     </li>)
                 })}
