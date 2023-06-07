@@ -17,9 +17,12 @@
 .profiles ul{
     display: grid;
     grid-template-columns: 1fr 1fr;
-    background-color: rgb(var(--blue-400));
+    background-color: rgba(var(--blue-300), .4);
     list-style-type: none;
 }
+/* .profiles ul li{
+    color: rgb(var(--blue-))
+} */
 
 @media screen and (min-width: 768px){
     .profiles ul{

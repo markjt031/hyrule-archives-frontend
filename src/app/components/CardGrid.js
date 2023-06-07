@@ -10,28 +10,26 @@ export const getData=async(type)=>{
 }
 
 export default async function CardGrid({type}){
-    console.log(type)
     const data=await getData(type)
-    console.log(data)
     return(
         <>
-            <div className={styles.grid}>
+            <section className={styles.grid}>
                 {data.map((item)=>{
                 const {_id, no, name, image}=item;
                 return (
                     <Link key={no} href={`${type}/${_id}`}>
-                    <div className={styles.card}>
+                    <article className={styles.card}>
                         <Image 
                             src={image} 
                             alt={name}
                             sizes="(min width: 1024px) 400px, 200px"
                             fill/>
                         <p>#{no} {name}</p>
-                    </div>
+                    </article>
                     </Link>
                     )
                 })}
-            </div>
+            </section>
         </>
         )
     

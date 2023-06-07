@@ -3,6 +3,7 @@ import utilStyles from '../../../styles/utils.module.css'
 import Image from 'next/image';
 import EditDelete from '@/app/components/EditDelete';
 import Refresher from '@/app/components/Refresher'
+import LinksDisplay from '@/app/components/LinksDisplay';
 
 export async function generateStaticParams() {
     const response = await fetch(process.env.FETCH_URL+"monsters");
@@ -24,7 +25,7 @@ export default async function Monsters({params}){
     return(
         <>
         <Refresher/>
-        <div className={styles.largerCard}>
+        <section className={styles.largerCard}>
             {image &&
             <div className={styles.imageWrapper}>
                 <Image
@@ -33,22 +34,20 @@ export default async function Monsters({params}){
                     className={styles.image}
                     fill/>
             </div>}
-            <div className={styles.cardInfo}>
+            <article className={styles.cardInfo}>
             <div className={styles.right}><EditDelete pathname='monsters' itemId={id} userId={monster.userId} data={monster}/></div>
                 <p>No: {no}</p>
                 <p>Name: <span className={utilStyles.capitalize}>{name}</span></p>
                 <p>Recoverable Materials: <span className={utilStyles.capitalize}>{recoverableMaterials.join(', ')}</span></p>
                 <p>Common Locations: <span className={utilStyles.capitalize}>{commonLocations.join(', ')}</span></p>
                 <p className={styles.descriptionMobile}>Description: {description}</p>
-            </div>
+            </article>
             
-        </div>
-        <div className={styles.description}>
+        </section>
+        <article className={styles.description}>
                 <p>Description: {description}</p>
-            </div>
-        <div>
-            
-        </div>
+            </article>
+        <LinksDisplay/>
         </>
 
         )

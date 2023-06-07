@@ -1,0 +1,35 @@
+.linksSection{
+    width: 360px;
+    margin: 5% auto;
+    background-color: rgb(var(--blue-400));
+    border: solid rgb(var(--blue-100));
+}
+.linksSection h4{
+    text-align: center;
+    text-decoration: underline;
+    margin-bottom: 2%;
+}
+.linksSection h4:not(:first-child){
+    margin-top: 2%;
+}
+.linksSection ul{
+    display: flex;
+    flex-flow: row wrap;
+    list-style-type: none;
+    gap: 10px;
+    justify-content: center;
+}
+
+.linksSection ul li{
+    font-size: 1.1rem;
+}
+@media screen and (min-width: 768px){
+    .linksSection{
+        width: 85%;
+    }
+}
+@media screen and (min-width: 1024px){
+    .linksSection{
+        width: 60%;
+    }
+}
