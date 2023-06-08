@@ -1,0 +1,10 @@
+.half{
+    clip-path: polygon(50% 0%, 50% 100%, 0% 100%, 0% 0%);
+}
+
+.quarter{
+    clip-path: polygon(50% 0%, 50% 50%, 0% 50%, 0% 0%);
+}
+.threeQuarters{
+    clip-path: polygon(100% 0%, 100% 50%, 50% 50%, 50% 100%, 0% 100%, 0% 0%);
+}

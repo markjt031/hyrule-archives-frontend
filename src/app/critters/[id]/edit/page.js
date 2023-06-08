@@ -79,10 +79,14 @@ export default function EditCritterForm({searchParams}) {
             form.append(key, formData[key])
         }
         for (const location in commonLocations){
+          if (commonLocations[location]){
             form.append(location, commonLocations[location])
+          }
         }
         for (const effect in uniqueCookingEffects){
+          if (uniqueCookingEffects[effect]){
             form.append(effect, uniqueCookingEffects[effect])
+          }
         }
         if (validateInput()){
           editCritter(form)

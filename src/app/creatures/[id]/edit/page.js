@@ -75,10 +75,14 @@ export default function EditCreatureForm({searchParams}) {
             form.append(key, formData[key])
         }
         for (const location in commonLocations){
+          if (commonLocations[location]){
             form.append(location, commonLocations[location])
+          }
         }
         for (const material in recoverableMaterials){
+          if (recoverableMaterials[material]){
             form.append(material, recoverableMaterials[material])
+          }
         }
         if (validateInput()){
             editCreature(form)

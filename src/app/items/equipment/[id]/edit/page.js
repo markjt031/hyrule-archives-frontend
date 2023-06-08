@@ -85,10 +85,14 @@ export default function NewEquipmentForm({searchParams}) {
             form.append(key, formData[key])
         }
         for (const location in commonLocations){
-            form.append(location, commonLocations[location])
+            if (commonLocations[location]){
+                form.append(location, commonLocations[location])
+            }
         }
         for (const property in properties){
-            form.append(property, properties[property])
+            if (properties[property]){
+                form.append(property, properties[property])
+            }
         }
         if (validateInput()){
             editEquipment(form)
