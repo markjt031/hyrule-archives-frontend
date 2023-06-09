@@ -1,7 +1,7 @@
 'use client'
 import Link from "next/link"
 import styles from "../../styles/Nav.module.css"
-import { useUser } from "@/context/user"
+import 'font-awesome/css/font-awesome.min.css'
 import { useRouter } from "next/navigation"
 import { useState, useEffect } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -10,9 +10,10 @@ import { faBars, faMagnifyingGlass, faUserCircle } from '@fortawesome/free-solid
 
 
 export default function Nav() {
-    const {user, setUser}=useUser()
+    
     const router= useRouter()
     const [userId, setUserId]=useState(null)
+    const [isSearching, setIsSearching]=useState(false)
     const [formData, setFormData] = useState({
         searchterm: "",
       });
@@ -39,8 +40,9 @@ export default function Nav() {
         localStorage.setItem('userId', null)
         setUserId(null)
     }
-    
+    console.log(isSearching)
   return (
+    <>
     <nav className={styles.nav}>
         <div className={styles.left}>
             <div className={styles.dropdown}>
@@ -58,13 +60,8 @@ export default function Nav() {
         </div>
         <div className={styles.right}>
             <div className={styles.dropdownSearch}>
-                <FontAwesomeIcon icon={faMagnifyingGlass}/>
-                <div className={styles.dropdownSearchMenu}>
-                    <form onSubmit={handleSubmit}>
-                        <input type="text" name="searchterm" onChange={handleChange} value={formData.searchterm}></input>
-                        <button type="submit" className={styles.searchBtn}><FontAwesomeIcon icon={faMagnifyingGlass}/></button>
-                    </form>
-                </div>
+                <button onClick={()=>setIsSearching(!isSearching)}><FontAwesomeIcon icon={faMagnifyingGlass} /></button>
+                
             </div>
             <div className={styles.searchFullScreen}>
                 <form className={styles.form} onSubmit={handleSubmit}>
@@ -89,7 +86,17 @@ export default function Nav() {
         </div>
         }
         </div>
+        
     </nav>
+    {isSearching && <div className={styles.dropdownSearchMenu}>
+    
+    <form onSubmit={handleSubmit}>
+        <input type="text" name="searchterm"  onChange={handleChange} value={formData.searchterm}></input>
+        
+    </form>
+    <FontAwesomeIcon icon={faMagnifyingGlass} className={styles.placeholderIcon}/>
+</div>}
+</>
   )
 }
 
