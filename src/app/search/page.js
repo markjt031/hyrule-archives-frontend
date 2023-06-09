@@ -6,21 +6,18 @@ import { pathByNumber } from '@/lib/pathByNo'
 const getSearchResults=async(searchTerm)=>{
     const response=await fetch(process.env.FETCH_URL+`search?name=${searchTerm}`)
     const data=await response.json()
-    if (data.data.length>0){
-        return data.data;
-    }
-    else return {message: "No results found"}
+    return data.data;
+ 
 }
 
 export default async function Search({searchParams}){
-    console.log(searchParams)
     const {name}=searchParams
     const results=await getSearchResults(name)
-    if (results.message){
-        return <p>{results.message}</p>
-    }
-    else return (<>
+    
+    return (<>
+        
         <h1 className={styles.heading}>Search Results</h1>
+        {results.length>0 ?
             <div className={styles.grid}>
                 
                 {results.map((result)=>{
@@ -39,5 +36,7 @@ export default async function Search({searchParams}){
                     )
                 })}
             </div>
+            :
+            <p>No results found</p>}
         </>)
 }
