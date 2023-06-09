@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 
 
-export default function LoginForm() {
+export default function RegisterForm() {
     const router=useRouter()
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
@@ -34,7 +34,6 @@ export default function LoginForm() {
         body: JSON.stringify(userObj)
     })
     const data= await response.json()
-    console.log(data.data.username)
     if (!data.data.username){
         setToggleError(true)
         setErrorMessage(data.message)

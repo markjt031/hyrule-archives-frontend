@@ -38,12 +38,12 @@ export default function LoginForm() {
         body: JSON.stringify(userObj)
     })
     const data= await response.json()
-    console.log(data)
     if (data.username){
         setToggleError(false)
         localStorage.setItem("userId", data.id)
         setUserId(localStorage.getItem('userId'))
         localStorage.setItem('userName', data.username)
+        router.refresh();
         router.push('/')
     }
     else{
@@ -70,4 +70,3 @@ export default function LoginForm() {
       </section>
   );
 }
-

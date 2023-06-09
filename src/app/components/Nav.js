@@ -6,25 +6,28 @@ import { useRouter } from "next/navigation"
 import { useState, useEffect } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars, faMagnifyingGlass, faUserCircle } from '@fortawesome/free-solid-svg-icons'
+import { useUser } from "@/context/user"
+
 
 
 
 export default function Nav() {
     
     const router= useRouter()
-    const [userId, setUserId]=useState(null)
+    const {userId, setUserId}=useUser()
     const [isSearching, setIsSearching]=useState(false)
     const [formData, setFormData] = useState({
         searchterm: "",
       });
+    
       useEffect(() => {
         if(localStorage.getItem('userId')) {
             setUserId(localStorage.getItem('userId'))
-        } 
-        else{
-            setUserId(localStorage.setItem('userId', null)
-            )}
-    },[])
+        } else {
+            setUserId(null)
+        }
+    }, [])
+
     const handleChange = (event) => {
         setFormData({ ...formData, [event.target.name]: event.target.value });
     };
@@ -36,13 +39,16 @@ export default function Nav() {
 
     const handleLogout=async()=>{
         const response= await fetch(`https://hyrule-archive.herokuapp.com/users/logout`)
-        setUser(null)
         localStorage.setItem('userId', null)
-        setUserId(null)
+        localStorage.setItem('userName', null)
+        setUserId(localStorage.getItem('userId'))
+        router.refresh()
+        router.push('/')
     }
-    console.log(isSearching)
+
   return (
     <>
+
     <nav className={styles.nav}>
         <div className={styles.left}>
             <div className={styles.dropdown}>
@@ -81,7 +87,7 @@ export default function Nav() {
             <FontAwesomeIcon icon={faUserCircle}/>
             <div className={styles.dropdownMenu}>
                 <Link href={`/user/profile/${userId}`}>Profile</Link>
-                <Link href="/" onClick={handleLogout}>Logout</Link>
+                <Link href={`/`} onClick={handleLogout}>Logout</Link>
             </div>
         </div>
         }

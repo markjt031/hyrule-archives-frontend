@@ -55,7 +55,6 @@ export default function NewMonsterForm() {
     setFormData({...formData, [name]: value})
     setImagePreview(URL.createObjectURL(e.target.files[0]))
   }
-
   const createMonster = async (monster) => {
     const response= await fetch(`https://hyrule-archive.herokuapp.com/monsters/`,
     {

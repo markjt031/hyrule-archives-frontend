@@ -1,19 +1,9 @@
-.container{
-    position: relative;
-    width: 100vw;
-    height: 100vh;
-}
+
 .text{
-    display: block;
-    height: 150px;
-    width: 150px;
     text-align: center;
-    padding-top:30px;
-    background-color: rgba(var(--blue-400), .8);
-    position: absolute;
-    top: 30%;
-    left: 50%;
-    transform: translateX(-50%);
+}
+.text a{
+    color: rgb(var(--blue-300));
 }
 .linkbg{
     height: 300px;
@@ -41,13 +31,16 @@
     background-color: rgb(var(--blue-100));
     color: rgb(var(--blue-300));
 }
+.loginForm input[type=text]::placeholder, .loginForm input[type=email]::placeholder, .loginForm input[type=password]::placeholder{
+    color: rgb(var(--blue-300));
+}
 .loginForm input[type=submit]{
-    width:60%;
+    width:50%;
     margin: 2px auto;
     border-radius: 28px;
     border: solid rgb(var(--blue-100));
-    padding: 10px 0px;
-    font-size: 1.5rem;
+    padding: 5px 0px;
+    font-size: 1.2rem;
     font-family: inherit;
     color: inherit;
     background-color: rgb(var(--blue-300));

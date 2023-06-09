@@ -84,8 +84,7 @@ export default function UploadAvatar({currentAvatar}){
                     )
                     :
                     <div className={styles.box}/>}
-                    <label htmlFor="avatar">Upload an Avatar</label>
-                    <input type='file' title='' name='avatar' accept='image/*'  onChange={handleUpload}/>
+                    <input type='file' title=' ' name='avatar' accept='image/*'  onChange={handleUpload}/>
                     
                 </figure>
             </form>
