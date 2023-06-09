@@ -23,8 +23,6 @@ export default function Nav() {
       useEffect(() => {
         if(localStorage.getItem('userId')) {
             setUserId(localStorage.getItem('userId'))
-        } else {
-            setUserId(null)
         }
     }, [])
 
