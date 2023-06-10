@@ -1,6 +1,7 @@
 
 .text{
     text-align: center;
+    margin: 0 auto;
 }
 .text a{
     color: rgb(var(--blue-300));
@@ -12,7 +13,7 @@
     background-blend-mode: overlay;
     background-color: var(--blue-700);
     background-image: url('../../public/link.webp');
-    margin: 10% auto;
+    margin: 0 auto;
     position: relative;
 }
 .loginForm{
