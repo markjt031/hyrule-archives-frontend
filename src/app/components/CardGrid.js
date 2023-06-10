@@ -14,7 +14,6 @@ export default async function CardGrid({type}){
     const data=await getData(type)
     return(
         <>  
-            <Refresher/>
             <section className={styles.grid}>
                 {data.map((item)=>{
                 const {_id, no, name, image}=item;

@@ -8,8 +8,6 @@ export default function Refresher() {
 
     useEffect(() => {
         router.refresh()
-        console.log('refresh')
-        router.refresh()
     }, [router])
 
     return <></>
