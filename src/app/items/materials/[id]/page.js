@@ -23,7 +23,7 @@ export default async function Materials({params}){
     const {id}=params
 
     const material=await getMaterial(id)
-    const {_id, no, name, heartsRecovered, uniqueCookingEffects, commonLocations, description, image, userId }=material
+    const {_id, no, name, heartsRecovered, fuseAttackPower, uniqueCookingEffects, commonLocations, description, image, userId }=material
     return(
         <>
             <Refresher/>
@@ -39,6 +39,7 @@ export default async function Materials({params}){
                     <p>No: {no}</p>
                     <p>Name: <span className={utilStyles.capitalize}>{name}</span></p>
                     <p>Hearts Recovered: <HeartsRecovered numHearts={Number.parseFloat(heartsRecovered)}/></p>
+                    {fuseAttackPower && <p>Fuse Attack Power: {fuseAttackPower}</p>}
                     <p>Unique Cooking Effects: <span className={utilStyles.capitalize}>{uniqueCookingEffects.join(', ')}</span></p>
                     <p>Common Locations: <span className={utilStyles.capitalize}>{commonLocations.join(', ')}</span></p>
                     <p className={styles.descriptionMobile}>Description: {description}</p>

@@ -135,20 +135,7 @@ export default function EditShrineForm({searchParams}) {
         setFormData({...formData, [name]: value})
         setLocationImage(URL.createObjectURL(e.target.files[0]))
     }
-    const buttonHandlerGuideStepIncrease=(e)=>{
-        e.preventDefault()
-        incrementGuideStep()
-    }
-    const buttonHandlerGuideStepDecrease=(e)=>{
-        e.preventDefault()
-        decrementGuideStep()
-    }
-    const incrementGuideStep=()=>{
-        setGuideStepsCount(guideStepsCount+1)
-    }
-    const decrementGuideStep=(e)=>{
-        setGuideStepsCount(guideStepsCount-1)
-    }
+
     
     const editShrine = async (shrine) => {
         
@@ -166,7 +153,7 @@ export default function EditShrineForm({searchParams}) {
         
         if (data.data.name){
             setToggleError(false)
-            router.push('/shrines')
+            router.push(`/shrines/${data.data._id}`)
         }
         else{
             setToggleError(true)
@@ -240,8 +227,8 @@ export default function EditShrineForm({searchParams}) {
                             </div>
                         </div>
                         <div className={styles.btnDiv}>
-                            {index===guideStepsCount-1 &&<button onClick={buttonHandlerGuideStepIncrease} className={styles.btnSmall}>+</button>}
-                            {(index>0 && index===guideStepsCount-1) && <button onClick={buttonHandlerGuideStepDecrease} className={styles.btnSmall}>-</button>}
+                            {index===guideStepsCount-1 &&<button onClick={()=>setGuideStepsCount(guideStepsCount+1)} className={styles.btnSmall}>+</button>}
+                            {(index>0 && index===guideStepsCount-1) && <button onClick={()=>setGuideStepsCount(guideStepsCount-1)} className={styles.btnSmall}>-</button>}
                         </div>
                     </div>
                 

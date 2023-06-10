@@ -88,7 +88,7 @@ export default function NewMaterialForm() {
       if (data.name){
           setToggleError(true)
           router.refresh()
-          router.push('/items/materials')
+          router.push(`/items/materials/${data._id}`)
       }
       else{
           setToggleError(true)

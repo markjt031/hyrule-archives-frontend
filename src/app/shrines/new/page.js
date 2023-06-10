@@ -80,7 +80,7 @@ export default function NewShrineForm() {
     if (data.name){
         setToggleError(false)
         router.refresh()
-        router.push('/shrines')
+        router.push(`/shrines/${data._id}`)
     }
     else{
         setToggleError(true)

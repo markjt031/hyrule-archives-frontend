@@ -70,7 +70,7 @@ export default function NewMonsterForm() {
     if (data.name){
         setToggleError(true)
         router.refresh()
-        router.push('/monsters')
+        router.push(`/monsters/${data._id}`)
     }
     else{
         setToggleError(true)

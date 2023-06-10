@@ -142,7 +142,7 @@ export default function EditMaterialForm({searchParams}) {
     const data= await response.json()
     if (data.data.name){
         setToggleError(false)
-        router.push('/items/materials')
+        router.push(`/items/materials/${data.data._id}`)
     }
     else{
         setToggleError(true)

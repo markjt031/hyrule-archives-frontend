@@ -127,7 +127,7 @@ export default function EditCreatureForm({searchParams}) {
     if (data.data.name){
         
         setToggleError(false)
-        router.push('/creatures')
+        router.push(`/creatures/${data.data._id}`)
     }
     else{
         setToggleError(true)

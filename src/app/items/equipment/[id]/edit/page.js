@@ -137,7 +137,8 @@ export default function NewEquipmentForm({searchParams}) {
         const item= await response.json()
         if (item.data.name){
             setToggleError(false)
-            router.push('/items/equipment')
+            router.refresh()
+            router.push(`/items/equipment/${item.data._id}`)
         }
         else{
             setToggleError(true)

@@ -64,6 +64,7 @@ export default function NewKorokForm(){
         
         if (data.region){
             setToggleError(false)
+            router.refresh()
             router.push('/koroks')
         }
         else{

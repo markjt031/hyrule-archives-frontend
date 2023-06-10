@@ -129,7 +129,7 @@ export default function EditMonsterForm({searchParams}) {
     
     if (data.data.name){
         setToggleError(false)
-        router.push('/monsters')
+        router.push(`/monsters/${data.data._id}`)
     }
     else{
         setToggleError(true)

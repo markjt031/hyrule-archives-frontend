@@ -84,7 +84,7 @@ export default function NewCritterForm() {
       if (data.name){
           setToggleError(false)
           router.refresh()
-          router.push('/creatures')
+          router.push(`/critters/${data._id}`)
       }
       else{
           setToggleError(true)

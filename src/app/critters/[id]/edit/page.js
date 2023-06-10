@@ -141,7 +141,8 @@ export default function EditCritterForm({searchParams}) {
     const data= await response.json()
     if (data.data.name){
         setToggleError(false)
-        router.push('/creatures')
+        router.refresh()
+        router.push(`/critters/${data.data._id}`)
     }
     else{
         setToggleError(true)

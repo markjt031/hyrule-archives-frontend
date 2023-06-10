@@ -17,17 +17,26 @@ export default function EditDelete({pathname, itemId, userId, data}){
 
     console.log(user)
     const handleDelete=async ()=>{
-        const response= await fetch(`https://hyrule-archive.herokuapp.com/${pathname}/${itemId}`,
-        {
-            method: 'DELETE',
-            mode: 'cors',
-        }).then(()=>{
-            if (pathname==='koroks'){
+        if (pathname==='critters'){
+            const response= await fetch(`https://hyrule-archive.herokuapp.com/${pathname}/${itemId}`,
+            {
+                method: 'DELETE',
+                mode: 'cors',
+            }).then(()=>{
+                router.refresh()
+                router.push(`/creatures`)
+            })
+        }
+        else{
+            const response= await fetch(`https://hyrule-archive.herokuapp.com/${pathname}/${itemId}`,
+            {
+                method: 'DELETE',
+                mode: 'cors',
+            }).then(()=>{
                 router.refresh()
                 router.push(`/${pathname}`)
-            }
-            else router.push(`/${pathname}`)
-        })
+            })
+     }
     }
     useEffect(()=>{
         setUsersId(localStorage.getItem('userId'))

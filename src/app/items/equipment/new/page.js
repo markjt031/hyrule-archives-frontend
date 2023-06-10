@@ -79,7 +79,7 @@ export default function NewEquipmentForm() {
         if (data.name){
             setToggleError(false)
             router.refresh()
-            router.push('/items/equipment')
+            router.push(`/items/equipment/${data._id}`)
         }
         else{
             setToggleError(true)

@@ -74,7 +74,7 @@ export default function NewCreatureForm() {
       if (data.name){
           setToggleError(false)
           router.refresh()
-          router.push('/creatures')
+          router.push(`/creatures/${data._id}`)
       }
       else{
           setToggleError(true)
