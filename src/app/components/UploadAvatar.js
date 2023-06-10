@@ -1,7 +1,7 @@
 'use client'
 import Image from "next/image"
 import {useState, useEffect} from "react"
-import styles from '../../styles/createeditform.module.css'
+import styles from '../../styles/avatar.module.css'
 import utilStyles from '../../styles/utils.module.css'
 import { useRouter } from "next/navigation"
 
@@ -74,12 +74,12 @@ export default function UploadAvatar({currentAvatar}){
         (
         <>
             <form>
-                <figure className={utilStyles.imagePreview}>
+                <figure className={styles.imagePreview}>
                     {imagePreview ? (
                     <Image 
                         src={imagePreview} 
                         alt='user avatar' 
-                        className={utilStyles.imagePreview}
+                        className={styles.imagePreview}
                         fill/>
                     )
                     :
@@ -89,15 +89,18 @@ export default function UploadAvatar({currentAvatar}){
                 </figure>
             </form>
             <input className={utilStyles.btn} type='submit' onClick={handleSubmit}/>
-            <button className={utilStyles.btn} onClick={()=>setEditing(!editing)}>Cancel</button>
+            <button className={utilStyles.btn} onClick={()=>{
+                setEditing(!editing)
+                setImagePreview(image)
+            }}>Cancel</button>
         </>)
             :
-            (<figure className={utilStyles.imagePreview}>
+            (<figure className={styles.imagePreview}>
                 {imagePreview ? (
                 <Image 
                 src={imagePreview} 
                 alt='user avatar' 
-                className={utilStyles.imagePreview}
+                className={styles.imagePreview}
                 fill/>)
                 :
                 <div className={styles.box}/>}
