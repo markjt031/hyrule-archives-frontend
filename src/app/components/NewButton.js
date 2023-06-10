@@ -8,7 +8,7 @@ import utilStyles from '../../styles/utils.module.css'
 export default function NewButton({pathname}){
     const {user, setUser}=useUser();
     const [userId, setUserId]=useState(null)
-    console.log(user)
+    
     useEffect(()=>{
         setUserId(localStorage.getItem('userId'))
     },[])

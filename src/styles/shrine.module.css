@@ -25,6 +25,9 @@
     width: 315px;
     margin: 5% auto 0 auto;
 }
+.guideHeader a{
+    color: rgb(var(--blue-300));
+}
 .btnContainer{
     width: 315px;
     margin: 0 auto;

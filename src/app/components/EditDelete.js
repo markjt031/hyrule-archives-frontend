@@ -15,7 +15,6 @@ export default function EditDelete({pathname, itemId, userId, data}){
     const [confirmDelete, setConfirmDelete]=useState(false)
     const router=useRouter()
 
-    console.log(user)
     const handleDelete=async ()=>{
         if (pathname==='critters'){
             const response= await fetch(`https://hyrule-archive.herokuapp.com/${pathname}/${itemId}`,
