@@ -4,13 +4,12 @@
 <img src="./public/Screenshot 2023-06-11 at 3.25.25 PM.png" alt="Landing Page"/>
 <img src="./public/Screenshot 2023-06-11 at 3.28.25 PM.png" alt="Monsters Index Page"/>
 <img src="./public/Screenshot 2023-06-11 at 4.12.44 PM.png" alt="Show page monster"/>
-<img src="./public/Screenshot 2023-06-11 at 4.16.47 PM.png" alt="Login/>
+<img src="./public/Screenshot 2023-06-11 at 4.16.47 PM.png" alt="Login"/>
 
 ## Description
 Hyrule Archives is a site allowing users to contribute to the Hyrule Compendium entries(monsters, creatures, equipment, materials), add Korok locations and shrine guides.
 
-## Table of Contents
-                                                                 
+## Table of Contents                                                                 
 * [Technologies Used](#technologiesused)
 * [Features](#features)
 * [Project Next Steps](#nextsteps)
