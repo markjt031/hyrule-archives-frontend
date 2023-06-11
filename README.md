@@ -30,8 +30,8 @@ Hyrule Archives is a site allowing users to contribute to the Hyrule Compendium 
 
 ## Features
 * Logged in users can do full crud operations on 7 different models.
-* All site content can be viewed by users that are not logged int.
-* User profiles, showing avatars and all content additions attributed to that user.
+* All site content can be viewed by users that are not logged in.
+* User profiles, with avatars and all content additions attributed to that user.
 * Ability to search through compendium entries.
 * Responsive for mobile.
 
