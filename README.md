@@ -1,34 +1,53 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Hyrule Archives
 
-## Getting Started
+#### A full-stack web application for user-generated content about The Legend of Zelda: Tears of the Kingdom.
+<img src="./public/Screenshot 2023-06-11 at 3.25.25 PM.png" alt="Landing Page"/>
+<img src="./public/Screenshot 2023-06-11 at 3.28.25 PM.png" alt="Monsters Index Page"/>
+<img src="./public/Screenshot 2023-06-11 at 4.12.44 PM.png" alt="Show page monster"/>
+<img src="./public/Screenshot 2023-06-11 at 4.16.47 PM.png" alt="Login/>
 
-First, run the development server:
+## Description
+Hyrule Archives is a site allowing users to contribute to the Hyrule Compendium entries(monsters, creatures, equipment, materials), add Korok locations and shrine guides.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+## Table of Contents
+* [Technologies Used](#technologiesused)
+* [Features](#features)
+* [Design](#design)
+* [Project Next Steps](#nextsteps)
+* [Deployed App](#deployment)
+* [About the Author](#author)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## <a name="technologiesused"></a>Technologies Used
+[![My Skills](https://skillicons.dev/icons?i=javascript,nodejs,express,mongodb,nextjs,react,vercel&theme=light)](https://skillicons.dev)
+* JavaScript
+* HTML5
+* CSS3
+* Node.Js
+* MongoDB
+* Next.js
+* React.js
+* Express.js
+* RESTful Routes
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Features
+* Logged in users can do full crud operations on 7 different models.
+* All site content can be viewed by users that are not logged int.
+* User profiles, showing avatars and all content additions attributed to that user.
+* Ability to search through compendium entries.
+* Responsive for mobile.
 
-## Learn More
 
-To learn more about Next.js, take a look at the following resources:
+## <a name="nextsteps"></a>Project Next Steps
+* Forums/message boards
+* Continued improvements in CSS
+* Ability to add articles/blog posts
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## <a name="deployment"></a>Deployed Link
+*[Deployment](https://hyrule-archives-frontend.vercel.app/)
 
-## Deploy on Vercel
+* You can view the repository:
+[Github.com](https://github.com/markjt031/hyrule-archives-frontend)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+    

@@ -33,17 +33,15 @@ export default async function Creature({params}){
                 </figure>
                 <article className={styles.cardInfo}>
                 <div className={styles.right}><EditDelete pathname='creatures' itemId={id} userId={creature.userId} data={creature}/></div>
-                    <p>No: {no}</p>
-                    <p>Name: <span className={utilStyles.capitalize}>{name}</span></p>
-                    {recoverableMaterials && <p>Recoverable Materials: <span className={utilStyles.capitalize}>{recoverableMaterials.join(', ')}</span></p>}
-                    <p>Common Locations: <span className={utilStyles.capitalize}>{commonLocations.join(', ')}</span></p>
-                    <p className={styles.descriptionMobile}>Description: {description}</p>
+                    <p><span className={utilStyles.bold}>No:</span> {no}</p>
+                    <p><span className={utilStyles.bold}>Name:</span> <span className={utilStyles.capitalize}>{name}</span></p>
+                    {recoverableMaterials && <p><span className={utilStyles.bold}>Recoverable Materials: </span><span className={utilStyles.capitalize}>{recoverableMaterials.join(', ')}</span></p>}
+                    <p><span className={utilStyles.bold}>Common Locations: </span><span className={utilStyles.capitalize}>{commonLocations.join(', ')}</span></p>
+                    <p className={styles.description}><span className={utilStyles.bold}>Description:</span> {description}</p>
                 </article>
                 
             </section>
-            <article className={styles.description}>
-                <p>Description: {description}</p>
-            </article>
+          
         <LinksDisplay/>
         </>
 

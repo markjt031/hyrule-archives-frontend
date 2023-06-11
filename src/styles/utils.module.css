@@ -5,6 +5,9 @@
     margin: 0 auto;
     width: 150px;
 }
+.bold{
+    font-weight: 700;
+}
 .btn{
     background-color: rgb(var(--blue-400));
     color: rgb(var(--blue-100));

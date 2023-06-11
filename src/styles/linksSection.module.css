@@ -1,9 +1,9 @@
 .linksSection{
-    width: 360px;
+    width: 350px;
     margin: 5% auto;
     background-color: rgb(var(--blue-400));
     border: solid rgb(var(--blue-100));
-    padding: 2% 0;
+    padding: 2% 1%;
 }
 .linksSection h4{
     text-align: center;
@@ -22,15 +22,15 @@
 }
 
 .linksSection ul li{
-    font-size: 1.1rem;
+    font-size: 1.2rem;
 }
 @media screen and (min-width: 768px){
     .linksSection{
-        width: 85%;
+        width: 90%;
     }
 }
 @media screen and (min-width: 1024px){
     .linksSection{
-        width: 60%;
+        width: 80%;
     }
 }

@@ -35,18 +35,16 @@ export default async function Monsters({params}){
                     fill/>
             </div>}
             <article className={styles.cardInfo}>
-            <div className={styles.right}><EditDelete pathname='monsters' itemId={id} userId={monster.userId} data={monster}/></div>
-                <p>No: {no}</p>
-                <p>Name: <span className={utilStyles.capitalize}>{name}</span></p>
-                <p>Recoverable Materials: <span className={utilStyles.capitalize}>{recoverableMaterials.join(', ')}</span></p>
-                <p>Common Locations: <span className={utilStyles.capitalize}>{commonLocations.join(', ')}</span></p>
-                <p className={styles.descriptionMobile}>Description: {description}</p>
+            
+                <p><span className={utilStyles.bold}>No:</span> {no}</p><div className={styles.right}><EditDelete pathname='monsters' itemId={id} userId={monster.userId} data={monster}/></div>
+                <p><span className={utilStyles.bold}> Name:</span> <span className={utilStyles.capitalize}>{name}</span></p>
+                <p><span className={utilStyles.bold}>Recoverable Materials:</span> <span className={utilStyles.capitalize}>{recoverableMaterials.join(', ')}</span></p>
+                <p><span className={utilStyles.bold}>Common Locations:</span> <span className={utilStyles.capitalize}>{commonLocations.join(', ')}</span></p>
+                <p className={styles.description}><span className={utilStyles.bold}>Description:</span> {description}</p>
             </article>
             
         </section>
-        <article className={styles.description}>
-                <p>Description: {description}</p>
-            </article>
+  
         <LinksDisplay/>
         </>
 

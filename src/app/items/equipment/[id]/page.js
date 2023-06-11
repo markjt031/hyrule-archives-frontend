@@ -36,19 +36,16 @@ export default async function Equipment({params}){
                 </figure>}
                 <article className={styles.cardInfo}>
                     <div className={styles.right}><EditDelete pathname='items/equipment' itemId={_id} userId={userId} data={JSON.stringify(equipment)}/></div>
-                    <p>No: {no}</p>
-                    <p>Name: <span className={utilStyles.capitalize}>{name}</span></p>
-                    {properties.attack ? <p className={utilStyles.capitalize}>Attack : {properties.attack}</p> : null}
-                    {properties.defense ? <p className={utilStyles.capitalize}>Defense: {properties.defense}</p> : null}
-                    <p>Other Properties: <span className={utilStyles.capitalize}>{properties.otherProperties.join(', ')}</span></p>
-                    <p>Common Locations: <span className={utilStyles.capitalize}>{commonLocations.join(', ')}</span></p>
-                    <p className={styles.descriptionMobile}>Description: {description}</p>
+                    <p><span className={utilStyles.bold}>No:</span> {no}</p>
+                    <p><span className={utilStyles.bold}>Name:</span> <span className={utilStyles.capitalize}>{name}</span></p>
+                    {properties.attack ? <p className={utilStyles.capitalize}><span className={utilStyles.bold}>Attack: </span> {properties.attack}</p> : null}
+                    {properties.defense ? <p className={utilStyles.capitalize}><span className={utilStyles.bold}>Defense: </span>{properties.defense}</p> : null}
+                    <p><span className={utilStyles.bold}>Other Properties:</span> <span className={utilStyles.capitalize}>{properties.otherProperties.join(', ')}</span></p>
+                    <p><span className={utilStyles.bold}>Common Locations:</span> <span className={utilStyles.capitalize}>{commonLocations.join(', ')}</span></p>
+                    <p className={styles.description}><span className={utilStyles.bold}>Description:</span> {description}</p>
                 </article>
                 
             </section>
-            <article className={styles.description}>
-                    <p>Description: {description}</p>
-                </article>
             <LinksDisplay/>
         </>
 

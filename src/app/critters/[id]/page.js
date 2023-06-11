@@ -35,18 +35,16 @@ export default async function Critter({params}){
                 </figure>}
                 <div className={styles.cardInfo}>
                 <article className={styles.right}><EditDelete pathname='critters' itemId={id} userId={userId} data={critter}/></article>
-                    <p>No: {no}</p>
-                    <p>Name: <span className={utilStyles.capitalize}>{name}</span></p>
-                    <p>Hearts Recovered: <HeartsRecovered numHearts={Number.parseFloat(heartsRecovered)}/></p>
-                    <p>Unique Cooking Effects: <span className={utilStyles.capitalize}>{uniqueCookingEffects.join(', ')}</span></p>
-                    <p>Common Locations: <span className={utilStyles.capitalize}>{commonLocations.join(', ')}</span></p>
-                    <p className={styles.descriptionMobile}>Description: {description}</p>
+                    <p><span className={utilStyles.bold}>No:</span> {no}</p>
+                    <p><span className={utilStyles.bold}>Name:</span> <span className={utilStyles.capitalize}>{name}</span></p>
+                    <p><span className={utilStyles.bold}>Hearts Recovered: </span><HeartsRecovered numHearts={Number.parseFloat(heartsRecovered)}/></p>
+                    <p><span className={utilStyles.bold}>Unique Cooking Effects: </span><span className={utilStyles.capitalize}>{uniqueCookingEffects.join(', ')}</span></p>
+                    <p><span className={utilStyles.bold}>Common Locations: </span><span className={utilStyles.capitalize}>{commonLocations.join(', ')}</span></p>
+                    <p className={styles.description}><span className={utilStyles.bold}>Description: </span>{description}</p>
                 </div>
                 
             </section>
-            <article className={styles.description}>
-                <p>Description: {description}</p>
-            </article>
+           
             <LinksDisplay/>
         </>
 

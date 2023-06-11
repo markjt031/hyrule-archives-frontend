@@ -23,6 +23,7 @@
 }
 .loginWrapper{
     transform: translateY(20%);
+    
 }
 .loginForm input[type=text], .loginForm input[type=email], .loginForm input[type=password]{
     width:70%;
@@ -60,7 +61,7 @@
     top: 10%;
     left: 50%;
     transform: translateX(-50%);
-    /* margin: 18%; */
+    border: solid rgb(var(--blue-100));
 }
 .registerLink{
     color: rbg(var(--blue-300));
