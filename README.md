@@ -10,15 +10,14 @@
 Hyrule Archives is a site allowing users to contribute to the Hyrule Compendium entries(monsters, creatures, equipment, materials), add Korok locations and shrine guides.
 
 ## Table of Contents
+                                                                 
 * [Technologies Used](#technologiesused)
 * [Features](#features)
-* [Design](#design)
 * [Project Next Steps](#nextsteps)
 * [Deployed App](#deployment)
-* [About the Author](#author)
 
 ## <a name="technologiesused"></a>Technologies Used
-[![My Skills](https://skillicons.dev/icons?i=javascript,nodejs,express,mongodb,nextjs,react,vercel&theme=light)](https://skillicons.dev)
+[![My Skills](https://skillicons.dev/icons?i=javascript,nodejs,html,css,express,mongodb,nextjs,react,vercel&theme=light)](https://skillicons.dev)
 * JavaScript
 * HTML5
 * CSS3
@@ -45,7 +44,7 @@ Hyrule Archives is a site allowing users to contribute to the Hyrule Compendium 
 
 
 ## <a name="deployment"></a>Deployed Link
-*[Deployment](https://hyrule-archives-frontend.vercel.app/)
+* [Deployment Link](https://hyrule-archives-frontend.vercel.app/)
 
 * You can view the repository:
 [Github.com](https://github.com/markjt031/hyrule-archives-frontend)
