@@ -7,19 +7,17 @@
     width: 100%;
     position: relative !important;
     height: unset;
-    max-height: 576px;
-    max-width: 1024px;
+    max-height: 691px;
+    max-width: 1228px;
 }
-@media screen and (min-width: 1024){
+@media screen and (min-width: 1024px){
     .container{
         width: 80%;
-        top: 50%;
-        left: 50%;
-        transform: translateX(-50%);
+        margin: 0 auto;
 
     }
-    .landingImage{
+    .text{
+        width: 80%;
         margin: 0 auto;
-        position: absolute !important;
     }
 }

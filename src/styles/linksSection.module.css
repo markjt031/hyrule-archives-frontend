@@ -33,4 +33,10 @@
     .linksSection{
         width: 80%;
     }
+    .linksSection h4{
+        font-size: 1.8rem;
+    }
+    .linksSection ul li{
+        font-size: 1.4rem;
+    }
 }

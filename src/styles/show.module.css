@@ -52,6 +52,7 @@
     }
     .largerCard{
         width: 80%;
+        font-size: 1.2rem;
     }
     .cardInfo{
         margin: 0 2%;
