@@ -4,21 +4,19 @@
 <img src="./public/Screenshot 2023-06-11 at 3.25.25 PM.png" alt="Landing Page"/>
 <img src="./public/Screenshot 2023-06-11 at 3.28.25 PM.png" alt="Monsters Index Page"/>
 <img src="./public/Screenshot 2023-06-11 at 4.12.44 PM.png" alt="Show page monster"/>
-<img src="./public/Screenshot 2023-06-11 at 4.16.47 PM.png" alt="Login/>
+<img src="./public/Screenshot 2023-06-11 at 4.16.47 PM.png" alt="Login"/>
 
 ## Description
 Hyrule Archives is a site allowing users to contribute to the Hyrule Compendium entries(monsters, creatures, equipment, materials), add Korok locations and shrine guides.
 
-## Table of Contents
+## Table of Contents                                                                 
 * [Technologies Used](#technologiesused)
 * [Features](#features)
-* [Design](#design)
 * [Project Next Steps](#nextsteps)
 * [Deployed App](#deployment)
-* [About the Author](#author)
 
 ## <a name="technologiesused"></a>Technologies Used
-[![My Skills](https://skillicons.dev/icons?i=javascript,nodejs,express,mongodb,nextjs,react,vercel&theme=light)](https://skillicons.dev)
+[![My Skills](https://skillicons.dev/icons?i=javascript,nodejs,html,css,express,mongodb,nextjs,react,vercel&theme=light)](https://skillicons.dev)
 * JavaScript
 * HTML5
 * CSS3
@@ -32,8 +30,8 @@ Hyrule Archives is a site allowing users to contribute to the Hyrule Compendium 
 
 ## Features
 * Logged in users can do full crud operations on 7 different models.
-* All site content can be viewed by users that are not logged int.
-* User profiles, showing avatars and all content additions attributed to that user.
+* All site content can be viewed by users that are not logged in.
+* User profiles, with avatars and all content additions attributed to that user.
 * Ability to search through compendium entries.
 * Responsive for mobile.
 
@@ -45,7 +43,7 @@ Hyrule Archives is a site allowing users to contribute to the Hyrule Compendium 
 
 
 ## <a name="deployment"></a>Deployed Link
-*[Deployment](https://hyrule-archives-frontend.vercel.app/)
+* [Deployment Link](https://hyrule-archives-frontend.vercel.app/)
 
 * You can view the repository:
 [Github.com](https://github.com/markjt031/hyrule-archives-frontend)
