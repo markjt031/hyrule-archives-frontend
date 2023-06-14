@@ -25,7 +25,7 @@ export default async function Profile({params}){
         <div>
                 <h2 className={styles.title}>{profile.username}&apos;s Profile</h2>
                 <div className={styles.avatarContainer}>
-                    <UploadAvatar currentAvatar={profile.avatar}/>
+                    <UploadAvatar currentAvatar={profile.avatar} id={id}/>
                 </div>
                 <div className={styles.profiles}>
                     

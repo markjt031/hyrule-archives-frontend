@@ -5,7 +5,7 @@ import styles from '../../styles/avatar.module.css'
 import utilStyles from '../../styles/utils.module.css'
 import { useRouter } from "next/navigation"
 
-export default function UploadAvatar({currentAvatar}){
+export default function UploadAvatar({currentAvatar, id}){
     let image
     if (currentAvatar){
         image=currentAvatar
@@ -105,7 +105,7 @@ export default function UploadAvatar({currentAvatar}){
                 :
                 <div className={styles.box}/>}
             </figure>)}
-            {(userId!='null' &&!editing) && <button className={utilStyles.btn} onClick={()=>setEditing(!editing)}>Change Avatar</button>}
+            {(userId!='null' && userId===id && !editing) && <button className={utilStyles.btn} onClick={()=>setEditing(!editing)}>Change Avatar</button>}
             {toggleError && <h5>{errorMessage}</h5>}
         </>
     )

@@ -1,4 +1,4 @@
-.btn:hover, .imagePreview input[type=file]::file-selector-button{
+.btn:hover, .imagePreview input[type=file]::file-selector-button:hover{
     background-color: rgb(var(--blue-300));
     transform: translateY(-2%);
 }

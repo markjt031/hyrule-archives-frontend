@@ -39,7 +39,7 @@ export default async function Materials({params}){
                     <p><span className={utilStyles.bold}>No:</span> {no}</p><div className={styles.right}><EditDelete pathname='items/materials' itemId={_id} userId={userId} data={material}/></div>
                     <p><span className={utilStyles.bold}>Name:</span> <span className={utilStyles.capitalize}>{name}</span></p>
                     <p><span className={utilStyles.bold}>Hearts Recovered:</span> <HeartsRecovered numHearts={Number.parseFloat(heartsRecovered)}/></p>
-                    {fuseAttackPower && <p><span className={utilStyles.bold}>Fuse Attack Power:</span> {fuseAttackPower}</p>}
+                    {fuseAttackPower && (<p><span className={utilStyles.bold}>Fuse Attack Power:</span> {fuseAttackPower}</p>)}
                     <p><span className={utilStyles.bold}>Unique Cooking Effects:</span> <span className={utilStyles.capitalize}>{uniqueCookingEffects.join(', ')}</span></p>
                     <p><span className={utilStyles.bold}>Common Locations:</span> <span className={utilStyles.capitalize}>{commonLocations.join(', ')}</span></p>
                     <p className={styles.description}><span className={utilStyles.bold}>Description:</span> {description}</p>
