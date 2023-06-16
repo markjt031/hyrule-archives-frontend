@@ -9,7 +9,12 @@
     border: none;
     font-size: 1.5rem;
 }
-
+.confirmDelete{
+    background-color: rgb(var(--blue-500));
+    position: absolute;
+    transform: translateX(-50%);
+    width: 200px;
+}
 .confirmDelete button{
     padding: 1%;
     color: rgb(var(--blue-100));
